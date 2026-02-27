@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type NavLinksProps = {
-  links: { href: string; label: string }[];
+  links: { category_slug: string; category_name: string }[];
 };
 
 export default function NavLinks({ links }: NavLinksProps) {
@@ -10,10 +10,10 @@ export default function NavLinks({ links }: NavLinksProps) {
       {links.map((link, index) => (
         <li key={index}>
           <Link
-            href={link.href}
+            href={`/${link.category_slug}`}
             className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue"
           >
-            {link.label}
+            {link.category_name}
           </Link>
         </li>
       ))}
