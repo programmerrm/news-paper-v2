@@ -24,7 +24,7 @@ const LatestNewsRead = ({ items }: { items: any[] }) => {
 
           <h5>
             <Link href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-              className="transition-all hover:text-blue-600"
+              className="transition-all hover:text-blue-600 line-clamp-2"
             >
               {item?.post_title}
             </Link>

@@ -102,6 +102,14 @@ export default function Menu({ categories }: any) {
                                 হোম
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href={'/latest/news'}
+                                className="text-sm leading-5.5"
+                            >
+                                সর্বশেষ
+                            </Link>
+                        </li>
                         {topMenuCategories.map((item: any) => (
                             <li key={item.category_id}>
                                 <Link

@@ -5,6 +5,7 @@ import NewsItem from "@/components/news-items/newsItem";
 import LatestNews from "@/components/latest-news/LatestNews";
 import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import LatestNewsRead from "@/components/LatestNewsRed/LatestNewsRed";
+import Button from "@/components/button/Button";
 
 export default async function Page() {
     const lastestNews = await getFetchData('/lastestnews');
@@ -89,7 +90,6 @@ export default async function Page() {
                                 {/* Tab content */}
                                 <div className="mt-6">
                                     <div className="hidden group-has-[#latest:checked]:block">
-
                                         <LatestNews items={latestRightSideNews} />
                                     </div>
                                     <div className="hidden group-has-[#popular:checked]:block">
@@ -136,14 +136,11 @@ export default async function Page() {
                                 />
                             </div>
                         )}
-
-
-                        {/* <div className="pb-4 md:pb-8 pt-2 max-w-60 mx-auto">
-                                <Button
-                                    text="আরো দেখুন"
-                                />
-                            </div> */}
-
+                        <div className="pb-4 md:pb-8 pt-2 max-w-60 mx-auto">
+                            <Button
+                                text="আরো দেখুন"
+                            />
+                        </div>
                     </div>
                 </div>
             </section>

@@ -2,6 +2,7 @@ import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
+import Description from "../text-editor/description";
 
 type LedNewsProps = {
   image: StaticImageData;
@@ -48,21 +49,21 @@ export default function LedNews({
 
       {/* Content */}
       <div>
-        <Link href={href}>
-          <HeadingTag className="transition-all duration-300 hover:text-blue-600!">
-            {title}
-          </HeadingTag>
-
+        <div>
+          <Link href={href}>
+            <HeadingTag className="transition-all duration-300 hover:text-blue-600!">
+              {title}
+            </HeadingTag>
+          </Link>
           {content && (
             <p
-              className="text-xs sm:text-sm sm:leading-5.5"
+              className="text-xs sm:text-sm sm:leading-5.5 line-clamp-4"
               style={{ marginTop: `${contentMt}px` }}
             >
-              {content}
+              <Description description={content} />
             </p>
           )}
-        </Link>
-
+        </div>
         {time && (
           <span
             className="text-xs leading-3.75 text-gray inline-block"

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import StorisCard from "./StorisCard";
 import Reels from "../popup/reels";
+import StorisCard from "./StorisCard";
 
 export default function StorisData({ webStories }: any) {
     const [open, setOpen] = useState(false);

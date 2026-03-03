@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PlayIcon from "../../assets/icon/play-icon.svg"
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
+import Description from "../text-editor/description";
 
 export default function SingleNewsItem({
   image,
@@ -74,9 +75,9 @@ export default function SingleNewsItem({
         )}
 
         {content && (
-          <a href={href} className="text-sm sm:text-base leading-6.5 text-body">
-            {content}
-          </a>
+          <div className="text-sm sm:text-base leading-6.5 text-body line-clamp-4">
+            <Description description={content} />
+          </div>
         )}
 
         {time && (
