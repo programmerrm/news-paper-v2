@@ -1,22 +1,32 @@
 import HeroTopNews from "./HeroTopNews";
 import NewsItem from "../news-items/newsItem";
 import { getFetchData } from "@/utils/getFetchData";
-import { NewsItemsProps } from "@/types/NewsItemsProps";
 
 export default async function HeroSection() {
     const heroSectionData = await getFetchData('/lead/section');
-    const side_news1 = heroSectionData?.side_news1;
-    const side_news2 = heroSectionData?.side_news2;
-    const leadNews = heroSectionData?.leadNews;
-    const subLeadNews1 = heroSectionData?.subLeadNews1;
-    const subLeadNews2 = heroSectionData?.subLeadNews2;
-    const specialnews71 = heroSectionData?.specialnews71;
+    if (!heroSectionData) return null;
+    const {
+        leadNews,
+        side_news1,
+        side_news2,
+        subLeadNews1,
+        subLeadNews2,
+        specialnews71,
+    } = heroSectionData;
+    const isAllEmpty =
+        !leadNews &&
+        (!side_news1?.length) &&
+        (!side_news2?.length) &&
+        (!subLeadNews1?.length) &&
+        (!subLeadNews2?.length) &&
+        (!specialnews71?.length);
+    if (isAllEmpty) return null;
     return (
         <section className="pt-10 pb-10 md:pb-18">
             <div className="container">
                 <div className="flex flex-col lg:flex-row">
                     <div className="w-full lg:max-w-[25.390%] divide-y divide-[#D4D4D4] space-y-5 pr-5 order-2 lg:order-1">
-                        {side_news1 && side_news1?.map((item: any) => (
+                        {side_news1?.map((item: any) => (
                             <div className="flex gap-3 pb-5" key={item.post_id}>
                                 <NewsItem
                                     image={item?.post_thumbnail}
@@ -88,7 +98,7 @@ export default async function HeroSection() {
                             </div>
                         )}
                     </div>
-                    {specialnews71 && (
+                    {specialnews71?.length > 0 && (
                         <div className="w-full lg:max-w-[25.390%] lg:pl-5 order-3">
                             <h6 className="text-sm sm:text-base leading-6 text-black font-inter font-semibold">News Flash 71 <span
                                 className="text-red font-inter">Special</span></h6>

@@ -1,8 +1,8 @@
 import Button from "@/components/button/Button";
-import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
-import SubCategory from "@/components/subcategory/SubCategory";
-import WebStorisCard from "@/components/storis/webStorisCard";
 import { getFetchData } from "@/utils/getFetchData";
+import WebStorisCard from "@/components/storis/webStorisCard";
+import SubCategory from "@/components/subcategory/SubCategory";
+import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
 
 export default async function Page() {
     const webstoris = await getFetchData('/webstores/details/page');
@@ -22,9 +22,9 @@ export default async function Page() {
                         {webStories?.map((item: any) => (
                             <WebStorisCard
                                 key={item?.post_id}
-                                thumbnail={item?.post_thumbnail}
-                                title={item?.post_title}
-                                time={item?.post_slug}
+                                post_thumbnail={item?.post_thumbnail}
+                                post_title={item?.post_title}
+                                post_published_at={item?.post_published_at}
                             />
                         ))}
                     </div>

@@ -2,6 +2,7 @@ import { NewsItemsProps } from "@/types/NewsItemsProps";
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 import Image from "next/image";
 import Link from "next/link";
+import Description from "../text-editor/description";
 
 export default function NewsItem({
   image,
@@ -53,15 +54,15 @@ export default function NewsItem({
               </span>
             )}
 
-            <a href={href} className="transition-all hover:text-blue">
+            <a href={href} className="transition-all hover:text-blue line-clamp-2">
               {title}
             </a>
           </HeadingTag>
         )}
 
         {content && (
-          <p className="text-xs sm:text-sm text-body">
-            {content}
+          <p className="text-xs sm:text-sm text-body line-clamp-4">
+            <Description description={content} />
           </p>
         )}
 

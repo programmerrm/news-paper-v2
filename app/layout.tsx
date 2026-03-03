@@ -30,7 +30,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${notoSerifBengali.variable} ${inter.variable} antialiased`}
+                className={`${notoSerifBengali.variable} ${inter.variable} antialiased font-bengali`}
             >
                 <ScrollToTopBottom />
                 {children}

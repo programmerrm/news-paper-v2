@@ -1,6 +1,7 @@
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import Description from "../text-editor/description";
 
 type TopNewsProps = {
   title: string;
@@ -29,9 +30,9 @@ export default function HeroTopNews({
             {title}
           </Link>
         </h2>
-        <Link href={href} className="text-xs sm:text-sm leading-5.5 mt-3 line-clamp-3">
-          {description}
-        </Link>
+        <div className="text-xs sm:text-sm leading-5.5 mt-3 line-clamp-3">
+          <Description description={description} />
+        </div>
         <span className="text-xs sm:text-[13px] text-black/50 mt-4 block">
           {formatBanglaTimeAgo(time)}
         </span>

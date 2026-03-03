@@ -6,15 +6,15 @@
 }
 
 .font-bengali {
-  font-family: var(--font-noto-serif-bengali);
+  font-family: var(--font-noto-serif-bengali), serif;
 }
 
-.font-inter {
-  font-family: var(--font-inter);
+.font-english {
+  font-family: var(--font-inter), sans-serif;
 }
 
 body {
-    font-family: var(--font-bengali);
+  font-family: var(--font-noto-serif-bengali), serif;
 }
 
 @theme {
@@ -34,8 +34,6 @@ body {
         max-width: var(--breakpoint-1xl);
     }
 }
-
-
  
 @layer utilities {
 
@@ -86,4 +84,8 @@ body {
 }
 .home-slider .swiper-pagination-bullet{
     @apply bg-[#FDCBCC] w-2.5 md:w-3.5 h-2.5 md:h-3.5 opacity-100
+}
+
+.goog-te-gadget img {
+    display: none !important;
 }

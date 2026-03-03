@@ -24,9 +24,11 @@ export default async function TopNews() {
                   className="object-cover"
                 />
               </Link>
-              <Link href={`/${item.category.category_slug}/${item.subcategory.subcategory_slug}/${item.post_slug}`} className="hidden lg:block font-inter text-sm sm:text-base font-medium sm:leading-6">
-                {item.post_title}
-              </Link>
+              <div className="hidden lg:block">
+                <Link href={`/${item.category.category_slug}/${item.subcategory.subcategory_slug}/${item.post_slug}`} className="line-clamp-2 font-inter text-sm sm:text-base font-medium sm:leading-6">
+                  {item.post_title}
+                </Link>
+              </div>
             </div>
           ))}
         </div>
