@@ -30,6 +30,7 @@ export default function NewsSlider() {
           spaceBetween={20}
           slidesPerView={4}
           loop={false}
+          speed={100}
           autoplay={{
             delay: 3500,
             disableOnInteraction: false,
@@ -56,7 +57,7 @@ export default function NewsSlider() {
                       {item?.category?.category_name}
                     </p>
 
-                    <h6 className="text-sm leading-5.5 font-semibold text-title">
+                    <h6 className="text-sm leading-5.5 font-semibold text-title line-clamp-2">
                       {item?.post_title}
                     </h6>
                   </div>

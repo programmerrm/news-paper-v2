@@ -58,7 +58,7 @@ export default async function Home() {
                     adsHeight={90}
                 />
             )}
-            {/* <NewsSlider />
+            <NewsSlider />
             <BangldeshNews />
             {sectionThreeBotomAds?.ad_status === 1 && (
                 <Ads
@@ -93,7 +93,7 @@ export default async function Home() {
                     adsHeight={90}
                 />
             )}
-            <EntertainmentSection />
+            {/* <EntertainmentSection />
             {sectionNineBotomAds?.ad_status === 1 && (
                 <Ads
                     adsImg={sectionNineBotomAds?.ad_thumbnail}

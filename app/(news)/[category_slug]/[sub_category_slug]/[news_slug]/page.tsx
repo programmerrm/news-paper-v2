@@ -11,6 +11,9 @@ import ReportTitle from "@/components/details/ReportTitle";
 import ReportNews from "@/components/details/RportNews";
 import PlayBtn from "../../../../../assets/icon/playbtn.svg";
 import TextNews from "@/components/details/TextNews";
+import TextHighlight from "./textHighlight";
+import ReadMoreCard from "./readMoreCard";
+import Ads from "@/components/ads/ads";
 
 type NewsProps = {
     params: Promise<{
@@ -23,6 +26,10 @@ type NewsProps = {
 export default async function Page({ params }: NewsProps) {
     const { category_slug, sub_category_slug, news_slug } = await params;
     const news = await getFetchData(`/posts/${category_slug}/${sub_category_slug}/${news_slug}`);
+    if (!news) return null;
+    const detailsNews = news?.detailsNews;
+    const postDetails = news?.postDetails;
+    console.log('postDetails -- ', postDetails);
     return (
         <section className="pt-10 pb-14">
             <div className="container">
@@ -34,13 +41,13 @@ export default async function Page({ params }: NewsProps) {
                         <div className="w-full sm:max-w-[calc(100%-80px)] md:max-w-[calc(100%-96px)] sm:px-8 xl:px-10 space-y-4 sm:space-y-8">
                             <div className="sm:px-8 border-b border-[#B6C3C8]">
                                 <ReportTitle
-                                    category={news?.detailsNews?.category?.category_name}
-                                    title={news?.detailsNews?.post_title}
+                                    category={detailsNews?.category?.category_name}
+                                    title={detailsNews?.post_title}
                                 />
                                 <div className="flex items-center justify-between gap-3 mt-2 py-3 flex-wrap">
                                     <ReportNews
-                                        reporterName={news?.detailsNews?.author?.author_name}
-                                        publishDate={news?.detailsNews?.post_published_at}
+                                        reporterName={detailsNews?.author?.author_name}
+                                        publishDate={detailsNews?.post_published_at}
                                     />
                                     <div className="flex items-center gap-2.5">
                                         <button type="submit" className="cursor-pointer">
@@ -54,17 +61,66 @@ export default async function Page({ params }: NewsProps) {
                             </div>
                             <div className="sm:px-7.5">
                                 <ReportImage
-                                    src={news?.detailsNews?.post_thumbnail}
-                                    alt={news?.detailsNews?.post_title}
-                                    caption={news?.detailsNews?.post_caption}
+                                    src={detailsNews?.post_thumbnail}
+                                    alt={detailsNews?.post_title}
+                                    caption={detailsNews?.post_caption}
                                 />
                             </div>
                             <div className="sm:px-7.5 space-y-4 sm:space-y-8">
                                 <TextNews
-                                    text={news?.detailsNews?.post_descriptions}
+                                    text={detailsNews?.post_descriptions}
                                 />
+                                {postDetails?.map((item: any) => (
+                                    <>
+                                        {item?.post_details_ad_status === 0 && (
+                                            <Ads
+                                                adsImg={item?.post_details_ad}
+                                                adsWidth={740}
+                                                adsHeight={137}
+                                            />
+                                        )}
+                                        {item?.post_details_content && (
+                                            <TextNews
+                                                text={item?.post_details_content}
+                                            />
+                                        )}
+                                        {item?.post_details_lead_caption && (
+                                            <TextHighlight
+                                                text={item?.post_details_lead_caption}
+                                            />
+                                        )}
+                                        {item?.more_read_news && (
+                                            <ReadMoreCard
+                                                image={item?.more_read_news?.post_thumbnail}
+                                                title={item?.more_read_news?.post_title}
+                                                href={item?.more_read_news?.post_slug}
+                                            />
+                                        )}
+                                        {item?.post_details_image && (
+                                            <div className="flex flex-col flex-wrap w-full">
+                                                <Image
+                                                    src={item?.post_details_image}
+                                                    alt={item?.post_details_image_caption}
+                                                    width={740}
+                                                    height={555}
+                                                />
+                                                {item?.post_details_image_caption && (
+                                                    <span>{item?.post_details_image_caption}</span>
+                                                )}
+                                            </div>
+                                        )}
+                                        {item?.post_details_ad_status === 1 && (
+                                            <Ads
+                                                adsImg={item?.post_details_ad}
+                                                adsWidth={740}
+                                                adsHeight={137}
+                                            />
+                                        )}
+                                    </>
+                                ))}
 
                             </div>
+
                             {news?.detailsNews?.tags && (
                                 <div className="bg-[#FBF7EF] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                                     <h5>আরো পড়ুন:</h5>
@@ -92,6 +148,7 @@ export default async function Page({ params }: NewsProps) {
                                     key={item.post_id}
                                     image={item.post_thumbnail}
                                     title={item.post_title}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     imageWidth={88}
                                     imageHeight={66}
                                     imageWrap="max-w-[88px]"
@@ -101,7 +158,7 @@ export default async function Page({ params }: NewsProps) {
                         </div>
                     </div>
                 </div>
-                {news?.bottomNews && (
+                {news?.bottomNews.length > 0 && (
                     <div className="mt-14">
                         <h3>রিলেটেড নিউজ</h3>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
@@ -113,7 +170,7 @@ export default async function Page({ params }: NewsProps) {
                                     imageWidth={305}
                                     imageHeight={229}
                                     time={item?.post_published_at}
-                                    href={`#`}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     timeMt={"16"}
                                     headingLevel="h5"
                                     gap="gap-3"

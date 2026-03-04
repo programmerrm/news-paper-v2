@@ -1,21 +1,24 @@
 import SectionTitle from "../section-title/SectionTitle";
 import NewsItem from "../news-items/newsItem";
 import LedNews from "../led-news/LedNews";
-import ledImage from "../../assets/image/led-image.png"
 import Button from "../button/Button";
-import { subdistricts } from "@/data/subdistricts";
-import { districts } from "@/data/districts";
-import { divisions } from "@/data/division";
-import CustomSelect from "../selects/CustomSelect";
 import { getFetchData } from "@/utils/getFetchData";
+import Bangladesh from "../search/bangladesh";
 
 export default async function BangldeshNews() {
     const sectionThreeData = await getFetchData('/section/three');
+    if (!sectionThreeData) return null;
+    const {
+        sectionThreeLeadNews,
+        sectionThreeLeftSide,
+        sectionThreeRightSide,
+    } = sectionThreeData;
+    const isAllEmpty =
+        !sectionThreeLeadNews &&
+        (!sectionThreeLeftSide?.length) &&
+        (!sectionThreeRightSide?.length);
+    if (isAllEmpty) return null;
     const category = sectionThreeData?.category;
-    const sectionThreeLeadNews = sectionThreeData?.sectionThreeLeadNews;
-    const sectionThreeLeftSide = sectionThreeData?.sectionThreeLeftSide;
-    const sectionThreeRightSide = sectionThreeData?.sectionThreeRightSide;
-
     return (
         <section className="py-8 lg:py-16">
             <div className="container">
@@ -23,29 +26,7 @@ export default async function BangldeshNews() {
                     title={category?.category_name}
                     href={`/${category?.category_slug}`}
                 />
-
-                <div className="bg-[#E0EBF0] p-4 lg:p-8 mt-8 ">
-                    <h5 className="text-center mb-3.5">আপনার এলাকার খবর</h5>
-                    <form action="" className="flex flex-col sm:flex-row items-center gap-3">
-                        <div className="w-full grid sm:grid-cols-3 gap-3 sm:flex-1">
-                            <CustomSelect
-                                options={divisions}
-                            />
-                            <CustomSelect
-                                options={districts}
-                            />
-                            <CustomSelect
-                                options={subdistricts}
-                            />
-                        </div>
-                        <div className="w-full sm:max-w-40 lg:max-w-60">
-                            <Button
-                                text="সার্চ করুন"
-                            />
-                        </div>
-                    </form>
-                </div>
-
+                <Bangladesh />
                 <div className="flex flex-col lg:flex-row mt-8">
                     <div className="w-full lg:max-w-[32.031%] lg:pr-5 mt-4 lg:mt-0 flex flex-col gap-2.5 lg:gap-5 divide-y divide-[#D4D4D4] order-2 lg:order-1">
                         {sectionThreeLeftSide?.map((item: any) => (

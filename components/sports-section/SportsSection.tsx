@@ -6,10 +6,18 @@ import SectionTitle from "../section-title/SectionTitle";
 
 export default async function SportsSection() {
     const sectionSevenData = await getFetchData('/section/seven');
+    if (!sectionSevenData) return null;
+    const {
+        sectionSevenLeadNews,
+        sectionSevenSubleadNews,
+        sectionSevenRightSide,
+    } = sectionSevenData;
+    const isAllEmpty =
+        !sectionSevenLeadNews &&
+        (!sectionSevenSubleadNews?.length) &&
+        (!sectionSevenRightSide?.length);
+    if (isAllEmpty) return null;
     const category = sectionSevenData?.category;
-    const sectionSevenLeadNews = sectionSevenData?.sectionSevenLeadNews;
-    const sectionSevenSubleadNews = sectionSevenData?.sectionSevenSubleadNews;
-    const sectionSevenRightSide = sectionSevenData?.sectionSevenRightSide;
     const sectionSevenLeftSideAd = await getFetchData('/SectionSevenLeftSideAd');
     const sectionSevenLeftSideAds = sectionSevenLeftSideAd?.ads;
     return (
@@ -26,6 +34,7 @@ export default async function SportsSection() {
                                 <NewsItem
                                     imageWidth={140}
                                     imageHeight={104}
+                                    image={item?.post_thumbnail}
                                     title={item?.post_title}
                                     time={item?.post_published_at}
                                     href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}

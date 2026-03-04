@@ -58,10 +58,18 @@ export default async function HeroSection() {
                                 href={`/${leadNews?.category?.category_slug}/${leadNews?.subcategory?.subcategory_slug}/${leadNews?.post_slug}`}
                             />
                         )}
-                        {subLeadNews1 && (
-                            <div className="flex flex-col xl:flex-row py-6 divide-y xl:divide-y-0 xl:divide-x divide-[#D4D4D4] first:pt-0 last:pb-0">
-                                {subLeadNews1 && subLeadNews1?.map((item: any) => (
-                                    <div className="w-full xl:max-w-1/2 xl:pr-4" key={item.post_id}>
+                        {subLeadNews1?.length > 0 && (
+                            <div className="flex flex-col xl:flex-row py-6 divide-y xl:divide-y-0 xl:divide-x divide-[#D4D4D4]">
+
+                                {subLeadNews1.map((item: any, index: number) => (
+                                    <div
+                                        key={item.post_id}
+                                        className={`
+          w-full xl:max-w-1/2
+          ${index === 0 ? "xl:pr-6" : "xl:pl-6"}
+          py-5 xl:py-0
+        `}
+                                    >
                                         <div className="pb-2">
                                             <NewsItem
                                                 image={item?.post_thumbnail}
@@ -72,7 +80,8 @@ export default async function HeroSection() {
                                                 imageWrap="max-w-[80px]"
                                             />
                                         </div>
-                                        <div className=" pb-5">
+
+                                        <div>
                                             <NewsItem
                                                 content={item?.post_descriptions}
                                                 time={item?.post_published_at}
@@ -100,8 +109,8 @@ export default async function HeroSection() {
                     </div>
                     {specialnews71?.length > 0 && (
                         <div className="w-full lg:max-w-[25.390%] lg:pl-5 order-3">
-                            <h6 className="text-sm sm:text-base leading-6 text-black font-inter font-semibold">News Flash 71 <span
-                                className="text-red font-inter">Special</span></h6>
+                            <h6 className="text-sm sm:text-base leading-6 text-black font-inter font-semibold">নিউজ ফ্ল্যাশ ৭১ <span
+                                className="text-red font-inter">স্পেশাল</span></h6>
                             <div className="divide-y divide-[#D4D4D4] mt-6">
                                 {specialnews71?.map((item: any) => (
                                     <NewsItem

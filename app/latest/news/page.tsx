@@ -33,7 +33,7 @@ export default async function Page() {
                                     imageHeight={104}
                                     title={item.post_title}
                                     time={item.post_published_at}
-                                    href={item.post_slug}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     timeMt={"16"}
                                     imageWrap="max-w-[140px]"
                                 />
@@ -50,7 +50,7 @@ export default async function Page() {
                                     title={item.post_title}
                                     content={item.post_descriptions}
                                     time={item.post_published_at}
-                                    href={item.post_slug}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     contentMt={"12"}
                                     timeMt={"16"}
                                 />
@@ -119,7 +119,7 @@ export default async function Page() {
                                     imageHeight={304}
                                     title={item.post_title}
                                     time={item.post_published_at}
-                                    href={item.post_slug}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     timeMt={16}
                                     SingleimageWrap="max-w-[200px]"
                                     content={item.post_descriptions}
@@ -141,6 +141,15 @@ export default async function Page() {
                                 text="আরো দেখুন"
                             />
                         </div>
+                        {bottomAd?.ad_status == 1 && (
+                            <div className="pb-4 md:pb-8">
+                                <Ads
+                                    adsImg={bottomAd?.ad_thumbnail}
+                                    adsWidth={768}
+                                    adsHeight={90}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>

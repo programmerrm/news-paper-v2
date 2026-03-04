@@ -6,10 +6,18 @@ import NationalNews from "../national-section/NationalNews";
 
 export default async function PoliticsSection() {
     const sectionSix = await getFetchData('/section/six');
+    if (!sectionSix) return null;
+    const {
+        sectionSixLeadNews,
+        sectionSixSubleadNews,
+        sectionSixRightSide,
+    } = sectionSix;
+    const isAllEmpty =
+        !sectionSixLeadNews &&
+        (!sectionSixSubleadNews?.length) &&
+        (!sectionSixRightSide?.length);
+    if (isAllEmpty) return null;
     const category = sectionSix?.category;
-    const sectionSixLeadNews = sectionSix?.sectionSixLeadNews;
-    const sectionSixSubleadNews = sectionSix?.sectionSixSubleadNews;
-    const sectionSixRightSide = sectionSix?.sectionSixRightSide;
     return (
         <section className="py-8 lg:py-16">
             <div className="container">

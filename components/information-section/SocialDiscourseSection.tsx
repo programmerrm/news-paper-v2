@@ -4,9 +4,17 @@ import SectionHeader from "./SectionHeader";
 
 export default async function SocialDiscourseSection() {
     const sectionEight = await getFetchData('/section/eight');
-    const section13PartOne = sectionEight?.section13PartOne;
-    const section13PartTwo = sectionEight?.section13PartTwo
-    const section13PartThree = sectionEight?.section13PartThree;
+    if (!sectionEight) return null;
+    const {
+        section13PartOne,
+        section13PartTwo,
+        section13PartThree,
+    } = sectionEight;
+    const isAllEmpty =
+        !section13PartOne &&
+        (!section13PartTwo?.length) &&
+        (!section13PartThree?.length);
+    if (isAllEmpty) return null;
     return (
         <section className="bg-[#F0F5F4] py-8 lg:py-16">
             <div className="container">
