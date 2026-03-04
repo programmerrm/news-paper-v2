@@ -26,7 +26,7 @@ const OpinionNewsItem = ({
           alt={title}
           width={imageWidth}
           height={imageHeight}
-          className="object-cover transition-transform duration-500 hover:scale-105"
+          className="object-fill transition-transform duration-500 hover:scale-105 h-24 w-24"
         />
       </div>
 

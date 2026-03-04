@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import ImageSquareSmall from "../../assets/icon/ImageSquareSmall.svg"
 import Link from "next/link";
+import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 interface GalleryNewsProps {
   image: StaticImageData | string;
@@ -47,7 +48,7 @@ export default function GalleryNews({
       </h5>
 
       <p className="mt-2 text-gray text-sm">
-        {time}
+        {formatBanglaTimeAgo(time)}
       </p>
     </div>
   );

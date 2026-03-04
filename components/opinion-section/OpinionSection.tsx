@@ -28,16 +28,15 @@ export default async function OpinionSection() {
                     <div className="w-full lg:w-[31.562%] bg-white flex items-center border-b-2 border-red mb-5 lg:mb-0">
                         {leadNews?.map((item: any) => (
                             <div className="p-8" key={item.post_id}>
-                                <div className="max-w-35 h-full min-h-35 rounded-full overflow-hidden mb-8">
+                                <div className="mb-8">
                                     <Image
                                         src={item?.post_thumbnail}
                                         alt={item?.post_title}
                                         width={140}
                                         height={140}
-                                        className="transition-transform duration-500 hover:scale-105"
+                                        className="rounded-full transition-transform duration-500 hover:scale-105 w-35 h-35 object-cover"
                                     />
                                 </div>
-
                                 <h4 className="mb-3 transition-all hover:text-[#1877f2] line-clamp-2">
                                     <Link
                                         href={`/${item?.category?.category_slug}${item?.subcategory?.subcategory_slug
@@ -48,14 +47,12 @@ export default async function OpinionSection() {
                                         {item.post_title}
                                     </Link>
                                 </h4>
-
                                 <p className="text-xs sm:text-sm leading-5.5 text-[#525252] line-clamp-4">
                                     <div
                                     >
                                         <Description description={item?.post_descriptions} />
                                     </div>
                                 </p>
-
                                 <span className="text-xs sm:text-sm leading-5.5 text-[#525252] mt-8 inline-block">
                                     লেখক: {item?.author?.author_name}
                                 </span>
