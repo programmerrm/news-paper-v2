@@ -19,9 +19,6 @@ export default function VideoCategoryNewsItem({
       <div className="w-full max-w-41 h-full max-h-30.75">
         <VideoPlayer
           src="/video/jodinat.mp4"
-          poster="/video/Image.png"
-          controls={true}
-          muted
         />
       </div>
       

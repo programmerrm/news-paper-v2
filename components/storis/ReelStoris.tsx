@@ -37,10 +37,7 @@ export default function ReelStorisCard({
                     /> */}
                     <div className="h-full">
                         <VideoPlayer
-                            src="/video/jodinat.mp4"
-                            poster="/video/Image.png"
-                            controls={false}
-                            muted
+                            src={"any"}
                         />
                     </div>
 
@@ -83,10 +80,7 @@ export default function ReelStorisCard({
                         <div className="flex flex-col relative w-full h-full overflow-hidden bg-white bg-linear-to-t from-black/80 via-black/0 to-transparent">
 
                             <VideoPlayer
-                                src="/video/jodinat.mp4"
-                                poster="/video/Image.png"
-                                controls={true}
-                                muted
+                                src={"any"}
                             />
                             <div className=" bottom-0 left-0 px-3 sma:px-6 pb-6 sm:pb-8 mt-4 z-10">
                                 <h4 className="text-white">

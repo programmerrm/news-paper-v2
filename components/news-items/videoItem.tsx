@@ -25,10 +25,7 @@ export default function NewsItem({
           className={`block ${imageWrap}`}
         >
          <VideoPlayer
-            src="/video/jodinat.mp4"
-            poster="/video/Image.png"
-            controls={true}
-            muted
+            src={"any"}
           />
         </div>
       )}

@@ -22,10 +22,7 @@ export default function VideoNewsItem({
           className={`block overflow-hidden ${imageWrap} max-h-19.5`}
         >
           <VideoPlayer
-            src="/video/jodinat.mp4"
-            poster="/video/Image.png"
-            controls={true}
-            muted
+            src={"any"}
           />
         </div>
       )}

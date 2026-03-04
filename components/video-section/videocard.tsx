@@ -22,9 +22,7 @@ export default function VideoCard({
       <div className="h-full max-h-134.25">
         <VideoPlayer
           src="/video/jodinat.mp4"
-          poster="/video/Image.png"
-          controls={true}
-          muted
+         
         />
       </div>
 

@@ -13,10 +13,7 @@ export default function ReportVideo({
       <div className=" bg-gray-dark max-w-185 max-h-138.75">
         
         <VideoPlayer
-          src="/video/jodinat.mp4"
-          poster="/video/Image.png"
-          controls={true}
-          muted
+          src={"any"}
         />
       </div>
         {caption && (

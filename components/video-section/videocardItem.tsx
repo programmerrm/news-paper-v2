@@ -26,9 +26,7 @@ export default function VideoCardItem({
       <div className="overflow-hidden w-full h-full max-w-85">
         <VideoPlayer
           src="/video/jodinat.mp4"
-          poster="/video/Image.png"
-          controls={true}
-          muted
+          
       />
       </div>
 
