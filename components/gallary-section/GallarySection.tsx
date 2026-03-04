@@ -6,15 +6,22 @@ import { getFetchData } from "@/utils/getFetchData";
 
 export default async function GallarySection() {
     const sectionTwelve = await getFetchData('/section/twelve');
+    if (!sectionTwelve) return null;
+    const {
+        sectionTwelveLeadNews,
+        sectionTwelveSubleadNews,
+    } = sectionTwelve;
+    const isAllEmpty =
+        !sectionTwelveLeadNews &&
+        (!sectionTwelveSubleadNews?.length);
+    if (isAllEmpty) return null;
     const category = sectionTwelve?.category;
-    const sectionTwelveLeadNews = sectionTwelve?.sectionTwelveLeadNews;
-    const sectionTwelveSubleadNews = sectionTwelve?.sectionTwelveSubleadNews;
     return (
         <section className="py-8 lg:py-16 ">
             <div className="container">
                 <SectionTitle
-                    title={"ছবি"}
-                    href={`/photos/news`}
+                    title={category?.category_name}
+                    href={`/${category?.category_slug}`}
                 />
                 <div className="mt-8 flex flex-col md:flex-row items-start ">
                     <div className="w-full md:max-w-[48.125%]">

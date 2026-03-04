@@ -29,7 +29,6 @@ export default async function Page({ params }: NewsProps) {
     if (!news) return null;
     const detailsNews = news?.detailsNews;
     const postDetails = news?.postDetails;
-    console.log('postDetails -- ', postDetails);
     return (
         <section className="pt-10 pb-14">
             <div className="container">
@@ -118,9 +117,7 @@ export default async function Page({ params }: NewsProps) {
                                         )}
                                     </>
                                 ))}
-
                             </div>
-
                             {news?.detailsNews?.tags && (
                                 <div className="bg-[#FBF7EF] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                                     <h5>আরো পড়ুন:</h5>

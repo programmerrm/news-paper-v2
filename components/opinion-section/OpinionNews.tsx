@@ -31,7 +31,7 @@ const OpinionNewsItem = ({
       </div>
 
       <div>
-        <h5 className="font-medium leading-6 transition-all hover:text-[#1877f2]">
+        <h5 className="font-medium leading-6 transition-all hover:text-[#1877f2] line-clamp-2">
           <Link href={href}>{title}</Link>
           </h5>
         <span className="text-xs sm:text-sm leading-5.5 text-[#525252] mt-2 inline-block">

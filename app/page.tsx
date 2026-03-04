@@ -93,7 +93,7 @@ export default async function Home() {
                     adsHeight={90}
                 />
             )}
-            {/* <EntertainmentSection />
+            <EntertainmentSection />
             {sectionNineBotomAds?.ad_status === 1 && (
                 <Ads
                     adsImg={sectionNineBotomAds?.ad_thumbnail}
@@ -125,7 +125,7 @@ export default async function Home() {
                     adsHeight={90}
                 />
             )}
-            <LifeStyleSection /> */}
+            <LifeStyleSection />
             <Footer />
         </>
 

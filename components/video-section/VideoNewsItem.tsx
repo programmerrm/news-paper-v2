@@ -1,42 +1,43 @@
-import Image, { StaticImageData } from "next/image";
-import videoIcon from "../../assets/icon/play-icon.svg";
 import Link from "next/link";
 import VideoPlayer from "../video/VideoPage";
+import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 type VideoNewsItemProps = {
-  image: StaticImageData;
+  video_url: string;
   title: string;
   time?: string;
   href?: string;
 };
 
 export default function VideoNewsItem({
-  image,
+  video_url,
   title,
-  time = "কিছুক্ষণ আগে",
+  time,
   href = "#",
 }: VideoNewsItemProps) {
   return (
-    <div className="p-3 md:p-4 bg-body flex gap-4">
-      <div className=" w-full max-w-41">
-        <VideoPlayer
-          src="/video/jodinat.mp4"
-          poster="/video/Image.png"
-          controls={true}
-          muted
-        />
+    <div className="p-3 md:p-4 bg-body flex gap-4 rounded">
+      
+      {/* Video */}
+      <div className="w-full max-w-40 shrink-0">
+        <VideoPlayer src={video_url} />
       </div>
-      <div>
+
+      {/* Content */}
+      <div className="flex flex-col justify-between">
         <Link href={href}>
-          <h6 className="text-white! text-base leading-6 mb-2 lg:mb-6 hover:text-blue! transition-colors">
+          <h6 className="text-white text-base leading-6 mb-2 hover:text-blue transition-colors">
             {title}
           </h6>
         </Link>
 
         {time && (
-          <span className="text-xs leading-3.75 text-gray">{time}</span>
+          <span className="text-xs leading-4 text-gray-400">
+            {formatBanglaTimeAgo(time)}
+          </span>
         )}
       </div>
+
     </div>
   );
 }

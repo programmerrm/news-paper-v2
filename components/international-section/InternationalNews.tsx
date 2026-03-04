@@ -5,13 +5,20 @@ import LatestNews from "../latest-news/LatestNews";
 import { getFetchData } from "@/utils/getFetchData";
 import SectionTitle from "../section-title/SectionTitle";
 import LatestNewsRead from "../LatestNewsRed/LatestNewsRed";
-import TrumpSpeechImage from "../../assets/image/trump-speech.png";
 
 export default async function InternationalNews() {
     const sectionTen = await getFetchData('/section/ten');
-    const sectionTenLeftSide = sectionTen?.sectionTenLeftSide;
-    const sectionTenLeadNews = sectionTen?.sectionTenLeadNews;
-    const sectionTenSubleadNews = sectionTen?.sectionTenSubleadNews;
+    if (!sectionTen) return null;
+    const {
+        sectionTenLeftSide,
+        sectionTenLeadNews,
+        sectionTenSubleadNews,
+    } = sectionTen;
+    const isAllEmpty =
+        !sectionTenLeftSide &&
+        (!sectionTenLeadNews?.length) &&
+        (!sectionTenSubleadNews?.length);
+    if (isAllEmpty) return null;
     const sectionTenLatest = sectionTen?.sectionTenLatest;
     const sectionTenReadMore = sectionTen?.sectionTenReadMore;
     const tags = sectionTen?.tags;

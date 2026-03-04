@@ -4,9 +4,17 @@ import SectionHeader from "./SectionHeader";
 
 export default async function LifeStyleSection() {
     const sectionThirteen = await getFetchData('/section/thirteen');
-    const section13PartOne = sectionThirteen?.section13PartOne;
-    const section13PartTwo = sectionThirteen?.section13PartTwo;
-    const section13PartThree = sectionThirteen?.section13PartThree;
+    if (!sectionThirteen) return null;
+    const {
+        section13PartOne,
+        section13PartTwo,
+        section13PartThree,
+    } = sectionThirteen;
+    const isAllEmpty =
+        !section13PartOne &&
+        (!section13PartTwo?.length) &&
+        (!section13PartThree?.length);
+    if (isAllEmpty) return null;
     return (
         <section className="bg-[#F0F5F4] py-8 lg:py-16">
             <div className="container">

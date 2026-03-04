@@ -7,10 +7,18 @@ import NationalLedNews from "../national-led-news/NationalLedNews";
 
 export default async function EntertainmentSection() {
     const sectionNine = await getFetchData('/section/nine');
+    if (!sectionNine) return null;
+    const {
+        sectionNineLeadNews,
+        sectionNineSubleadNews,
+        sectionNineRightSide,
+    } = sectionNine;
+    const isAllEmpty =
+        !sectionNineLeadNews &&
+        (!sectionNineSubleadNews?.length) &&
+        (!sectionNineRightSide?.length);
+    if (isAllEmpty) return null;
     const category = sectionNine?.category;
-    const sectionNineLeadNews = sectionNine?.sectionNineLeadNews;
-    const sectionNineSubleadNews = sectionNine?.sectionNineSubleadNews;
-    const sectionNineRightSide = sectionNine?.sectionNineRightSide;
     const sectionNineSideAd = await getFetchData('/SectionNineSideAd');
     const sectionNineSideAds = sectionNineSideAd?.ads;
     return (
