@@ -6,17 +6,21 @@ import LatestNews from "@/components/latest-news/LatestNews";
 import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import LatestNewsRead from "@/components/LatestNewsRed/LatestNewsRed";
 import Button from "@/components/button/Button";
+import LoadMoreNews from "./loadMoreNews";
 
 export default async function Page() {
     const lastestNews = await getFetchData('/lastestnews');
+    if (!lastestNews)return null;
     const topad = lastestNews?.topad;
     const middleAd = lastestNews?.middleAd;
     const bottomAd = lastestNews?.bottomAd;
+
     const latestLeadNews = lastestNews?.latestLeadNews;
     const latestLeftSideNews = lastestNews?.latestLeftSideNews;
     const latestRightSideNews = lastestNews?.latestRightSideNews;
     const readMorelatestNews = lastestNews?.readMorelatestNews;
     const latestBotomNews = lastestNews?.latestBotomNews;
+
     return (
         <section>
             <section className="py-5 sm:py-10">
@@ -111,36 +115,11 @@ export default async function Page() {
             <section className="py-7 lg:py-14">
                 <div className="container">
                     <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
-                        {latestBotomNews?.map((item: any) => (
-                            <div className="pb-4 md:pb-8" key={item.post_id}>
-                                <SingleNewsItem
-                                    image={item.post_thumbnail}
-                                    imageWidth={340}
-                                    imageHeight={304}
-                                    title={item.post_title}
-                                    time={item.post_published_at}
-                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                    timeMt={16}
-                                    SingleimageWrap="max-w-[200px]"
-                                    content={item.post_descriptions}
-                                    titleMb={12}
-                                />
-                            </div>
-                        ))}
-                        {middleAd?.ad_status == 1 && (
-                            <div className="pb-4 md:pb-8">
-                                <Ads
-                                    adsImg={middleAd?.ad_thumbnail}
-                                    adsWidth={882}
-                                    adsHeight={248}
-                                />
-                            </div>
-                        )}
-                        <div className="pb-4 md:pb-8 pt-2 max-w-60 mx-auto">
-                            <Button
-                                text="আরো দেখুন"
-                            />
-                        </div>
+                        <LoadMoreNews
+                            initialData={latestBotomNews?.data}
+                            middleAd={middleAd}
+                            nextLink={latestBotomNews?.links?.next}
+                        />
                         {bottomAd?.ad_status == 1 && (
                             <div className="pb-4 md:pb-8">
                                 <Ads

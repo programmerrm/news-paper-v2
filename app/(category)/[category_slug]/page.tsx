@@ -1,10 +1,10 @@
-import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
-import SubCategory from "@/components/subcategory/SubCategory";
 import { getFetchData } from "@/utils/getFetchData";
-import NewsItem from "@/components/news-items/newsItem";
 import LedNews from "@/components/led-news/LedNews";
-import CategoryNewsHeadding from "@/components/category/CategoryNewsHeadding";
+import NewsItem from "@/components/news-items/newsItem";
+import SubCategory from "@/components/subcategory/SubCategory";
 import SingleNewsItem from "@/components/news-items/SingleNewsItem";
+import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
+import CategoryNewsHeadding from "@/components/category/CategoryNewsHeadding";
 
 type CategoryProps = {
     params: Promise<{ category_slug: string; }>;
@@ -21,6 +21,7 @@ export default async function Page({ params }: CategoryProps) {
         <>
             <section className="py-5 sm:py-10">
                 <div className="container">
+
                     <div>
                         <NewsBreadcrumb
                             title={category.category.category_name}
@@ -30,6 +31,7 @@ export default async function Page({ params }: CategoryProps) {
                             subCategories={category.category.subcategory}
                         />
                     </div>
+
                     <div className="flex flex-col lg:flex-row mt-8 gap-5">
                         {categoryLeftNews?.length > 0 && (
                             <div className="w-full lg:max-w-[30.469%] flex flex-col divide-y divide-[#D4D4D4] order-2 lg:order-1">
@@ -48,6 +50,7 @@ export default async function Page({ params }: CategoryProps) {
                                 ))}
                             </div>
                         )}
+
                         {categoryLeadNews?.length > 0 && (
                             <div className="w-full lg:max-w-[42.421%] lg:px-4.75 lg:border-r lg:border-l border-[#A1A1A1] order-1 lg:order-2">
                                 {categoryLeadNews?.map((item: any) => (
@@ -66,6 +69,7 @@ export default async function Page({ params }: CategoryProps) {
                                 ))}
                             </div>
                         )}
+
                         {categoryRightNews?.length > 0 && (
                             <div className="w-full lg:max-w-[23.829%] order-3 lg:order-3">
                                 <CategoryNewsHeadding
@@ -90,6 +94,7 @@ export default async function Page({ params }: CategoryProps) {
                     </div>
                 </div>
             </section >
+            
             {categoryBottomNews?.length > 0 && (
                 <section className="py-7 lg:py-14">
                     <div className="container">
@@ -114,6 +119,7 @@ export default async function Page({ params }: CategoryProps) {
                     </div>
                 </section>
             )}
+            
         </>
     );
 }
