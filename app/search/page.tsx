@@ -1,12 +1,9 @@
-
-import RiverImage from "../../assets/image/river-image.png"
-import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import Button from "@/components/button/Button";
 import searchIcon from "../../assets/icon/search.svg"
 import HasTagButton from "@/components/button/HasTagButton";
 import NewsFilterBar from "@/components/news-filter/NewsFilterBar";
 
-export default function SearchNewspage() {
+export default function Page() {
     return (
         <>
             <section className="py-5 sm:py-10">
@@ -18,10 +15,11 @@ export default function SearchNewspage() {
                                 <input type="text" placeholder="কি খুজতে চান?" className="w-full  focus:outline-0 py-4 sm:py-6 pl-4 sm:pl-7" />
                             </div>
                             <div className="w-full max-w-24 md:max-w-38">
-                                <Button
-                                    imageSrc={searchIcon}
-                                    text="খুজুন"
-                                />
+
+                                <button type="submit" className="bg-red text-white w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer">
+                                    খুজুন
+                                </button>
+
                             </div>
                         </form>
                         <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
@@ -29,52 +27,7 @@ export default function SearchNewspage() {
                             <div className="flex items-center flex-wrap gap-2">
                                 <HasTagButton
                                     label="ওয়েদার"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="ইলেকশন"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="পার্লামেন্ট"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="জামাত"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="পলিটিক্স"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="জামাত"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="আইডলজিক্যাল"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="বাংলাদেশ"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="ডিমান্ডস"
-                                    href="#"
-                                    color="#171717"
-                                />
-                                <HasTagButton
-                                    label="পার্টি"
-                                    href="#"
+                                    href="/tags/ওয়েদার"
                                     color="#171717"
                                 />
                             </div>
@@ -84,86 +37,14 @@ export default function SearchNewspage() {
                         <NewsFilterBar
                             total="২০২৩২"
                             options={[
-                                { label: "রিলেভেন্ট খবর", value: "relevant" },
-                                { label: "রিলেভেন্ট খবর1", value: "relevant1" },
-                                { label: "রিলেভেন্ট খবর2", value: "relevant2" },
-                                { label: "রিলেভেন্ট খবর3", value: "relevant3" },
+                                { label: "Latest", value: "Latest" },
+                                { label: "Older", value: "Older" },
                             ]}
                         />
                     </div>
                 </div>
             </section>
-            <section className="py-7 lg:py-14">
-                <div className="container">
-                    <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
 
-                        <div className="pb-4 md:pb-8">
-                            <SingleNewsItem
-                                image={RiverImage}
-                                imageWidth={340}
-                                imageHeight={304}
-                                title={"চূড়ান্ত প্রার্থী তালিকা সময়মতো জানাবে জামায়াত: আমির ডা. শফিকুর রহমান"}
-                                time={"১ সেকেন্ড আগে"}
-                                href="#"
-                                timeMt={16}
-                                SingleimageWrap="max-w-[200px]"
-                                content="বলিউডের আইটেম গার্ল খ্যাত অভিনেত্রী মালাইকা অরোরা ব্যক্তিগত জীবন নিয়ে সবসময় আলোচনায় থাকেন। দীর্ঘদাম্পত্য আর সম্পর্ক ভেঙে যাওয়ার পর মালাইকা এবার নতুন প্রেমের গুঞ্জনে ছড়িয়ে পড়েছেন।"
-                                titleMb={12}
-                            />
-                        </div>
-                        <div className="pb-4 md:pb-8">
-                            <SingleNewsItem
-                                image={RiverImage}
-                                imageWidth={340}
-                                imageHeight={304}
-                                title={"চূড়ান্ত প্রার্থী তালিকা সময়মতো জানাবে জামায়াত: আমির ডা. শফিকুর রহমান"}
-                                time={"১ সেকেন্ড আগে"}
-                                href="#"
-                                timeMt={16}
-                                SingleimageWrap="max-w-[200px]"
-                                content="বলিউডের আইটেম গার্ল খ্যাত অভিনেত্রী মালাইকা অরোরা ব্যক্তিগত জীবন নিয়ে সবসময় আলোচনায় থাকেন। দীর্ঘদাম্পত্য আর সম্পর্ক ভেঙে যাওয়ার পর মালাইকা এবার নতুন প্রেমের গুঞ্জনে ছড়িয়ে পড়েছেন।"
-                                titleMb={12}
-
-                            />
-                        </div>
-                        <div className="pb-4 md:pb-8">
-                            <SingleNewsItem
-                                image={RiverImage}
-                                imageWidth={340}
-                                imageHeight={304}
-                                title={"চূড়ান্ত প্রার্থী তালিকা সময়মতো জানাবে জামায়াত: আমির ডা. শফিকুর রহমান"}
-                                time={"১ সেকেন্ড আগে"}
-                                href="#"
-                                timeMt={16}
-                                SingleimageWrap="max-w-[200px]"
-                                content="বলিউডের আইটেম গার্ল খ্যাত অভিনেত্রী মালাইকা অরোরা ব্যক্তিগত জীবন নিয়ে সবসময় আলোচনায় থাকেন। দীর্ঘদাম্পত্য আর সম্পর্ক ভেঙে যাওয়ার পর মালাইকা এবার নতুন প্রেমের গুঞ্জনে ছড়িয়ে পড়েছেন।"
-                                titleMb={12}
-                                showPlayButton={true}
-                            />
-                        </div>
-                        <div className="pb-4 md:pb-8">
-                            <SingleNewsItem
-                                image={RiverImage}
-                                imageWidth={340}
-                                imageHeight={304}
-                                title={"চূড়ান্ত প্রার্থী তালিকা সময়মতো জানাবে জামায়াত: আমির ডা. শফিকুর রহমান"}
-                                time={"১ সেকেন্ড আগে"}
-                                href="#"
-                                timeMt={16}
-                                SingleimageWrap="max-w-[200px]"
-                                content="বলিউডের আইটেম গার্ল খ্যাত অভিনেত্রী মালাইকা অরোরা ব্যক্তিগত জীবন নিয়ে সবসময় আলোচনায় থাকেন। দীর্ঘদাম্পত্য আর সম্পর্ক ভেঙে যাওয়ার পর মালাইকা এবার নতুন প্রেমের গুঞ্জনে ছড়িয়ে পড়েছেন।"
-                                titleMb={12}
-                                showPlayButton={true}
-                            />
-                        </div>
-                        <div className="pb-4 md:pb-8 pt-2 max-w-60 mx-auto">
-                            <Button
-                                text="আরো দেখুন"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
         </>
     );
 }

@@ -8,13 +8,13 @@ export default async function OurStorisSection() {
   if (!webStories || webStories.length === 0) return null;
   return (
     <section className="bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF] py-8 lg:py-16">
-        <div className="container">
-          <SectionTitle
-              title="ওয়েব স্টোরিস"
-              href="/webstoris/news"
-          />
-          <StorisData webStories={webStories} />
-        </div>
+      <div className="container">
+        <SectionTitle
+          title="ওয়েব স্টোরিস"
+          href="/webstoris/news"
+        />
+        <StorisData webStories={webStories} />
+      </div>
     </section>
   );
 }

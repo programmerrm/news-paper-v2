@@ -55,7 +55,7 @@ export default async function LifeStyleSection() {
                     <div className="w-full lg:max-w-[34.688%] lg:px-6.75 divide-y divide-gray-dark space-y-3 lg:space-y-5">
                         <SectionHeader
                             className="lg:hidden"
-                            title={section13PartTwo[0].category.category_name}
+                            title={section13PartTwo[0]?.category.category_name}
                         />
                         {section13PartTwo?.map((item: any) => (
                             <div className="pb-3 lg:pb-5" key={item.post_id}>
@@ -75,7 +75,7 @@ export default async function LifeStyleSection() {
                     <div className="w-full lg:max-w-[32.579%] lg:pl-6.75 divide-y divide-gray-dark space-y-3 lg:space-y-5">
                         <SectionHeader
                             className="lg:hidden"
-                            title={section13PartThree[0].category.category_name}
+                            title={section13PartThree[0]?.category.category_name}
                         />
                         {section13PartThree?.map((item: any) => (
                             <div className="pb-3 lg:pb-5" key={item.post_id}>

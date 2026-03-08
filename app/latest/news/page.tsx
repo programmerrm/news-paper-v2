@@ -1,12 +1,10 @@
 import Ads from "@/components/ads/ads";
+import LoadMoreNews from "./loadMoreNews";
 import { getFetchData } from "@/utils/getFetchData";
 import LedNews from "@/components/led-news/LedNews";
 import NewsItem from "@/components/news-items/newsItem";
 import LatestNews from "@/components/latest-news/LatestNews";
-import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import LatestNewsRead from "@/components/LatestNewsRed/LatestNewsRed";
-import Button from "@/components/button/Button";
-import LoadMoreNews from "./loadMoreNews";
 
 export default async function Page() {
     const lastestNews = await getFetchData('/lastestnews');
@@ -14,20 +12,18 @@ export default async function Page() {
     const topad = lastestNews?.topad;
     const middleAd = lastestNews?.middleAd;
     const bottomAd = lastestNews?.bottomAd;
-
     const latestLeadNews = lastestNews?.latestLeadNews;
     const latestLeftSideNews = lastestNews?.latestLeftSideNews;
     const latestRightSideNews = lastestNews?.latestRightSideNews;
     const readMorelatestNews = lastestNews?.readMorelatestNews;
     const latestBotomNews = lastestNews?.latestBotomNews;
-
     return (
         <section>
             <section className="py-5 sm:py-10">
                 <div className="container">
                     <h2 className="text-2xl font-bold">সর্বশেষ সংবাদ</h2>
                     <div className="flex flex-col lg:flex-row mt-8 gap-5">
-                        {/* Left column - small news items */}
+                        {/* Left column */}
                         <div className="w-full lg:max-w-[32%] flex flex-col gap-5 divide-y divide-[#D4D4D4] order-2 lg:order-1">
                             {latestLeftSideNews?.map((item: any) => (
                                 <NewsItem
@@ -43,7 +39,7 @@ export default async function Page() {
                                 />
                             ))}
                         </div>
-                        {/* Center column - LED news */}
+                        {/* LED news */}
                         <div className="w-full lg:max-w-[42%] lg:px-4.75 lg:border-r lg:border-l border-[#A1A1A1] order-1 lg:order-2">
                             {latestLeadNews?.map((item: any) => (
                                 <LedNews

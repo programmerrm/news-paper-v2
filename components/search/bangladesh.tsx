@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { divisions } from "@/data/division";
 import CustomSelect from "../selects/CustomSelect";
 import { districts } from "@/data/districts";
 import { subdistricts } from "@/data/subdistricts";
-import Button from "../button/Button";
 
 export default function Bangladesh() {
     return (
@@ -21,9 +21,14 @@ export default function Bangladesh() {
                     />
                 </div>
                 <div className="w-full sm:max-w-40 lg:max-w-60">
-                    <Button
-                        text="সার্চ করুন"
-                    />
+
+                    <Link
+                        className="w-full flex items-center justify-center border border-[#B6C3C8] gap-2 p-2 sm:p-3.5 text-sm font-medium bg-red text-white cursor-pointer"
+                        href={"/search"}
+                    >
+                        সার্চ করুন
+                    </Link>
+
                 </div>
             </form>
         </div>

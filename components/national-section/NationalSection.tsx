@@ -4,16 +4,27 @@ import OnlineVote from "../onlinevote/OnlineVote";
 import { getFetchData } from "@/utils/getFetchData";
 import SectionTitle from "../section-title/SectionTitle";
 import NationalLedNews from "../national-led-news/NationalLedNews";
+import Ads from "../ads/ads";
+import GoogleAds from "../ads/googleAds";
 
 export default async function NationalSection() {
     const sectionFourData = await getFetchData('/section/four');
     const category = sectionFourData?.category;
-    const sectionFourLeadNews = sectionFourData?.sectionFourLeadNews;
-    const sectionFourSubleadNews = sectionFourData?.sectionFourSubleadNews;
-    const sectionFourRightSide = sectionFourData?.sectionFourRightSide;
+    const {
+        sectionFourLeadNews,
+        sectionFourRightSide,
+        sectionFourWithoutVote,
+        sectionFourSubleadNews,
+    } = sectionFourData;
+    const {
+        lead_ad,
+        sub_lead_ad,
+        right_side_ad,
+        section_top_ad,
+        section_bottom_ad,
+    } = sectionFourData;
     const voteStatus = sectionFourData?.voteStatus;
     const votePoll = sectionFourData?.votePoll;
-    const sectionFourWithoutVote = sectionFourData?.sectionFourWithoutVote;
 
     const voteOptions =
         votePoll
@@ -40,62 +51,131 @@ export default async function NationalSection() {
             : [];
 
     return (
-        <section className="bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF] py-8 lg:py-16">
-            <div className="container">
-                <div className="flex flex-col lg:flex-row">
-                    <div className="w-full lg:max-w-[67.343%] lg:pr-5 lg:border-r border-title">
-                        <SectionTitle
-                            title={category?.name_bn}
-                            href={`/${category?.slug_en}`}
+        <>
+            {section_top_ad && (
+                <>
+                    {section_top_ad?.ad_type === "premium" ? (
+                        <Ads
+                            adsImg={section_top_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
                         />
-                        <div className="mt-8 flex flex-col md:flex-row">
-                            <div className="w-full md:max-w-[61.282%] md:pr-5 md:border-r border-[#A1A1A1]">
-                                {sectionFourLeadNews?.map((item: any) => (
-                                    <NationalLedNews
-                                        key={item?.post_id}
-                                        image={item?.post_thumbnail}
-                                        title={item?.post_title}
-                                        time={item?.post_published_at}
-                                        href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                    />
-                                ))}
-                                <div className="grid grid-cols-2 mt-5 gap-4">
-                                    {sectionFourSubleadNews?.map((item: any) => (
-                                        <NationalNews
+                    ) : (
+                        <div className="w-3xl h-22.5">
+                            <GoogleAds
+                                code={section_top_ad?.ad_google_script}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
+            <section className="bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF] py-8 lg:py-16">
+                <div className="container">
+                    <div className="flex flex-col lg:flex-row">
+                        <div className="w-full lg:max-w-[67.343%] lg:pr-5 lg:border-r border-title">
+                            <SectionTitle
+                                title={category?.name_bn}
+                                href={`/${category?.slug_en}`}
+                            />
+                            <div className="mt-8 flex flex-col md:flex-row">
+                                <div className="w-full md:max-w-[61.282%] md:pr-5 md:border-r border-[#A1A1A1]">
+                                    {!lead_ad && sectionFourLeadNews?.map((item: any) => (
+                                        <NationalLedNews
                                             key={item?.post_id}
                                             image={item?.post_thumbnail}
                                             title={item?.post_title}
                                             time={item?.post_published_at}
                                             href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                            timeMt={"12"}
                                         />
                                     ))}
-                                </div>
-                            </div>
-                            <div className="w-full md:max-w-[38.599%] md:pl-5 my-5 md:my-0">
-                                <div className="divide-y divide-[#D4D4D4] space-y-4">
-                                    <div className="pb-4 last:pb-0">
-                                        {sectionFourRightSide?.map((item: any) => (
-                                            <NewsItem
+                                    {lead_ad && (
+                                        <>
+                                            {lead_ad?.ad_type === "premium" ? (
+                                                <Ads
+                                                    adsImg={lead_ad?.ad_thumbnail}
+                                                    adsWidth={496}
+                                                    adsHeight={372}
+                                                />
+                                            ) : (
+                                                <div className="w-124 h-93">
+                                                    <GoogleAds
+                                                        code={lead_ad?.ad_google_script}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                    <div className="grid grid-cols-2 mt-5 gap-4">
+                                        {!sub_lead_ad && sectionFourSubleadNews?.map((item: any) => (
+                                            <NationalNews
                                                 key={item?.post_id}
                                                 image={item?.post_thumbnail}
-                                                imageWidth={104}
-                                                imageHeight={78}
                                                 title={item?.post_title}
-                                                href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                                 time={item?.post_published_at}
-                                                timeMt={"10"}
+                                                href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
+                                                timeMt={"12"}
                                             />
                                         ))}
                                     </div>
+                                    {sub_lead_ad && (
+                                        <>
+                                            {sub_lead_ad?.ad_type === "premium" ? (
+                                                <Ads
+                                                    adsImg={sub_lead_ad?.ad_thumbnail}
+                                                    adsWidth={496}
+                                                    adsHeight={372}
+                                                />
+                                            ) : (
+                                                <div className="w-124 h-93">
+                                                    <GoogleAds
+                                                        code={sub_lead_ad?.ad_google_script}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                                <div className="w-full md:max-w-[38.599%] md:pl-5 my-5 md:my-0">
+                                    <div className="divide-y divide-[#D4D4D4] space-y-4">
+                                        <div className="pb-4 last:pb-0">
+                                            {!right_side_ad && sectionFourRightSide?.map((item: any) => (
+                                                <NewsItem
+                                                    key={item?.post_id}
+                                                    image={item?.post_thumbnail}
+                                                    imageWidth={104}
+                                                    imageHeight={78}
+                                                    title={item?.post_title}
+                                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
+                                                    time={item?.post_published_at}
+                                                    timeMt={"10"}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                    {right_side_ad && (
+                                        <>
+                                            {right_side_ad?.ad_type === "premium" ? (
+                                                <Ads
+                                                    adsImg={right_side_ad?.ad_thumbnail}
+                                                    adsWidth={496}
+                                                    adsHeight={372}
+                                                />
+                                            ) : (
+                                                <div className="w-124 h-93">
+                                                    <GoogleAds
+                                                        code={right_side_ad?.ad_google_script}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {voteStatus === 1 &&
-                        votePoll &&
-                        votePoll?.status !== 1 &&
-                        voteOptions.length > 0 ? (
+                        {voteStatus === 1 &&
+                            votePoll &&
+                            votePoll?.status !== 1 &&
+                            voteOptions.length > 0 ? (
                             <div className="w-full lg:max-w-[32.5%] lg:pl-5 mt-5 lg:mt-0">
 
                                 <div className="pb-3 lg:pb-6 border-b-2 border-[#A1A1A1] flex gap-3 items-center">
@@ -112,7 +192,7 @@ export default async function NationalSection() {
                                     />
                                 </div>
                             </div>
-                        ): (
+                        ) : (
                             <div className="w-full lg:max-w-[32.5%] lg:pl-5 mt-5 lg:mt-0">
                                 <div className="divide-y divide-[#D4D4D4] space-y-4">
                                     <div className="pb-4 last:pb-0">
@@ -132,8 +212,26 @@ export default async function NationalSection() {
                                 </div>
                             </div>
                         )}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            {section_bottom_ad && (
+                <>
+                    {section_bottom_ad?.ad_type === "premium" ? (
+                        <Ads
+                            adsImg={section_bottom_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
+                    ) : (
+                        <div className="w-3xl h-22.5">
+                            <GoogleAds
+                                code={section_bottom_ad?.ad_google_script}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
+        </>
     );
 }

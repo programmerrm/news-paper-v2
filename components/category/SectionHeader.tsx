@@ -1,12 +1,8 @@
-interface SectionHeaderProps {
-  category: string;
-}
-
-export default function SectionHeader({ category }: SectionHeaderProps) {
+export default function SectionHeader() {
   return (
     <div>
       <h3>
-        বিশেষ খবর - <span className="text-red">{category}</span>
+        বিশেষ খবর
       </h3>
     </div>
   );

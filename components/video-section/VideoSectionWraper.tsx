@@ -61,11 +61,11 @@ export default function VideoSectionWraper({ data }: any) {
                     <div className="w-full md:max-w-[42.188%] flex flex-col gap-4">
                         {displayedItems.map((item: any) => (
                             <VideoNewsItem
-                                key={item.video_id}
+                                key={item?.video_id}
                                 video_url={item?.video_url}
-                                title={item.video_title}
-                                time={item.video_published_at}
-                                href={`/video/${item.video_slug}`}
+                                title={item?.video_title}
+                                time={item?.video_published_at}
+                                href={`/video/${item?.video_slug}`}
                             />
                         ))}
                     </div>

@@ -125,7 +125,7 @@ export default async function Page({ params }: NewsProps) {
                                         {news?.detailsNews?.tags?.map((item: any) => (
                                             <HasTagButton
                                                 key={item.tag_id}
-                                                href="#"
+                                                href={`/tags/${item?.tag_slug}`}
                                                 label={item.tag_name}
                                             />
                                         ))}

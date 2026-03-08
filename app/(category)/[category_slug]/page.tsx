@@ -5,6 +5,10 @@ import SubCategory from "@/components/subcategory/SubCategory";
 import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
 import CategoryNewsHeadding from "@/components/category/CategoryNewsHeadding";
+import SectionHeader from "@/components/category/SectionHeader";
+import Ads from "@/components/ads/ads";
+import LoadMoreNews from "./loadMoreNews";
+import Bangladesh from "@/components/search/bangladesh";
 
 type CategoryProps = {
     params: Promise<{ category_slug: string; }>;
@@ -16,9 +20,15 @@ export default async function Page({ params }: CategoryProps) {
     const categoryLeadNews = category?.categoryLeadNews;
     const categoryLeftNews = category?.categoryLeftNews;
     const categoryRightNews = category?.categoryRightNews;
+    const specialNews = category?.specialNews;
     const categoryBottomNews = category?.categoryBottomNews;
+    const ads = category?.ads;
+    const categoryafterNewsAd = category?.categoryafterNewsAd;
+    const categoryBottomNewsLastPaignate = category?.categoryBottomNewsLastPaignate;
+
     return (
         <>
+
             <section className="py-5 sm:py-10">
                 <div className="container">
 
@@ -78,9 +88,9 @@ export default async function Page({ params }: CategoryProps) {
                                 <div className="flex flex-col divide-y divide-[#D4D4D4] mt-6">
                                     {categoryRightNews?.map((item: any) => (
                                         <NewsItem
-                                            key={item.post_id}
-                                            title={item.post_title}
-                                            image={item.post_thumbnail}
+                                            key={item?.post_id}
+                                            title={item?.post_title}
+                                            image={item?.post_thumbnail}
                                             imageWidth={88}
                                             imageHeight={66}
                                             imageWrap="max-w-[88px]"
@@ -94,32 +104,95 @@ export default async function Page({ params }: CategoryProps) {
                     </div>
                 </div>
             </section >
-            
-            {categoryBottomNews?.length > 0 && (
-                <section className="py-7 lg:py-14">
-                    <div className="container">
-                        <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
-                            {categoryBottomNews?.map((item: any) => (
-                                <div className="pb-4 md:pb-8" key={item.post_id}>
-                                    <SingleNewsItem
-                                        image={item.post_thumbnail}
-                                        imageWidth={340}
-                                        imageHeight={304}
-                                        title={item.post_title}
-                                        time={item.post_published_at}
-                                        href={item.post_slug}
-                                        timeMt={16}
-                                        SingleimageWrap="max-w-[200px]"
-                                        content={item.post_descriptions}
-                                        titleMb={12}
-                                    />
-                                </div>
-                            ))}
+
+            {["বাংলাদেশ", "bangladesh"].includes(
+                category.category.category_name?.toLowerCase()
+            ) && (
+                    <section className="bg-[#E0EBF0]">
+                        <div className="container">
+                            <Bangladesh />
                         </div>
+                    </section>
+                )}
+
+            <section className="bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF] py-8 lg:py-16 border-b border-[#B6C3C8]">
+                <div className="container">
+                    <SectionHeader />
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+                        {specialNews?.map((item: any) => (
+                            <LedNews
+                                key={item?.post_id}
+                                image={item?.post_thumbnail}
+                                imageWidth={305}
+                                imageHeight={229}
+                                title={item?.post_title}
+                                time={item?.post_published_at}
+                                href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
+                                timeMt={"16"}
+                                headingLevel="h5"
+                                gap="gap-3"
+                            />
+                        ))}
                     </div>
-                </section>
-            )}
-            
+
+                </div>
+            </section>
+
+
+            <section className="py-7 lg:py-14">
+                <div className="container">
+                    <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
+                        {categoryBottomNews?.map((item: any) => (
+                            <div className="pb-4 md:pb-8" key={item.post_id}>
+                                <SingleNewsItem
+                                    image={item.post_thumbnail}
+                                    imageWidth={340}
+                                    imageHeight={304}
+                                    title={item.post_title}
+                                    time={item.post_published_at}
+                                    href={item.post_slug}
+                                    timeMt={16}
+                                    SingleimageWrap="max-w-[200px]"
+                                    content={item.post_descriptions}
+                                    titleMb={12}
+                                />
+                            </div>
+                        ))}
+                        {ads?.ad_status === 1 && (
+                            <Ads
+                                adsImg={ads?.ad_thumbnail}
+                                adsWidth={882}
+                                adsHeight={248}
+                            />
+                        )}
+
+                        {categoryafterNewsAd?.map((item: any) => (
+                            <div className="pb-4 md:pb-8" key={item.post_id}>
+                                <SingleNewsItem
+                                    image={item?.post_thumbnail}
+                                    imageWidth={340}
+                                    imageHeight={304}
+                                    title={item?.post_title}
+                                    time={item?.post_published_at}
+                                    href={item?.post_slug}
+                                    timeMt={16}
+                                    SingleimageWrap="max-w-[200px]"
+                                    content={item?.post_descriptions}
+                                    titleMb={12}
+                                />
+                            </div>
+                        ))}
+
+                        <LoadMoreNews
+                            initialData={categoryBottomNewsLastPaignate?.data}
+                            nextLink={categoryBottomNewsLastPaignate?.links?.next}
+                        />
+
+                    </div>
+
+                </div>
+            </section>
+
         </>
     );
 }
