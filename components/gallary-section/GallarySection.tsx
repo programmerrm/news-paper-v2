@@ -15,20 +15,18 @@ export default async function GallarySection() {
         !sectionTwelveLeadNews &&
         (!sectionTwelveSubleadNews?.length);
     if (isAllEmpty) return null;
-    const category = sectionTwelve?.category;
     return (
         <section className="py-8 lg:py-16 ">
             <div className="container">
                 <SectionTitle
-                    title={category?.category_name}
-                    href={`/${category?.category_slug}`}
+                    title={"ছবি"}
+                    href={`/photos/news`}
                 />
                 <div className="mt-8 flex flex-col md:flex-row items-start ">
                     <div className="w-full md:max-w-[48.125%]">
                         {sectionTwelveLeadNews?.map((item: any) => (
                             <GallaryLednews
                                 key={item.post_id}
-                                imageCount="৮ টি ছবি"
                                 imageSrc={item.post_thumbnail}
                                 title={item.post_title}
                                 time={item.post_published_at}
@@ -43,7 +41,6 @@ export default async function GallarySection() {
                                 image={MousqueImage}
                                 title={item.post_title}
                                 time={item.post_published_at}
-                                photoCount={2}
                                 href={`/photos/news/${item?.post_slug}`}
                             />
                         ))}

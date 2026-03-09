@@ -9,6 +9,7 @@ import SectionHeader from "@/components/category/SectionHeader";
 import Ads from "@/components/ads/ads";
 import LoadMoreNews from "./loadMoreNews";
 import Bangladesh from "@/components/search/bangladesh";
+import GoogleAds from "@/components/ads/googleAds";
 
 type CategoryProps = {
     params: Promise<{ category_slug: string; }>;
@@ -25,13 +26,34 @@ export default async function Page({ params }: CategoryProps) {
     const ads = category?.ads;
     const categoryafterNewsAd = category?.categoryafterNewsAd;
     const categoryBottomNewsLastPaignate = category?.categoryBottomNewsLastPaignate;
-
+    const {
+        lead_ad,
+        left_side_ad,
+        right_side_ad,
+        section_top_ad,
+        section_bottom_ad,
+    } = category;
     return (
         <>
-
+            {section_top_ad && (
+                <>
+                    {section_top_ad?.ad_type === "premium" ? (
+                        <Ads
+                            adsImg={section_top_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
+                    ) : (
+                        <div className="w-3xl h-22.5">
+                            <GoogleAds
+                                code={section_top_ad?.ad_google_script}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
             <section className="py-5 sm:py-10">
                 <div className="container">
-
                     <div>
                         <NewsBreadcrumb
                             title={category.category.category_name}
@@ -41,9 +63,25 @@ export default async function Page({ params }: CategoryProps) {
                             subCategories={category.category.subcategory}
                         />
                     </div>
-
                     <div className="flex flex-col lg:flex-row mt-8 gap-5">
-                        {categoryLeftNews?.length > 0 && (
+                        {left_side_ad && (
+                            <>
+                                {left_side_ad?.ad_type === "premium" ? (
+                                    <Ads
+                                        adsImg={left_side_ad?.ad_thumbnail}
+                                        adsWidth={768}
+                                        adsHeight={90}
+                                    />
+                                ) : (
+                                    <div className="w-3xl h-22.5">
+                                        <GoogleAds
+                                            code={left_side_ad?.ad_google_script}
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
+                        {!left_side_ad && categoryLeftNews?.length > 0 && (
                             <div className="w-full lg:max-w-[30.469%] flex flex-col divide-y divide-[#D4D4D4] order-2 lg:order-1">
                                 {categoryLeftNews?.map((item: any) => (
                                     <NewsItem
@@ -61,7 +99,7 @@ export default async function Page({ params }: CategoryProps) {
                             </div>
                         )}
 
-                        {categoryLeadNews?.length > 0 && (
+                        {!lead_ad && categoryLeadNews?.length > 0 && (
                             <div className="w-full lg:max-w-[42.421%] lg:px-4.75 lg:border-r lg:border-l border-[#A1A1A1] order-1 lg:order-2">
                                 {categoryLeadNews?.map((item: any) => (
                                     <LedNews
@@ -79,8 +117,25 @@ export default async function Page({ params }: CategoryProps) {
                                 ))}
                             </div>
                         )}
+                        {lead_ad && (
+                            <>
+                                {lead_ad?.ad_type === "premium" ? (
+                                    <Ads
+                                        adsImg={lead_ad?.ad_thumbnail}
+                                        adsWidth={768}
+                                        adsHeight={90}
+                                    />
+                                ) : (
+                                    <div className="w-3xl h-22.5">
+                                        <GoogleAds
+                                            code={lead_ad?.ad_google_script}
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
 
-                        {categoryRightNews?.length > 0 && (
+                        {!right_side_ad && categoryRightNews?.length > 0 && (
                             <div className="w-full lg:max-w-[23.829%] order-3 lg:order-3">
                                 <CategoryNewsHeadding
                                     highlightText={category.category.category_name}
@@ -101,10 +156,26 @@ export default async function Page({ params }: CategoryProps) {
                                 </div>
                             </div>
                         )}
+                        {right_side_ad && (
+                            <>
+                                {right_side_ad?.ad_type === "premium" ? (
+                                    <Ads
+                                        adsImg={right_side_ad?.ad_thumbnail}
+                                        adsWidth={768}
+                                        adsHeight={90}
+                                    />
+                                ) : (
+                                    <div className="w-3xl h-22.5">
+                                        <GoogleAds
+                                            code={right_side_ad?.ad_google_script}
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
                 </div>
             </section >
-
             {["বাংলাদেশ", "bangladesh"].includes(
                 category.category.category_name?.toLowerCase()
             ) && (
@@ -114,7 +185,6 @@ export default async function Page({ params }: CategoryProps) {
                         </div>
                     </section>
                 )}
-
             <section className="bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF] py-8 lg:py-16 border-b border-[#B6C3C8]">
                 <div className="container">
                     <SectionHeader />
@@ -134,11 +204,8 @@ export default async function Page({ params }: CategoryProps) {
                             />
                         ))}
                     </div>
-
                 </div>
             </section>
-
-
             <section className="py-7 lg:py-14">
                 <div className="container">
                     <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
@@ -165,7 +232,6 @@ export default async function Page({ params }: CategoryProps) {
                                 adsHeight={248}
                             />
                         )}
-
                         {categoryafterNewsAd?.map((item: any) => (
                             <div className="pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
@@ -182,17 +248,30 @@ export default async function Page({ params }: CategoryProps) {
                                 />
                             </div>
                         ))}
-
                         <LoadMoreNews
                             initialData={categoryBottomNewsLastPaignate?.data}
                             nextLink={categoryBottomNewsLastPaignate?.links?.next}
                         />
-
                     </div>
-
                 </div>
             </section>
-
+            {section_bottom_ad && (
+                <>
+                    {section_bottom_ad?.ad_type === "premium" ? (
+                        <Ads
+                            adsImg={section_bottom_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
+                    ) : (
+                        <div className="w-3xl h-22.5">
+                            <GoogleAds
+                                code={section_bottom_ad?.ad_google_script}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
         </>
     );
 }

@@ -7,7 +7,7 @@ interface GalleryNewsProps {
   image: StaticImageData | string;
   title: string;
   time: string;
-  photoCount: number;
+  photoCount?: number;
   href: string;
 }
 
@@ -38,10 +38,12 @@ export default function GalleryNews({
           className="object-cover w-full h-auto "
         />
       </div>
-
-      <span className="px-2.5 py-0.5 border border-red text-xs font-medium leading-4.5 text-red inline-block mt-4">
+      {photoCount && (
+        <span className="px-2.5 py-0.5 border border-red text-xs font-medium leading-4.5 text-red inline-block mt-4">
         {photoCount} টি ছবি
       </span>
+      )}
+      
 
       <h5 className="mt-2 font-semibold leading-7 transition-all hover:text-blue">
         <Link href={href || "#"}>{title}</Link>

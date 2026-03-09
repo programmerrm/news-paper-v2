@@ -4,7 +4,7 @@ import ImageSquare from "../../assets/icon/ImageSquare.svg";
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 type GallaryLednewsProps = {
-  imageCount: string;
+  imageCount?: string;
   title: string;
   time: string;
   href?: string;
@@ -39,9 +39,12 @@ export default function GallaryLednews({
       </div>
 
       {/* Dynamic Content */}
-      <span className="px-4 py-1.5 border border-red text-xs font-medium leading-4.5 text-red inline-block mt-4 md:mt-8">
-        {imageCount}
-      </span>
+      {imageCount && (
+        <span className="px-4 py-1.5 border border-red text-xs font-medium leading-4.5 text-red inline-block mt-4 md:mt-8">
+          {imageCount}
+        </span>
+      )}
+
 
       <h3 className="mt-2 md:mt-3 transition-all hover:text-[#1877f2]">
         <Link href={href}>{title}</Link>

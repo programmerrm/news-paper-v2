@@ -22,6 +22,7 @@ export default async function InternationalNews() {
     const sectionTenLatest = sectionTen?.sectionTenLatest;
     const sectionTenReadMore = sectionTen?.sectionTenReadMore;
     const tags = sectionTen?.tags;
+    
     return (
         <section className="py-8 lg:py-16 bg-linear-to-b from-[#F0F5F4] to-[#FFFFFF]">
             <div className="container">
