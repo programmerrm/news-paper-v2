@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getFetchData } from "@/utils/getFetchData";
 import RegistrationForm from "@/components/forms/registrationForm";
+import FacebookLogo from "../../../assets/logo/logos_facebook.svg";
+import GoogleLogo from "../../../assets/logo/material-icon-google.svg";
 
 export default async function Page() {
     const webinfo = await getFetchData('/webinfo');
@@ -29,18 +31,33 @@ export default async function Page() {
 
                     <RegistrationForm />
 
-                    <div>
+                    <div className="w-full">
                         <span className="text-center block py-3 sm:py-4 text-sm leading-6 font-medium text-black">or</span>
 
-                        <div className="space-y-3">
+
+
+                        <div className="space-y-3 w-full">
                             <button className="bg-white text-title w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer" type="button">
+                                <Image 
+                                    src={FacebookLogo}
+                                    alt="google-icon"
+                                    width={20}
+                                    height={20}
+                                />
                                 Facebook
                             </button>
                             <button className="bg-white text-title w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer" type="button">
+                                <Image 
+                                    src={GoogleLogo}
+                                    alt="google-icon"
+                                    width={20}
+                                    height={20}
+                                />
                                 Google
                             </button>
-
                         </div>
+
+
                     </div>
 
                 </div>

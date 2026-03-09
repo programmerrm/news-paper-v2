@@ -7,6 +7,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { SERVER_API_URL } from "@/utils/api";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
     name: string;
@@ -17,6 +18,7 @@ type FormValues = {
 
 export default function RegistrationForm() {
     const [show, setShow] = useState({ password: false, confirm: false });
+    const router = useRouter();
 
     const {
         register,
@@ -47,16 +49,10 @@ export default function RegistrationForm() {
                 toast.error(data.message || "Registration failed");
                 return;
             }
-
-            // cookie set
             Cookies.set("access_token", data.access_token, { expires: 7 });
             Cookies.set("user", JSON.stringify(data.user), { expires: 7 });
-
             toast.success(data.message || "Registration successful");
-
-            console.log("User:", data.user);
-            console.log("Token:", data.access_token);
-
+            router.push("/user/registration/verification");
         } catch (error) {
             console.error(error);
             toast.error("Something went wrong");
@@ -68,20 +64,17 @@ export default function RegistrationForm() {
             className="flex flex-col flex-wrap gap-y-2.5 md:gap-y-5 w-full text-black pb-5"
             onSubmit={handleSubmit(onSubmitForm)}
         >
-            {/* Name */}
             <Field label="" error={errors.name}>
                 <input
                     {...register("name", {
                         required: "Full name is required",
                         minLength: { value: 3, message: "Minimum 3 characters" },
                     })}
-                    className="text-black text-sm md:text-base py-3 px-3 border border-black rounded-xl"
+                    className="text-sm leading-6 text-gray placeholder:text-gray font-inter w-full bg-white border border-[#B6C3C8] p-3 sm:p-4 focus:outline-0"
                     type="text"
                     placeholder="Full Name"
                 />
             </Field>
-
-            {/* Email */}
             <Field label="" error={errors.email}>
                 <input
                     {...register("email", {
@@ -91,13 +84,11 @@ export default function RegistrationForm() {
                             message: "Enter a valid email",
                         },
                     })}
-                    className="text-black text-sm md:text-base py-3 px-3 border border-black rounded-xl"
+                    className="text-sm leading-6 text-gray placeholder:text-gray font-inter w-full bg-white border border-[#B6C3C8] p-3 sm:p-4 focus:outline-0"
                     type="email"
                     placeholder="Email address"
                 />
             </Field>
-
-            {/* Password */}
             <Field label="" error={errors.password}>
                 <div className="relative">
                     <input
@@ -105,7 +96,7 @@ export default function RegistrationForm() {
                             required: "Password is required",
                             minLength: { value: 6, message: "Minimum 6 characters" },
                         })}
-                        className="w-full text-black py-3 px-3 border border-black rounded-xl"
+                        className="text-sm leading-6 text-gray placeholder:text-gray font-inter w-full bg-white border border-[#B6C3C8] p-3 sm:p-4 focus:outline-0"
                         type={show.password ? "text" : "password"}
                         placeholder="Password"
                     />
@@ -123,8 +114,6 @@ export default function RegistrationForm() {
                     </button>
                 </div>
             </Field>
-
-            {/* Confirm Password */}
             <Field label="" error={errors.password_confirmation}>
                 <div className="relative">
                     <input
@@ -133,7 +122,7 @@ export default function RegistrationForm() {
                             validate: (value) =>
                                 value === password || "Passwords do not match",
                         })}
-                        className="w-full text-black py-3 px-3 border border-black rounded-xl"
+                        className="text-sm leading-6 text-gray placeholder:text-gray font-inter w-full bg-white border border-[#B6C3C8] p-3 sm:p-4 focus:outline-0"
                         type={show.confirm ? "text" : "password"}
                         placeholder="Confirm Password"
                     />
@@ -151,13 +140,8 @@ export default function RegistrationForm() {
                     </button>
                 </div>
             </Field>
-
-            <span className="text-sm">
-                Use atleast 8 characters, mix of numbers & letters
-            </span>
-
             <button
-                className="cursor-pointer bg-black text-white text-sm md:text-base font-medium px-10 py-3.5 rounded-xl"
+                className="bg-red text-white w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer"
                 type="submit"
             >
                 Registration

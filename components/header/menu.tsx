@@ -7,9 +7,20 @@ import Hamburger from "./hamburger";
 import userIcon from "../../assets/logo/user.svg";
 import globeIcon from "../../assets/logo/globe.svg";
 import searchIcon from "../../assets/logo/search.svg";
+import Cookies from "js-cookie";
 
 export default function Menu({ categories }: any) {
     const [isSticky, setIsSticky] = useState(false);
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const userCookie = Cookies.get("user");
+
+        if (userCookie) {
+            setUser(JSON.parse(userCookie));
+        }
+    }, []);
+
 
     const topMenuCategories = categories.filter(
         (item: any) => item.top_menu_status === 1
@@ -136,13 +147,14 @@ export default function Menu({ categories }: any) {
                         সার্চ করুন
                     </span>
                 </Link>
-                <Link className={`text-sm leading-4.5 flex items-center border-l border-gray-dark py-3 lg:py-4 px-3 gap-2 }`} href={"/user/login"}>
+                <Link
+                    className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-3 lg:py-4 px-3 gap-2"
+                    href={user ? "/user/profile" : "/user/login"}
+                >
                     <div>
                         <Image src={userIcon} alt={"user icon"} width={24} height={24} />
                     </div>
-                    <span className="text-sm leading-4.5 font-inter -tracking-[1%] hidden sm:block">
-                        প্রোফাইল
-                    </span>
+                    <span className="hidden sm:block">{user ? "প্রোফাইল" : "লগইন"}</span>
                 </Link>
             </div>
         </div>
