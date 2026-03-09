@@ -19,8 +19,8 @@ export default function Ads({
                 <div
                     className="relative w-full mx-auto"
                     style={{
-                        maxWidth: adsWidth,
                         aspectRatio: `${adsWidth} / ${adsHeight}`,
+                        maxWidth: "100%",
                     }}
                 >
                     <Image
