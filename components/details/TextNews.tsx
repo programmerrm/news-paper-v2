@@ -9,6 +9,7 @@ export default function TextNews({ text, className = "" }: TextNewsProps) {
   return (
     <p
       className={`text-base sm:text-lg sm:leading-7 text-[#171717] ${className}`}
+      key={text}
     >
       <Description description={text} />
     </p>

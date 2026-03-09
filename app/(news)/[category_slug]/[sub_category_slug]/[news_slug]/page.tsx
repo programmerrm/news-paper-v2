@@ -9,11 +9,11 @@ import LedNews from "@/components/led-news/LedNews";
 import ReportImage from "@/components/details/ReportImage";
 import ReportTitle from "@/components/details/ReportTitle";
 import ReportNews from "@/components/details/RportNews";
-import PlayBtn from "../../../../../assets/icon/playbtn.svg";
 import TextNews from "@/components/details/TextNews";
 import TextHighlight from "./textHighlight";
 import ReadMoreCard from "./readMoreCard";
 import Ads from "@/components/ads/ads";
+import AudioPlayer from "./audioPlayer";
 
 type NewsProps = {
     params: Promise<{
@@ -48,14 +48,9 @@ export default async function Page({ params }: NewsProps) {
                                         reporterName={detailsNews?.author?.author_name}
                                         publishDate={detailsNews?.post_published_at}
                                     />
-                                    <div className="flex items-center gap-2.5">
-                                        <button type="submit" className="cursor-pointer">
-                                            <Image width={23} height={23} src={PlayBtn} alt="PlayBtn" />
-                                        </button>
-                                        <span className="text-sm leading-6 font-medium text-[#171717]">
-                                            খবরটি শুনুন
-                                        </span>
-                                    </div>
+                                    {detailsNews?.post_voice && (
+                                        <AudioPlayer src={detailsNews?.post_voice} />
+                                    )}
                                 </div>
                             </div>
                             <div className="sm:px-7.5">
@@ -69,35 +64,44 @@ export default async function Page({ params }: NewsProps) {
                                 <TextNews
                                     text={detailsNews?.post_descriptions}
                                 />
-                                {postDetails?.map((item: any) => (
-                                    <>
+                                {postDetails?.map((item: any, index: any) => (
+                                    <div key={index}>
                                         {item?.post_details_ad_status === 0 && (
-                                            <Ads
-                                                adsImg={item?.post_details_ad}
-                                                adsWidth={740}
-                                                adsHeight={137}
-                                            />
+                                            <>
+                                                {item?.post_details_ad && (
+                                                    <Ads
+                                                        key={index}
+                                                        adsImg={item?.post_details_ad}
+                                                        adsWidth={740}
+                                                        adsHeight={137}
+                                                    />
+                                                )}
+                                            </>
                                         )}
                                         {item?.post_details_content && (
                                             <TextNews
+                                                key={index}
                                                 text={item?.post_details_content}
                                             />
                                         )}
                                         {item?.post_details_lead_caption && (
                                             <TextHighlight
+                                                key={index}
                                                 text={item?.post_details_lead_caption}
                                             />
                                         )}
                                         {item?.more_read_news && (
                                             <ReadMoreCard
+                                                key={index}
                                                 image={item?.more_read_news?.post_thumbnail}
                                                 title={item?.more_read_news?.post_title}
                                                 href={item?.more_read_news?.post_slug}
                                             />
                                         )}
                                         {item?.post_details_image && (
-                                            <div className="flex flex-col flex-wrap w-full">
+                                            <div className="flex flex-col flex-wrap w-full" key={item?.post_id}>
                                                 <Image
+
                                                     src={item?.post_details_image}
                                                     alt={item?.post_details_image_caption}
                                                     width={740}
@@ -110,12 +114,13 @@ export default async function Page({ params }: NewsProps) {
                                         )}
                                         {item?.post_details_ad_status === 1 && (
                                             <Ads
+                                                key={index}
                                                 adsImg={item?.post_details_ad}
                                                 adsWidth={740}
                                                 adsHeight={137}
                                             />
                                         )}
-                                    </>
+                                    </div>
                                 ))}
                             </div>
                             {news?.detailsNews?.tags && (
