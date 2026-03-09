@@ -68,7 +68,7 @@ export default function Menu({ categories }: any) {
             className={`
         bg-red text-white w-full z-50
         transition-all duration-300 ease-in-out
-        ${isSticky ? "fixed top-10 shadow-md" : "relative"}
+        ${isSticky ? "fixed top-0 shadow-md" : "relative"}
       `}
         >
             <div className="container flex items-center">
