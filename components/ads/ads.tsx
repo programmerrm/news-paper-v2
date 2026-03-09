@@ -1,17 +1,34 @@
 import Image from "next/image";
 
-export default function Ads({ adsImg, adsWidth, adsHeight }: any) {
+type Props = {
+    adsImg: string;
+    adsWidth?: number;
+    adsHeight?: number;
+};
+
+export default function Ads({
+    adsImg,
+    adsWidth = 768,
+    adsHeight = 90,
+}: Props) {
+    if (!adsImg) return null;
+
     return (
         <section className="py-6 bg-[#FAFAFA]">
             <div className="container">
                 <div
-                    className="w-full max-w-3xl mx-auto relative"
-                    style={{ width: adsWidth, height: adsHeight }}
+                    className="relative w-full mx-auto"
+                    style={{
+                        maxWidth: adsWidth,
+                        aspectRatio: `${adsWidth} / ${adsHeight}`,
+                    }}
                 >
                     <Image
                         src={adsImg}
-                        alt="GoogleAdd"
+                        alt="Advertisement"
                         fill
+                        sizes="100vw"
+                        className="object-contain"
                     />
                 </div>
             </div>
