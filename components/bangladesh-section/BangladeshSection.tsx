@@ -164,7 +164,7 @@ export default async function BangldeshNews() {
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <Ads
                             adsImg={section_bottom_ad?.ad_thumbnail}
-                            adsWidlead_adth={768}
+                            adsWidth={768}
                             adsHeight={90}
                         />
                     ) : (
