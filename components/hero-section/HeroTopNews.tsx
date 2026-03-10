@@ -37,7 +37,7 @@ export default function HeroTopNews({
           {formatBanglaTimeAgo(time)}
         </span>
       </div>
-      <Link href={href} className="w-full sm:max-w-[45.579%] order-1 sm:order-2 overflow-hidden">
+      <Link href={href} className="w-full sm:max-w-67 order-1 sm:order-2 overflow-hidden">
         <Image
           src={image}
           alt={imageAlt}

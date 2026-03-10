@@ -117,8 +117,8 @@ export default async function Page({ params }: NewsProps) {
                                             <Ads
                                                 key={index}
                                                 adsImg={item?.post_details_ad}
-                                                adsWidth={740}
-                                                adsHeight={137}
+                                                // adsWidth={740}
+                                                // adsHeight={137}
                                             />
                                         )}
                                     </div>

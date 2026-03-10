@@ -30,7 +30,6 @@ export default function Home() {
             <SocialDiscourseSection />
             <EntertainmentSection />
             <InternationalNews />
-            
             <OpinionSection /> 
             <GallarySection />
             <LifeStyleSection />

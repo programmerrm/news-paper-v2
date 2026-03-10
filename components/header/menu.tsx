@@ -88,14 +88,14 @@ export default function Menu({ categories }: any) {
                     <Hamburger toggleMenu={toggleMenu} />
 
                     <nav className="flex-1 py-1.5 sm:py-3 lg:py-4 pl-2 sm:pl-4 lg:pl-6 border-l border-gray-dark last:border-r overflow-x-scroll scrollbar-hide">
-                        <ul className="inline-flex gap-3 lg:gap-6.5 min-w-150 lg:min-w-170">
+                        <ul className="inline-flex gap-3 lg:gap-5 xl:gap-6.5 min-w-150 lg:min-w-170">
                             <li>
-                                <Link href={'/'} className="text-xs sm:text-sm sm:leading-5.5">
+                                <Link href={'/'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
                                     হোম
                                 </Link>
                             </li>
                             <li>
-                                <Link href={'/latest/news'} className="text-xs sm:text-sm sm:leading-5.5">
+                                <Link href={'/latest/news'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
                                     সর্বশেষ
                                 </Link>
                             </li>
@@ -103,7 +103,7 @@ export default function Menu({ categories }: any) {
                                 <li key={item.category_id}>
                                     <Link
                                         href={`/${item.category_slug}`}
-                                        className="text-xs sm:text-sm sm:leading-5.5"
+                                        className="text-xs sm:text-sm leading-4 sm:leading-5.5"
                                     >
                                         {item.category_name}
                                     </Link>
@@ -112,7 +112,7 @@ export default function Menu({ categories }: any) {
                         </ul>
                     </nav>
 
-                    <div className="flex flex-row flex-wrap items-center relative" style={{ padding: "10px" }}>
+                    <div className="flex flex-row flex-wrap items-center relative" >
                         <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
                             <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
                         </div>

@@ -69,7 +69,7 @@ export default async function HeroSection() {
                                         title={item?.post_title}
                                         time={item?.post_published_at}
                                         href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                        imageWrap="max-w-[80px]"
+                                        imageWrap="max-w-[104px]"
                                     />
                                 </div>
                             ))}
@@ -118,10 +118,10 @@ export default async function HeroSection() {
                                         <div
                                             key={item.post_id}
                                             className={`
-          w-full xl:max-w-1/2
-          ${index === 0 ? "xl:pr-6" : "xl:pl-6"}
-          py-5 xl:py-0
-        `}
+                                                w-full xl:max-w-1/2
+                                                ${index === 0 ? "xl:pr-6" : "xl:pl-6"}
+                                                py-5 xl:py-0
+                                                `}
                                         >
                                             <div className="pb-2">
                                                 <NewsItem
@@ -130,7 +130,7 @@ export default async function HeroSection() {
                                                     imageHeight={72}
                                                     title={item?.post_title}
                                                     href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                                    imageWrap="max-w-[80px]"
+                                                    imageWrap="max-w-[96px]"
                                                 />
                                             </div>
                                             <div>
@@ -172,7 +172,7 @@ export default async function HeroSection() {
                                             imageWidth={88}
                                             imageHeight={66}
                                             href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
-                                            imageWrap="max-w-[80px]"
+                                            imageWrap="max-w-[88px]"
                                             titleFontWeight="500"
                                         />
                                     ))}
