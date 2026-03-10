@@ -70,7 +70,7 @@ export default function CommentBox({ post_id }: any) {
 
                 {!user && (
                     <Link
-                        href="/auth/login"
+                        href="/user/login"
                         className="text-red text-sm sm:text-base leading-6.5 underline"
                     >
                         লগইন করুন

@@ -16,6 +16,12 @@
 body {
   font-family: var(--font-noto-serif-bengali), serif;
 }
+/* #google_translate_element{
+  cursor: default !important;
+}
+.goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed{
+    cursor: auto !important;
+} */
 
 @theme {
     --breakpoint-1xl: 82rem;

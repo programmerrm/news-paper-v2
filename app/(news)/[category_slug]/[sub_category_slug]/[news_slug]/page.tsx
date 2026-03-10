@@ -99,16 +99,17 @@ export default async function Page({ params }: NewsProps) {
                                             />
                                         )}
                                         {item?.post_details_image && (
-                                            <div className="flex flex-col flex-wrap w-full" key={item?.post_id}>
+                                            <div className="flex flex-col flex-wrap w-full max-w-185 max-h-138.75" key={item?.post_id}>
                                                 <Image
 
                                                     src={item?.post_details_image}
                                                     alt={item?.post_details_image_caption}
                                                     width={740}
                                                     height={555}
+                                                    className="w-full h-auto object-cover"
                                                 />
                                                 {item?.post_details_image_caption && (
-                                                    <span>{item?.post_details_image_caption}</span>
+                                                    <span className="inline-block mt-3.5">{item?.post_details_image_caption}</span>
                                                 )}
                                             </div>
                                         )}
@@ -153,7 +154,7 @@ export default async function Page({ params }: NewsProps) {
                                     href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     imageWidth={88}
                                     imageHeight={66}
-                                    imageWrap="max-w-[88px]"
+                                    imageWrap="max-w-[88px] max-h-[66px]"
                                     titleFontWeight={"500"}
                                 />
                             ))}

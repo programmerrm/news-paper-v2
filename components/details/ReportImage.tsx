@@ -19,7 +19,7 @@ export default function ReportImage({
           alt={alt}
           width={740}
           height={555}
-          className="w-full h-auto"
+          className="w-full h-auto object-cover"
         />
       </div>
         {caption && (

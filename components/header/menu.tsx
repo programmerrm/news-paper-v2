@@ -32,7 +32,7 @@ export default function Menu({ categories }: any) {
         }
     }, []);
 
-    const topMenuCategories = categories.filter(
+    const topMenuCategories = categories?.filter(
         (item: any) => item.top_menu_status === 1
     );
 
@@ -87,15 +87,15 @@ export default function Menu({ categories }: any) {
                 <div className="container flex items-center">
                     <Hamburger toggleMenu={toggleMenu} />
 
-                    <nav className="flex-1 border-l border-gray-dark last:border-r py-3 lg:py-4 pl-4 lg:pl-6 overflow-x-scroll scrollbar-hide">
+                    <nav className="flex-1 py-1.5 sm:py-3 lg:py-4 pl-2 sm:pl-4 lg:pl-6 border-l border-gray-dark last:border-r overflow-x-scroll scrollbar-hide">
                         <ul className="inline-flex gap-3 lg:gap-6.5 min-w-150 lg:min-w-170">
                             <li>
-                                <Link href={'/'} className="text-sm leading-5.5">
+                                <Link href={'/'} className="text-xs sm:text-sm sm:leading-5.5">
                                     হোম
                                 </Link>
                             </li>
                             <li>
-                                <Link href={'/latest/news'} className="text-sm leading-5.5">
+                                <Link href={'/latest/news'} className="text-xs sm:text-sm sm:leading-5.5">
                                     সর্বশেষ
                                 </Link>
                             </li>
@@ -103,7 +103,7 @@ export default function Menu({ categories }: any) {
                                 <li key={item.category_id}>
                                     <Link
                                         href={`/${item.category_slug}`}
-                                        className="text-sm leading-5.5"
+                                        className="text-xs sm:text-sm sm:leading-5.5"
                                     >
                                         {item.category_name}
                                     </Link>
@@ -112,18 +112,18 @@ export default function Menu({ categories }: any) {
                         </ul>
                     </nav>
 
-                    <div className="flex flex-row flex-wrap items-center" style={{ padding: "10px" }}>
-                        <div>
+                    <div className="flex flex-row flex-wrap items-center relative" style={{ padding: "10px" }}>
+                        <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
                             <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
                         </div>
-                        <div id="google_translate_element"></div>
+                        <div id="google_translate_element" className="opacity-0"></div>
                     </div>
 
                     <Link
-                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-3 lg:py-4 px-3 gap-2"
+                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
                         href={"/search"}
                     >
-                        <div>
+                        <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
                             <Image src={searchIcon} alt={"search icon"} width={24} height={24} />
                         </div>
                         <span className="text-sm leading-4.5 font-inter -tracking-[1%] hidden sm:block">
@@ -132,10 +132,10 @@ export default function Menu({ categories }: any) {
                     </Link>
 
                     <Link
-                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-3 lg:py-4 px-3 gap-2"
+                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
                         href={user ? "/user/profile" : "/user/login"}
                     >
-                        <div>
+                        <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
                             <Image src={userIcon} alt={"user icon"} width={24} height={24} />
                         </div>
                         <span className="hidden sm:block">{user ? user.name : "লগইন"}</span>
