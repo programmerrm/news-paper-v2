@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 type Props = {
-    adsImg: string;
-    adsWidth?: number;
-    adsHeight?: number;
+    adsImg?: string;          // optional, image এর জন্য
+    adsWidth?: number;        // aspect ratio set করার জন্য
+    adsHeight?: number;       // aspect ratio set করার জন্য
 };
 
 export default function Ads({
@@ -11,15 +11,15 @@ export default function Ads({
     adsWidth = 768,
     adsHeight = 90,
 }: Props) {
-    if (!adsImg) return null;
+    if (!adsImg) return null; // যদি image না থাকে, কিছু দেখাবে না
 
     return (
         <section className="py-6 bg-[#FAFAFA]">
-            <div className="container">
+            <div className="container mx-auto">
                 <div
-                    className="relative w-full mx-auto"
+                    className="relative w-full"
                     style={{
-                        aspectRatio: `${adsWidth} / ${adsHeight}`,
+                        aspectRatio: `${adsWidth} / ${adsHeight}`, // image এর proportion ঠিক রাখবে
                         maxWidth: "100%",
                     }}
                 >

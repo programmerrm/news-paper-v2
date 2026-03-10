@@ -21,7 +21,7 @@ export default async function Page({ params }: TagNewsProps) {
             <section className="py-5 sm:py-10">
                 <div className="container">
                     <h2 className="text-2xl font-bold">{tagSection?.name_bn}</h2>
-                    <div className="mt-7 pb-7 border-b border-[#A1A1A1] sm:px-5">
+                    {/* <div className="mt-7 pb-7 border-b border-[#A1A1A1] sm:px-5">
                         <NewsFilterBar
                             total={total}
                             options={[
@@ -30,7 +30,7 @@ export default async function Page({ params }: TagNewsProps) {
                                 { label: "পুরোনো", value: "oldest" },
                             ]}
                         />
-                    </div>
+                    </div> */}
                 </div>
             </section>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import Notification from "@/components/notification/notification";
 
 export const metadata: Metadata = {
     title: "News Flash 71 Single News",
@@ -14,6 +15,7 @@ export default function SingleNewsLayout({
 }>) {
     return (
         <main>
+            <Notification />
             <Header />
             {children}
             <Footer />

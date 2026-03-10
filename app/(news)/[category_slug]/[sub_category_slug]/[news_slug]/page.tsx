@@ -65,7 +65,7 @@ export default async function Page({ params }: NewsProps) {
                                     text={detailsNews?.post_descriptions}
                                 />
                                 {postDetails?.map((item: any, index: any) => (
-                                    <div key={index}>
+                                    <div className="space-y-5" key={index}>
                                         {item?.post_details_ad_status === 0 && (
                                             <>
                                                 {item?.post_details_ad && (
@@ -138,7 +138,7 @@ export default async function Page({ params }: NewsProps) {
                                 </div>
                             )}
                             <div>
-                                <CommentBox />
+                                <CommentBox post_id={detailsNews?.post_id} />
                             </div>
                         </div>
                     </div>

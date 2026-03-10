@@ -5,15 +5,16 @@ import { useState } from "react";
 import CaretDown from "../../assets/image/caretdown.svg";
 
 export type SelectOption = {
-  value: string;
+  value: string | number;
   label: string;
 };
 
 type CustomSelectProps = {
-  options: SelectOption[];     
-  icon?: StaticImageData;      
-  defaultValue?: string; 
-  className?: string;       
+  options: SelectOption[];
+  icon?: StaticImageData;
+  defaultValue?: string | number;
+  className?: string;
+  onChange?: (value: string | number) => void;   // ⭐ add
 };
 
 export default function CustomSelect({
@@ -21,24 +22,34 @@ export default function CustomSelect({
   icon,
   defaultValue,
   className = " py-2 lg:py-3 px-4",
-  
+  onChange,
 }: CustomSelectProps) {
+
   const initial =
     options.find((opt) => opt.value === defaultValue) || options[0];
 
   const [selected, setSelected] = useState<SelectOption>(initial);
   const [open, setOpen] = useState(false);
 
+  const handleSelect = (option: SelectOption) => {
+    setSelected(option);
+    setOpen(false);
+
+    if (onChange) {
+      onChange(option.value); // ⭐ parent এ value পাঠাবে
+    }
+  };
+
   return (
     <div className="relative">
       <div
         className={`border border-[#B6C3C8] bg-white text-sm font-medium leading-6
-          flex items-center justify-between cursor-pointer gap-1 ${className}`}
+        flex items-center justify-between cursor-pointer gap-1 ${className}`}
         onClick={() => setOpen(!open)}
       >
         <div className="flex items-center gap-2">
           {icon && <Image src={icon} alt="icon" width={16} height={16} />}
-           <span>{selected.label}</span> 
+          <span>{selected.label}</span>
         </div>
 
         <Image src={CaretDown} alt="caretdown" width={16} height={16} />
@@ -54,10 +65,7 @@ export default function CustomSelect({
                   ? "bg-gray-100 font-medium"
                   : ""
               }`}
-              onClick={() => {
-                setSelected(option);
-                setOpen(false);
-              }}
+              onClick={() => handleSelect(option)}
             >
               {option.label}
             </li>

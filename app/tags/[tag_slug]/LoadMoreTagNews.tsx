@@ -51,7 +51,7 @@ export default function LoadMoreTagNews({ initialData, nextLink, tagSlug }: Prop
     return (
         <>
             <div className="flex gap-4 mb-6 justify-center">
-                {[
+                {/* {[
                     { label: "সর্বশেষ", value: "latest" },
                     { label: "পুরোনো", value: "oldest" },
                 ].map((f) => (
@@ -63,7 +63,7 @@ export default function LoadMoreTagNews({ initialData, nextLink, tagSlug }: Prop
                     >
                         {f.label}
                     </button>
-                ))}
+                ))} */}
             </div>
 
             <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">

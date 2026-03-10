@@ -1,12 +1,13 @@
 // data/divisions.ts
+
+import { getFetchData } from "@/utils/getFetchData";
+
+const divisionsData = await getFetchData("/divisions");
+
 export const divisions = [
   { value: "", label: "বিভাগ" },
-  { value: "dhaka", label: "ঢাকা" },
-  { value: "chittagong", label: "চট্টগ্রাম" },
-  { value: "khulna", label: "খুলনা" },
-  { value: "rajshahi", label: "রাজশাহী" },
-  { value: "barishal", label: "বরিশাল" },
-  { value: "sylhet", label: "সিলেট" },
-  { value: "rangpur", label: "রংপুর" },
-  { value: "mymensingh", label: "ময়মনসিংহ" },
+  ...(divisionsData?.map((item: any) => ({
+    value: item.division_id,
+    label: item.division_name,
+  })) || []),
 ];

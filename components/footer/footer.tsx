@@ -29,6 +29,8 @@ export default async function Footer() {
 
     const categoryChunks = chunkArray<Category>(footerCategories, 3);
 
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className="pt-6 lg:pt-12 border-t border-[#E5E5E5]">
             <div className="container">
@@ -78,7 +80,7 @@ export default async function Footer() {
                     </ul>
                     <div className="pb-4 md:pb-8 flex items-center justify-center sm:justify-between gap-5 flex-wrap">
                         <p className="text-[15px] leading-3.75 tracking-[0.15px] text-black">প্রকাশকঃ মোহাম্মদ শামীম রেজা</p>
-                        <span className="text-[15px] leading-3.75 tracking-[0.15px] text-black">© ২০২৫ নিউজফ্ল্যাশ ৭১ | সর্বস্বত্ব সংরক্ষিত</span>
+                        <span className="text-[15px] leading-3.75 tracking-[0.15px] text-black">© {currentYear} নিউজফ্ল্যাশ ৭১ | সর্বস্বত্ব সংরক্ষিত</span>
                     </div>
                 </div>
             </div>

@@ -5,9 +5,7 @@ import SingleNewsItem from "@/components/news-items/SingleNewsItem";
 import CategoryNewsHeadding from "@/components/category/CategoryNewsHeadding";
 import NewsBreadcrumb from "@/components/breadcrumb/NewsBreadcrumb";
 import SectionHeader from "@/components/category/SectionHeader";
-import Ads from "@/components/ads/ads";
 import LoadMoreNews from "./loadMoreNews";
-import GoogleAds from "@/components/ads/googleAds";
 
 type SubCategoryProps = {
     params: Promise<{
@@ -28,112 +26,55 @@ export default async function Page({ params }: SubCategoryProps) {
     const ads = sub_category?.ads;
     const subCategoryafterAdBottomNews = sub_category?.subCategoryafterAdBottomNews;
     const subCategoryBottomNewsLastPaignate = sub_category?.subCategoryBottomNewsLastPaignate;
-    const {
-        lead_ad,
-        left_side_ad,
-        right_side_ad,
-        section_top_ad,
-        section_bottom_ad,
-    } = sub_category;
 
     return (
         <>
-            {section_top_ad && (
-                <>
-                    {section_top_ad?.ad_type === "premium" ? (
-                        <Ads
-                            adsImg={section_top_ad?.ad_thumbnail}
-                            adsWidth={768}
-                            adsHeight={90}
-                        />
-                    ) : (
-                        <div className="w-3xl h-22.5">
-                            <GoogleAds
-                                code={section_top_ad?.ad_google_script}
-                            />
-                        </div>
-                    )}
-                </>
-            )}
+            
             <section className="py-5 sm:py-10">
                 <div className="container">
                     <div>
                         <NewsBreadcrumb
-                            title={subcategory.category.category_name}
-                            subtitle={subcategory.subcategory_name}
+                            title={subcategory?.category?.category_name}
+                            subtitle={subcategory?.subcategory_name}
                         />
                     </div>
                     <div className="flex flex-col lg:flex-row mt-8 gap-5">
-                        {left_side_ad && (
-                            <>
-                                {left_side_ad?.ad_type === "premium" ? (
-                                    <Ads
-                                        adsImg={left_side_ad?.ad_thumbnail}
-                                        adsWidth={768}
-                                        adsHeight={90}
-                                    />
-                                ) : (
-                                    <div className="w-3xl h-22.5">
-                                        <GoogleAds
-                                            code={left_side_ad?.ad_google_script}
-                                        />
-                                    </div>
-                                )}
-                            </>
-                        )}
-                        {!left_side_ad && subCategoryLeftNews?.length > 0 && (
+                        {subCategoryLeftNews?.length > 0 && (
                             <div className="w-full lg:max-w-[30.469%] flex flex-col divide-y divide-[#D4D4D4] order-2 lg:order-1">
                                 {subCategoryLeftNews?.map((item: any) => (
                                     <NewsItem
-                                        key={item.post_id}
+                                        key={item?.post_id}
                                         imageWidth={140}
                                         imageHeight={104}
-                                        image={item.post_thumbnail}
-                                        title={item.post_title}
-                                        time={item.post_published_at}
-                                        href={item.post_slug}
+                                        image={item?.post_thumbnail}
+                                        title={item?.post_title}
+                                        time={item?.post_published_at}
+                                        href={item?.post_slug}
                                         timeMt={"16"}
                                         imageWrap="max-w-[104px]"
                                     />
                                 ))}
                             </div>
                         )}
-                        {!lead_ad && subCategoryLeadNews?.length > 0 && (
+                        {subCategoryLeadNews?.length > 0 && (
                             <div className="w-full lg:max-w-[42.421%] lg:px-4.75 lg:border-r lg:border-l border-[#A1A1A1] order-1 lg:order-2">
                                 {subCategoryLeadNews?.map((item: any) => (
                                     <LedNews
-                                        key={item.post_id}
-                                        image={item.post_thumbnail}
+                                        key={item?.post_id}
+                                        image={item?.post_thumbnail}
                                         imageWidth={503}
                                         imageHeight={377}
-                                        title={item.post_title}
-                                        content={item.post_descriptions}
-                                        time={item.post_published_at}
-                                        href={item.post_slug}
+                                        title={item?.post_title}
+                                        content={item?.post_descriptions}
+                                        time={item?.post_published_at}
+                                        href={item?.post_slug}
                                         contentMt={"12"}
                                         timeMt={"16"}
                                     />
                                 ))}
                             </div>
                         )}
-                        {lead_ad && (
-                            <>
-                                {lead_ad?.ad_type === "premium" ? (
-                                    <Ads
-                                        adsImg={lead_ad?.ad_thumbnail}
-                                        adsWidth={768}
-                                        adsHeight={90}
-                                    />
-                                ) : (
-                                    <div className="w-3xl h-22.5">
-                                        <GoogleAds
-                                            code={lead_ad?.ad_google_script}
-                                        />
-                                    </div>
-                                )}
-                            </>
-                        )}
-                        {!right_side_ad && subCategoryRightNews?.length > 0 && (
+                        {subCategoryRightNews?.length > 0 && (
                             <div className="w-full lg:max-w-[23.829%] order-3 lg:order-3">
                                 <CategoryNewsHeadding
                                     highlightText={subcategory.subcategory_name}
@@ -141,8 +82,8 @@ export default async function Page({ params }: SubCategoryProps) {
                                 {subCategoryRightNews?.map((item: any) => (
                                     <div className="flex flex-col divide-y divide-[#D4D4D4] mt-6" key={item.post_id}>
                                         <NewsItem
-                                            title={item.post_title}
-                                            image={item.post_thumbnail}
+                                            title={item?.post_title}
+                                            image={item?.post_thumbnail}
                                             imageWidth={88}
                                             imageHeight={66}
                                             imageWrap="max-w-[88px]"
@@ -152,23 +93,7 @@ export default async function Page({ params }: SubCategoryProps) {
                                 ))}
                             </div>
                         )}
-                        {right_side_ad && (
-                            <>
-                                {right_side_ad?.ad_type === "premium" ? (
-                                    <Ads
-                                        adsImg={right_side_ad?.ad_thumbnail}
-                                        adsWidth={768}
-                                        adsHeight={90}
-                                    />
-                                ) : (
-                                    <div className="w-3xl h-22.5">
-                                        <GoogleAds
-                                            code={right_side_ad?.ad_google_script}
-                                        />
-                                    </div>
-                                )}
-                            </>
-                        )}
+                        
                     </div>
                 </div>
             </section>
@@ -199,26 +124,19 @@ export default async function Page({ params }: SubCategoryProps) {
                         {subCategoryBottomNews?.map((item: any) => (
                             <div className="pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
-                                    image={item.post_thumbnail}
+                                    image={item?.post_thumbnail}
                                     imageWidth={340}
                                     imageHeight={304}
-                                    title={item.post_title}
-                                    time={item.post_published_at}
-                                    href={item.post_slug}
+                                    title={item?.post_title}
+                                    time={item?.post_published_at}
+                                    href={item?.post_slug}
                                     timeMt={16}
                                     SingleimageWrap="max-w-[200px]"
-                                    content={item.post_descriptions}
+                                    content={item?.post_descriptions}
                                     titleMb={12}
                                 />
                             </div>
                         ))}
-                        {ads?.ad_status === 1 && (
-                            <Ads
-                                adsImg={ads?.ad_thumbnail}
-                                adsWidth={882}
-                                adsHeight={248}
-                            />
-                        )}
                         {subCategoryafterAdBottomNews?.map((item: any) => (
                             <div className="pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
@@ -242,23 +160,6 @@ export default async function Page({ params }: SubCategoryProps) {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
-                <>
-                    {section_bottom_ad?.ad_type === "premium" ? (
-                        <Ads
-                            adsImg={section_bottom_ad?.ad_thumbnail}
-                            adsWidth={768}
-                            adsHeight={90}
-                        />
-                    ) : (
-                        <div className="w-3xl h-22.5">
-                            <GoogleAds
-                                code={section_bottom_ad?.ad_google_script}
-                            />
-                        </div>
-                    )}
-                </>
-            )}
         </>
     );
 }
