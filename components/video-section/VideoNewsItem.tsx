@@ -16,15 +16,15 @@ export default function VideoNewsItem({
   href = "#",
 }: VideoNewsItemProps) {
   return (
-    <div className="p-3 md:p-4 bg-body flex gap-4 rounded">
+    <div className="p-3 md:p-4 bg-body flex flex-col sm:flex-row  gap-4 rounded">
       
       {/* Video */}
-      <div className="w-full max-w-40 shrink-0">
+      <div className="w-full sm:max-w-40 shrink-0">
         <VideoPlayer src={video_url} />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col justify-between">
+      <div className="w-full flex flex-col justify-between">
         <Link href={href}>
           <h6 className="text-white text-base leading-6 mb-2 hover:text-blue transition-colors">
             {title}

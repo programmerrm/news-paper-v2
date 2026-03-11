@@ -77,71 +77,67 @@ export default function Menu({ categories }: any) {
 
     return (
         <>
-            <div
-                className={`
-        bg-red text-white w-full z-50
-        transition-all duration-300 ease-in-out
-        ${isSticky ? "fixed top-0 shadow-md" : "relative"}
-      `}
-            >
-                <div className="container flex items-center">
-                    <Hamburger toggleMenu={toggleMenu} />
+                <div
+                    className={`bg-red text-white w-full z-50 transition-all duration-300 ${isSticky ? "fixed top-0 left-0 right-0 shadow-md" : "relative"}`}
+                >
+                    <div className="container flex items-center">
+                        <Hamburger toggleMenu={toggleMenu} />
 
-                    <nav className="flex-1 py-1.5 sm:py-3 lg:py-4 pl-2 sm:pl-4 lg:pl-6 border-l border-gray-dark last:border-r overflow-x-scroll scrollbar-hide">
-                        <ul className="inline-flex gap-3 lg:gap-5 xl:gap-6.5 min-w-150 lg:min-w-170">
-                            <li>
-                                <Link href={'/'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
-                                    হোম
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href={'/latest/news'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
-                                    সর্বশেষ
-                                </Link>
-                            </li>
-                            {topMenuCategories.map((item: any) => (
-                                <li key={item.category_id}>
-                                    <Link
-                                        href={`/${item.category_slug}`}
-                                        className="text-xs sm:text-sm leading-4 sm:leading-5.5"
-                                    >
-                                        {item.category_name}
+                        <nav className="flex-1 py-1.5 sm:py-3 lg:py-4 pl-2 sm:pl-4 lg:pl-6 border-l border-gray-dark last:border-r overflow-x-scroll scrollbar-hide">
+                            <ul className="inline-flex gap-3 lg:gap-5 xl:gap-6.5 min-w-150 lg:min-w-170">
+                                <li>
+                                    <Link href={'/'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
+                                        হোম
                                     </Link>
                                 </li>
-                            ))}
-                        </ul>
-                    </nav>
+                                <li>
+                                    <Link href={'/latest/news'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
+                                        সর্বশেষ
+                                    </Link>
+                                </li>
+                                {topMenuCategories.map((item: any) => (
+                                    <li key={item.category_id}>
+                                        <Link
+                                            href={`/${item.category_slug}`}
+                                            className="text-xs sm:text-sm leading-4 sm:leading-5.5"
+                                        >
+                                            {item.category_name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
 
-                    <div className="flex flex-row flex-wrap items-center relative" >
-                        <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
-                            <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
+                        <div className="flex flex-row flex-wrap items-center relative" >
+                            <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
+                                <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
+                            </div>
+                            <div id="google_translate_element" className="opacity-0"></div>
                         </div>
-                        <div id="google_translate_element" className="opacity-0"></div>
+
+                        <Link
+                            className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
+                            href={"/search"}
+                        >
+                            <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
+                                <Image src={searchIcon} alt={"search icon"} width={24} height={24} />
+                            </div>
+                            <span className="text-sm leading-4.5 font-inter -tracking-[1%] hidden sm:block">
+                                সার্চ করুন
+                            </span>
+                        </Link>
+
+                        <Link
+                            className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
+                            href={user ? "/user/profile" : "/user/login"}
+                        >
+                            <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
+                                <Image src={userIcon} alt={"user icon"} width={24} height={24} />
+                            </div>
+                            <span className="hidden sm:block">{user ? user.name : "লগইন"}</span>
+                        </Link>
                     </div>
-
-                    <Link
-                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
-                        href={"/search"}
-                    >
-                        <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
-                            <Image src={searchIcon} alt={"search icon"} width={24} height={24} />
-                        </div>
-                        <span className="text-sm leading-4.5 font-inter -tracking-[1%] hidden sm:block">
-                            সার্চ করুন
-                        </span>
-                    </Link>
-
-                    <Link
-                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
-                        href={user ? "/user/profile" : "/user/login"}
-                    >
-                        <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
-                            <Image src={userIcon} alt={"user icon"} width={24} height={24} />
-                        </div>
-                        <span className="hidden sm:block">{user ? user.name : "লগইন"}</span>
-                    </Link>
                 </div>
-            </div>
 
             {menuOpen && (
                 <div className="bg-white absolute top-0 left-0 right-0 -bottom-px z-50 h-screen overflow-y-auto pb-10">

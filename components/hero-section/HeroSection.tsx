@@ -22,6 +22,9 @@ export default async function HeroSection() {
         subLeadNews2,
         specialnews71,
     } = heroSectionData;
+
+console.log('subLeadNews2 -- ', subLeadNews2);
+
     return (
         <>
             {section_top_ad && (
@@ -44,7 +47,7 @@ export default async function HeroSection() {
             <section className="pt-10 pb-10 md:pb-18">
                 <div className="container">
                     <div className="flex flex-col lg:flex-row">
-                        <div className="w-full lg:max-w-[25.390%] divide-y divide-[#D4D4D4] space-y-5 pr-5 order-2 lg:order-1">
+                        <div className="w-full lg:max-w-[25.390%] divide-y divide-[#D4D4D4] mb-3 lg:mb-0 space-y-2.5 lg:space-y-5 lg:pr-5 order-2 lg:order-1">
                             {left_side_ad && (
                                 <>
                                     {left_side_ad?.ad_type === "premium" ? (
@@ -63,7 +66,7 @@ export default async function HeroSection() {
                                 </>
                             )}
                             {! left_side_ad && side_news1?.map((item: any) => (
-                                <div className="flex gap-3 pb-5" key={item.post_id}>
+                                <div className="flex gap-3 pb-2.5 lg:pb-5" key={item.post_id}>
                                     <NewsItem
                                         image={item?.post_thumbnail}
                                         title={item?.post_title}
@@ -74,7 +77,7 @@ export default async function HeroSection() {
                                 </div>
                             ))}
                             {side_news2 && side_news2?.map((item: any) => (
-                                <div className="flex gap-3 pb-5" key={item.post_id}>
+                                <div className="flex gap-3 pb-2.5 lg:pb-5" key={item.post_id}>
                                     <NewsItem
                                         title={item?.post_title}
                                         time={item?.post_published_at}
@@ -112,7 +115,7 @@ export default async function HeroSection() {
                                 </>
                             )}
                             {subLeadNews1?.length > 0 && (
-                                <div className="flex flex-col xl:flex-row py-6 divide-y xl:divide-y-0 xl:divide-x divide-[#D4D4D4]">
+                                <div className="flex flex-col xl:flex-row xl:py-6 divide-y xl:divide-y-0 xl:divide-x divide-[#D4D4D4]">
 
                                     {subLeadNews1.map((item: any, index: number) => (
                                         <div
@@ -143,7 +146,7 @@ export default async function HeroSection() {
                                     ))}
                                 </div>
                             )}
-                            {subLeadNews2 && (
+                            {subLeadNews2?.length > 0 && (
                                 <div className="grid sm:grid-cols-3 gap-3 py-6 first:pt-0 lg:last:pb-0 divide-y sm:divide-y-0 sm:divide-x divide-[#D4D4D4]">
                                     {subLeadNews2 && subLeadNews2?.map((item: any) => (
                                         <div className="pr-3 last:pr-0 pb-3 sm:pb-0 last:pb-0" key={item.post_id}>
@@ -163,7 +166,7 @@ export default async function HeroSection() {
                             <div className="w-full lg:max-w-[25.390%] lg:pl-5 order-3">
                                 <h6 className="text-sm sm:text-base leading-6 text-black font-inter font-semibold">নিউজ ফ্ল্যাশ ৭১ <span
                                     className="text-red font-inter">স্পেশাল</span></h6>
-                                <div className="divide-y divide-[#D4D4D4] mt-6">
+                                <div className="divide-y divide-[#D4D4D4] mt-3 lg:mt-6">
                                     {!right_side_ad && specialnews71?.map((item: any) => (
                                         <NewsItem
                                             key={item.post_id}

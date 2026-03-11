@@ -17,7 +17,7 @@ export default function NewsItem({
   titleFontWeight = "600",
   isLive = false,
   imageWrap = "w-full max-w-[104px]",
-  wrapperClass = "flex gap-3 py-5 first:pt-0 last:pb-0",
+  wrapperClass = "flex gap-3 py-2.5 lg:py-5 first:pt-0 last:pb-0",
   headingTag: HeadingTag = "h5",
 }: NewsItemsProps) {
   return (

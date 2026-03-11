@@ -18,7 +18,7 @@ export default async function Page({ params }: TagNewsProps) {
 
     return (
         <>
-            <section className="py-5 sm:py-10">
+            <section className="py-2.5 sm:py-5">
                 <div className="container">
                     <h2 className="text-2xl font-bold">{tagSection?.name_bn}</h2>
                     {/* <div className="mt-7 pb-7 border-b border-[#A1A1A1] sm:px-5">
@@ -34,7 +34,7 @@ export default async function Page({ params }: TagNewsProps) {
                 </div>
             </section>
 
-            <section className="py-7 lg:py-14">
+            <section className="py-3.5 lg:py-7">
                 <div className="container">
                     <LoadMoreTagNews
                         initialData={initialPosts}

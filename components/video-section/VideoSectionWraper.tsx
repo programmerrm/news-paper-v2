@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import VideoNewsItem from "./VideoNewsItem";
 import VideoPlayer from "../video/VideoPage";
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 export default function VideoSectionWraper({ data }: any) {
+    
     const [activeTab, setActiveTab] = useState<"video" | "reel">("video");
     const leadVideo = data?.leadVideo;
     const sectionVideo = data?.sectionVideo || [];
@@ -25,7 +27,7 @@ export default function VideoSectionWraper({ data }: any) {
                         <button
                             onClick={() => setActiveTab("video")}
                             className={`cursor-pointer text-sm font-medium relative ${activeTab === "video"
-                                ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-2 after:h-[2px] after:bg-amber-600"
+                                ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-2 after:h-0.5 after:bg-amber-600"
                                 : "text-gray-400"
                                 }`}
                         >
@@ -34,7 +36,7 @@ export default function VideoSectionWraper({ data }: any) {
                         <button
                             onClick={() => setActiveTab("reel")}
                             className={`cursor-pointer text-sm font-medium relative ${activeTab === "reel"
-                                ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-2 after:h-[2px] after:bg-amber-600"
+                                ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-2 after:h-0.5 after:bg-amber-600"
                                 : "text-gray-400"
                                 }`}
                         >
@@ -50,8 +52,10 @@ export default function VideoSectionWraper({ data }: any) {
                             />
                         </div>
                         <div className="px-4 py-6">
-                            <h4 className="text-white mb-3">
-                                {leadVideo?.video_title}
+                            <h4 className="text-white mb-3 transition-all hover:text-blue">
+                                <Link href={`/video/${leadVideo?.video_slug}`}>
+                                    {leadVideo?.video_title}
+                                </Link>
                             </h4>
                             <span className="text-xs text-gray-400">
                                 {formatBanglaTimeAgo(leadVideo?.video_published_at)}

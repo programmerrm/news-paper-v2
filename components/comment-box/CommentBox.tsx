@@ -92,7 +92,7 @@ export default function CommentBox({ post_id }: any) {
                 <div className="max-w-33.25 mt-4">
                     <button
                         type="submit"
-                        className="bg-red text-white w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer"
+                        className="bg-red text-white w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer hover:bg-red-900"
                     >
                         পোস্ট করুন
                     </button>

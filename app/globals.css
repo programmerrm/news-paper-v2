@@ -83,7 +83,7 @@ body {
 
 .home-slider .swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-  @apply -bottom-1 sm:-bottom-2
+  @apply -bottom-2
 }
 .home-slider .swiper-pagination-bullet-active{
     @apply bg-red!

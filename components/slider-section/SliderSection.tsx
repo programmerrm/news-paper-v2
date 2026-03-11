@@ -21,9 +21,8 @@ export default function NewsSlider() {
   }, []);
   if (!sliders.length) return null;
   return (
-    <section className="bg-[#FBF7EF] py-8 lg:py-16 home-slider">
+    <section className="bg-[#FBF7EF] py-4 md:py-8 lg:py-16 home-slider">
       <div className="container mx-auto px-4">
-
         <Swiper
           className="pb-6! lg:pb-9!"
           modules={[Pagination, Autoplay]}

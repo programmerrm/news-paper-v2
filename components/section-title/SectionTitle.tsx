@@ -15,10 +15,10 @@ export default function SectionTitle({
             <span className="bg-red w-px h-4" />
             <a
                 href={href}
-                className="text-sm leading-6 font-medium inline-flex items-center gap-0.5 text-red"
+                className="text-sm leading-6 font-medium inline-flex items-center gap-0.5 text-red group"
             >
                 সব খবর
-                <Image src={arrowIcon} alt="right arrow" />
+                <Image src={arrowIcon} alt="right arrow" className="transition-all group-hover:ml-1 -mt-px" />
             </a>
         </div>
   );

@@ -28,13 +28,15 @@ export default function SingleNewsItem({
           className={`block overflow-hidden ${SingleimageWrap} md:max-w-full`}
         >
           <span className="relative">
-            <Image
-                src={image}
-                alt={title || "News image"}
-                width={imageWidth}
-                height={imageHeight}
-                className="object-cover transition-transform duration-500 hover:scale-105"
-            />
+            <span className="min-w-50">
+              <Image
+                  src={image}
+                  alt={title || "News image"}
+                  width={imageWidth}
+                  height={imageHeight}
+                  className="object-cover w-full transition-transform duration-500 hover:scale-105"
+                />
+            </span>
             {showPlayButton && (
                 <button
                     type="submit"
