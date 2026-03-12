@@ -29,11 +29,13 @@ export default async function EntertainmentSection() {
             {section_top_ad && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
-                        <Ads
-                            adsImg={section_top_ad?.ad_thumbnail}
-                            adsWidth={768}
-                            adsHeight={90}
-                        />
+                        <div className="pt-2">
+                            <Ads
+                                adsImg={section_top_ad?.ad_thumbnail}
+                                adsWidth={768}
+                                adsHeight={90}
+                            />
+                        </div>
                     ) : (
                         <div className="w-3xl h-22.5">
                             <GoogleAds
@@ -151,11 +153,11 @@ export default async function EntertainmentSection() {
             {section_bottom_ad && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
-                        <Ads
-                            adsImg={section_bottom_ad?.ad_thumbnail}
-                            adsWidth={768}
-                            adsHeight={90}
-                        />
+                            <Ads
+                                adsImg={section_bottom_ad?.ad_thumbnail}
+                                adsWidth={768}
+                                adsHeight={90}
+                            />
                     ) : (
                         <div className="w-3xl h-22.5">
                             <GoogleAds

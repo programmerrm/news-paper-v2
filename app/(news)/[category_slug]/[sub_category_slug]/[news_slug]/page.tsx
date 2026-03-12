@@ -30,7 +30,7 @@ export default async function Page({ params }: NewsProps) {
     const detailsNews = news?.detailsNews;
     const postDetails = news?.postDetails;
     return (
-        <section className="pt-10 pb-14">
+        <section className="pt-5 lg:pt-10 pb-7 lg:pb-14">
             <div className="container">
                 <div className="flex flex-col lg:flex-row">
                     <div className="flex flex-col sm:flex-row w-full lg:max-w-[76.171%]">

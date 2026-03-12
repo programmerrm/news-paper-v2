@@ -23,7 +23,7 @@ export default function NationalLedNews({
           alt={title}
           width={496}
           height={372}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full transition-transform duration-500 group-hover:scale-105"
           priority
         />
       </Link>

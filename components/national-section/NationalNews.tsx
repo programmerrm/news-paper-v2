@@ -24,7 +24,7 @@ export default function NationalNews({
           alt={title}
           width={imageWidth}
           height={imageHeight}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="transition-transform duration-500 group-hover:scale-105"
           priority
         />
       </Link>

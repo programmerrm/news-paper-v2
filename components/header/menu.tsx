@@ -84,7 +84,7 @@ export default function Menu({ categories }: any) {
                         <Hamburger toggleMenu={toggleMenu} />
 
                         <nav className="flex-1 py-1.5 sm:py-3 lg:py-4 pl-2 sm:pl-4 lg:pl-6 border-l border-gray-dark last:border-r overflow-x-scroll scrollbar-hide">
-                            <ul className="inline-flex gap-3 lg:gap-5 xl:gap-6.5 min-w-150 lg:min-w-170">
+                            <ul className="inline-flex gap-3 lg:gap-5 xl:gap-6.5 min-w-160 lg:min-w-182">
                                 <li>
                                     <Link href={'/'} className="text-xs sm:text-sm leading-4 sm:leading-5.5">
                                         হোম

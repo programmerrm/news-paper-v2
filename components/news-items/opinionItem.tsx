@@ -72,7 +72,7 @@ export default function OpinionItem({
               alt={title || "News image"}
               width={imageWidth}
               height={imageHeight}
-              className="object-cover transition-transform"
+              className=" transition-transform"
             />
           </span>
         </Link>
@@ -118,8 +118,6 @@ export default function OpinionItem({
           </span>
         )}
       </div>
-
-
     </div>
   );
 }

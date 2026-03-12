@@ -30,7 +30,7 @@ export default function NewsItem({
             alt={title || "News image"}
             width={imageWidth}
             height={imageHeight}
-            className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+            className=" w-full h-full transition-transform duration-500 hover:scale-105"
           />
         </Link>
       )}

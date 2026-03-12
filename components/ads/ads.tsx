@@ -14,7 +14,7 @@ export default function Ads({
     if (!adsImg) return null;
 
     return (
-        <section className="py-6 bg-[#FAFAFA]">
+        <section className="py-3 md:py-6 bg-[#FAFAFA]">
             <div className="container mx-auto">
                 <div
                     className="relative w-full mx-auto"
