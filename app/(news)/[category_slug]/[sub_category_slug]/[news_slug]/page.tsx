@@ -125,7 +125,7 @@ export default async function Page({ params }: NewsProps) {
                                 ))}
                             </div>
                             {news?.detailsNews?.tags && (
-                                <div className="bg-[#FBF7EF] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                <div className="bg-[#FBF7EF] p-3 sm:p-5 flex flex-row items-center flex-wrap gap-2 sm:gap-4">
                                     <h5>আরো পড়ুন:</h5>
                                     <div className="flex items-center gap-2 flex-wrap">
                                         {news?.detailsNews?.tags?.map((item: any) => (

@@ -98,10 +98,10 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
         {/* Social icons */}
         {showIcons && (
           <div
-            className="flex flex-col gap-2 items-center justify-center"
+            className="flex flex-col gap-2 items-center justify-center divide-y-2 w-full divide-[#E5E5E5]"
             style={{ transform: `scale(${zoom})`, transition: "transform 0.2s ease-in-out" }}
           >
-            <div className="flex flex-row sm:flex-col items-center gap-2 sm:gap-3 py-3 sm:py-6">
+            <div className="w-full flex flex-row sm:flex-col items-center justify-center gap-2 sm:gap-3 py-3 sm:py-6">
               {socialLinks.map((item, index) => (
                 <Link key={index} href={item.href}>
                   <span className="flex items-center justify-center w-7 sm:w-10 h-7 sm:h-10 rounded-full hover:bg-gray-200 transition">
@@ -111,7 +111,7 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
               ))}
             </div>
 
-            <div className="py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2">
+            <div className="w-full py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2">
               <Link href="#">
                 <span className="flex items-center justify-center w-7 sm:w-10 h-7 sm:h-10 rounded-full transition-all duration-300 hover:bg-gray-200">
                   <Image width={40} height={40} src={Google} alt="Google" />

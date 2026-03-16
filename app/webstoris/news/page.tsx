@@ -12,7 +12,7 @@ export default async function Page() {
         <section className="pt-5 md:pt-10 pb-7 md:pb-14">
             <div className="container">
                 <div>
-                    <NewsBreadcrumb title="ওয়ের স্টোরিস" />
+                    <NewsBreadcrumb title="ওয়েব স্টোরিস" />
                     <ul className="flex items-center gap-y-2 gap-x-6 flex-wrap mt-2">
                         {categories?.map((category: any) => (
                             <li key={category.category_id}>

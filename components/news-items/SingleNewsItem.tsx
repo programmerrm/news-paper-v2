@@ -43,8 +43,10 @@ export default function SingleNewsItem({
                     className="absolute bottom-3 md:bottom-6 left-3 md:left-6 max-w-7 md:max-w-10 cursor-pointer"
                 >
                     <Image
-                    src={PlayIcon}
-                    alt="play"
+                      src={PlayIcon}
+                      alt="play"
+                      width={40}
+                      height={40}
                     />
                 </button>
                 )}

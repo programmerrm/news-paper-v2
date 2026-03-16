@@ -25,7 +25,7 @@ export default function HeroTopNews({
   return (
     <div className="flex justify-between gap-5 w-full pb-6 flex-col sm:flex-row">
       <div className="w-full sm:max-w-[51.700%] order-2 sm:order-1">
-        <h2 className="text-[26px]! leading-8!">
+        <h2 className="md:text-[26px]! md:leading-8!">
           <Link href={href} className="transition-all hover:text-blue-600">
             {title}
           </Link>

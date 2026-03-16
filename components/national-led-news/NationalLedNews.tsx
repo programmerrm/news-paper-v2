@@ -16,21 +16,23 @@ export default function NationalLedNews({
   href = "#",
 }: NationalLedNewsProps) {
   return (
-    <div className="w-full h-93 relative group overflow-hidden">
+    <div className="w-full h-64 md:h-93 relative group overflow-hidden">
       <Link href={href}>
-        <Image
-          src={image}
-          alt={title}
-          width={496}
-          height={372}
-          className="w-full h-full transition-transform duration-500 group-hover:scale-105"
-          priority
-        />
+        <span className="w-full max-w-124">
+          <Image
+            src={image}
+            alt={title}
+            width={496}
+            height={372}
+            className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+            priority
+          />
+        </span>
       </Link>
 
-      <div className="absolute left-0 right-0 bottom-0 bg-linear-to-b from-body/0 to-body p-6">
+      <div className="absolute left-0 right-0 bottom-0 bg-linear-to-b from-body/0 to-body p-3 sm:p-6">
         <Link href={href}>
-          <h4 className="text-white! transition-all duration-300 group-hover:text-blue-300!">
+          <h4 className="text-base sm:text-xl text-white! transition-all duration-300 group-hover:text-blue-300!">
             {title}
           </h4>
         </Link>

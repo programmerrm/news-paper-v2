@@ -27,11 +27,11 @@ export default function CategoryItem({
       
       {/* Header */}
       <div className="flex items-center justify-between lg:block w-full lg:max-w-37.5">
-        <h4>{title}</h4>
+        <h4 className="text-base md:text-xl font-semibold md:leading-7">{title}</h4>
 
         <button
           onClick={() => setOpen(!open)}
-          className="max-w-5 sm:max-w-6 lg:hidden block transition-transform"
+          className="max-w-4 sm:max-w-6 lg:hidden block transition-transform"
         >
           <Image
             src={downArrowIcon}

@@ -6,7 +6,7 @@ type NavLinksProps = {
 
 export default function NavLinks({ links }: NavLinksProps) {
   return (
-    <ul className="py-3 md:py-5.5 space-y-3 md:space-y-5">
+    <ul className="py-2 md:py-5.5 space-y-3 md:space-y-5">
       {links.map((link, index) => (
         <li key={index}>
           <Link

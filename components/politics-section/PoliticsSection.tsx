@@ -82,8 +82,8 @@ export default async function PoliticsSection() {
                                 </>
                             )}
                         </div>
-                        <div className="sm:px-5 sm:border-x border-[#A1A1A1]">
-                            <div className="space-y-5 divide-y divide-[#D4D4D4]">
+                        <div className="sm:px-5 sm:border-x border-[#A1A1A1] mt-2 sm:mt-0">
+                            <div className="space-y-3 md:space-y-5 divide-y divide-[#D4D4D4]">
                                 {sub_lead_ad && (
                                     <>
                                         {sub_lead_ad?.ad_type === "premium" ? (
@@ -102,7 +102,7 @@ export default async function PoliticsSection() {
                                     </>
                                 )}
                                 {!sub_lead_ad && sectionSixSubleadNews?.map((item: any) => (
-                                    <div className="pb-5" key={item.post_id}>
+                                    <div className="pb-2 md:pb-5" key={item.post_id}>
                                         <NationalNews
                                             image={item?.post_thumbnail}
                                             imageWidth={305}
@@ -116,10 +116,10 @@ export default async function PoliticsSection() {
                                 ))}
                             </div>
                         </div>
-                        <div className="sm:pl-5 mt-5 lg:mt-0 col-span-2 lg:col-span-1">
-                            <div className="space-y-5 divide-y divide-[#D4D4D4]">
+                        <div className="sm:pl-5 mt-3 sm:mt-5 lg:mt-0 col-span-2 lg:col-span-1">
+                            <div className="space-y-3 md:space-y-5 divide-y divide-[#D4D4D4]">
                                 {sectionSixRightSide?.map((item: any) => (
-                                    <div key={item.post_id} className="pb-5 last:pb-0">
+                                    <div key={item.post_id} className="pb-3 md:pb-5 last:pb-0">
                                         <NewsItem
                                             image={item?.post_thumbnail}
                                             imageWidth={140}

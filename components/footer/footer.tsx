@@ -50,7 +50,7 @@ export default async function Footer() {
                             ))}
                         </div>
                     </div>
-                    <ul className="pb-4 md:pb-8 flex items-center justify-center gap-y-3 gap-x-7 lg:gap-x-14 flex-wrap">
+                    <ul className="pb-4 md:pb-8 flex items-center justify-center gap-y-3 gap-5 md:gap-x-7 lg:gap-x-14 flex-wrap">
                         <li>
                             <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 আমাদের সম্পর্কে
@@ -86,7 +86,7 @@ export default async function Footer() {
             </div>
             <div className="bg-[#E0EBF0] py-4">
                 <div className="container flex items-center justify-center">
-                    <span className="text-sm leading-3.5 tracking-[0.15px] text-black text-center">{webinfo?.webInfo?.copyright}</span>
+                    <span className="text-sm leading-4.5 tracking-[0.15px] text-black text-center">{webinfo?.webInfo?.copyright}</span>
                 </div>
             </div>
         </footer>

@@ -208,7 +208,7 @@ export default async function Page({ params }: CategoryProps) {
             </section>
             <section className="py-7 lg:py-14">
                 <div className="container">
-                    <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
+                    <div className="space-y-4 md:space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
                         {categoryBottomNews?.map((item: any) => (
                             <div className="pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
@@ -217,7 +217,7 @@ export default async function Page({ params }: CategoryProps) {
                                     imageHeight={304}
                                     title={item.post_title}
                                     time={item.post_published_at}
-                                    href={item.post_slug}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     timeMt={16}
                                     SingleimageWrap="max-w-[200px]"
                                     content={item.post_descriptions}
@@ -240,7 +240,7 @@ export default async function Page({ params }: CategoryProps) {
                                     imageHeight={304}
                                     title={item?.post_title}
                                     time={item?.post_published_at}
-                                    href={item?.post_slug}
+                                    href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     timeMt={16}
                                     SingleimageWrap="max-w-[200px]"
                                     content={item?.post_descriptions}

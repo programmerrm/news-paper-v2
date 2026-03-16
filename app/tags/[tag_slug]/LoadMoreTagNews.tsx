@@ -50,8 +50,8 @@ export default function LoadMoreTagNews({ initialData, nextLink, tagSlug }: Prop
 
     return (
         <>
-            <div className="flex gap-4 mb-6 justify-center">
-                {/* {[
+            {/*<div className="flex gap-4 mb-6 justify-center">
+                 {[
                     { label: "সর্বশেষ", value: "latest" },
                     { label: "পুরোনো", value: "oldest" },
                 ].map((f) => (
@@ -63,12 +63,12 @@ export default function LoadMoreTagNews({ initialData, nextLink, tagSlug }: Prop
                     >
                         {f.label}
                     </button>
-                ))} */}
-            </div>
+                ))}
+            </div> */}
 
-            <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
+            <div className="space-y-4 md:space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
                 {newsData?.map((item: any) => (
-                    <div className="pb-4 md:pb-8" key={item.post_id}>
+                    <div className="pb-2 sm:pb-4 md:pb-8" key={item.post_id}>
                         <SingleNewsItem
                             image={item.post_thumbnail}
                             imageWidth={340}
@@ -77,7 +77,6 @@ export default function LoadMoreTagNews({ initialData, nextLink, tagSlug }: Prop
                             time={item.post_published_at}
                             href={`/${item.category.category_slug}/${item.subcategory.subcategory_slug}/${item.post_slug}`}
                             timeMt={16}
-                            SingleimageWrap="max-w-[200px]"
                             content={item.post_descriptions}
                             titleMb={12}
                         />

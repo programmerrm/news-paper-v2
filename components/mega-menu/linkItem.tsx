@@ -18,7 +18,7 @@ export default function LinkItem({
         after:bg-[#B6C3C8] after:rounded-full
         ${hideDot ? "after:hidden" : ""}`}
     >
-      <Link href={href} className="text-base font-normal leading-6.5">
+      <Link href={href} className="text-sm sm:text-base font-normal leading-6.5">
         {label}
       </Link>
     </li>

@@ -19,6 +19,8 @@ export default function Reels({ open, setOpen, news }: any) {
                         alt="Imagecategory"
                         fill
                         priority
+                        className="object-cover"
+                        
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/0 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 px-3 sm:px-6 pb-6 sm:pb-8 z-10">

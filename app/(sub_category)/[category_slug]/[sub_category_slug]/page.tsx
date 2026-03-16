@@ -120,9 +120,9 @@ export default async function Page({ params }: SubCategoryProps) {
             </section>
             <section className="py-7 lg:py-14">
                 <div className="container">
-                    <div className="space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
+                    <div className="space-y-4 sm:space-y-8 divide-y divide-gray-dark max-w-220.5 mx-auto">
                         {subCategoryBottomNews?.map((item: any) => (
-                            <div className="pb-4 md:pb-8" key={item.post_id}>
+                            <div className="pb-2 sm:pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
                                     image={item?.post_thumbnail}
                                     imageWidth={340}
@@ -138,7 +138,7 @@ export default async function Page({ params }: SubCategoryProps) {
                             </div>
                         ))}
                         {subCategoryafterAdBottomNews?.map((item: any) => (
-                            <div className="pb-4 md:pb-8" key={item.post_id}>
+                            <div className="pb-2 sm:pb-4 md:pb-8" key={item.post_id}>
                                 <SingleNewsItem
                                     image={item?.post_thumbnail}
                                     imageWidth={340}

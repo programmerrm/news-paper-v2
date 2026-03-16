@@ -22,14 +22,14 @@ export default function SearchForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-3 border border-[#B6C3C8] px-4 py-2.75 mb-3"
+      className="flex items-center gap-3 border border-[#B6C3C8] px-4 py-2.75 mb-3 bg-white"
     >
-      <div className="flex-1">
+      <div className="flex-1 ">
         <input
           type="text"
           name="search"
           placeholder={placeholder}
-          className="w-full h-full focus:outline-none text-base leading-6.5 font-normal text-black placeholder:text-black"
+          className="w-full h-full focus:outline-none text-base leading-6.5 font-normal text-black placeholder:text-black "
         />
       </div>
 
