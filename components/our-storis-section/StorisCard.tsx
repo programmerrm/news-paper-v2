@@ -23,7 +23,7 @@ export default function StorisCard({
             className="w-full h-full object-cover rounded-full"
           />
         </span>
-        <p className="text-xs leading-4.5 font-medium text-[#171717] text-center line-clamp-2">
+        <p className="text-xs leading-4.5 font-medium text-[#171717] text-center line-clamp-1">
           {title}
         </p>
       </div>

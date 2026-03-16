@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import VideoPage from "../video/VideoPage";
 import VideoPlayer from "../video/VideoPage";
+import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 type VideoCardProps = {
+  viderUrl: string;
   title: string;
   time: string;
   href?: string;
@@ -15,6 +16,7 @@ type VideoCardProps = {
 };
 
 export default function VideoCardItem({
+  viderUrl,
   title,
   time,
   href = "#",
@@ -25,8 +27,7 @@ export default function VideoCardItem({
     <div className={`flex flex-col bg-white ${className}`}>
       <div className="overflow-hidden w-full h-full max-w-85">
         <VideoPlayer
-          src="/video/jodinat.mp4"
-          
+          src={viderUrl}
       />
       </div>
 
@@ -43,7 +44,7 @@ export default function VideoCardItem({
         )}
         
         <span className="text-xs leading-3.75 text-gray">
-          {time}
+          {formatBanglaTimeAgo(time)}
         </span>
       </div>
     </div>

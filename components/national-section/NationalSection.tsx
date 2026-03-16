@@ -179,7 +179,6 @@ export default async function NationalSection() {
                             votePoll?.status !== 1 &&
                             voteOptions.length > 0 ? (
                             <div className="w-full lg:max-w-[32.5%] lg:pl-5 mt-5 lg:mt-0">
-
                                 <div className="pb-3 lg:pb-6 border-b-2 border-[#A1A1A1] flex gap-3 items-center">
                                     <h4 className="text-xl lg:text-2xl font-semibold font-inter">
                                         অনলাইন ভোট

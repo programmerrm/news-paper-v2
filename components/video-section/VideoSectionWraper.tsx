@@ -7,7 +7,6 @@ import VideoPlayer from "../video/VideoPage";
 import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 export default function VideoSectionWraper({ data }: any) {
-    
     const [activeTab, setActiveTab] = useState<"video" | "reel">("video");
     const leadVideo = data?.leadVideo;
     const sectionVideo = data?.sectionVideo || [];
@@ -18,6 +17,9 @@ export default function VideoSectionWraper({ data }: any) {
         (item: any) => item.reel_status === 1
     );
     const displayedItems = activeTab === "video" ? videos : reels;
+
+    console.log('leadVideo -- ', leadVideo);
+
     return (
         <section className="bg-[#171717] py-8 lg:py-16">
             <div className="container">
@@ -53,7 +55,7 @@ export default function VideoSectionWraper({ data }: any) {
                         </div>
                         <div className="px-4 py-6">
                             <h4 className="text-white mb-3 transition-all hover:text-blue">
-                                <Link href={`/video/${leadVideo?.video_slug}`}>
+                                <Link href={`/videos/${leadVideo?.category?.category_slug}/${leadVideo?.video_slug}`}>
                                     {leadVideo?.video_title}
                                 </Link>
                             </h4>
@@ -69,7 +71,7 @@ export default function VideoSectionWraper({ data }: any) {
                                 video_url={item?.video_url}
                                 title={item?.video_title}
                                 time={item?.video_published_at}
-                                href={`/video/${item?.video_slug}`}
+                                href={`${activeTab === "video" ? "videos" : "reels"}/${item?.category?.category_slug}/${item?.video_slug}`}
                             />
                         ))}
                     </div>

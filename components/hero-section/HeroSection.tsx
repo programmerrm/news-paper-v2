@@ -23,8 +23,6 @@ export default async function HeroSection() {
         specialnews71,
     } = heroSectionData;
 
-console.log('subLeadNews2 -- ', subLeadNews2);
-
     return (
         <>
             {section_top_ad && (

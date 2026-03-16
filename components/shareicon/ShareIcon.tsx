@@ -24,6 +24,7 @@ export const WhatsAppIcon = (
   </svg>
 );
 
+// Social icons
 const socialLinks = [
   {
     href: "#",
@@ -71,6 +72,11 @@ type ShareIconsProps = {
 
 export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) {
   const [showIcons, setShowIcons] = useState(false);
+  const [zoom, setZoom] = useState(1); // initial zoom level
+
+  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3)); // max 3x
+  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5)); // min 0.5x
+
   return (
     <div className="bg-[#F5F5F5] w-full px-3 mb-3">
       <div className="divide-y-2 divide-[#E5E5E5]">
@@ -81,24 +87,20 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
             className="flex items-center gap-2 cursor-pointer"
           >
             <span className="text-sm font-medium">Share</span>
-
             <span
-              className={`inline-flex transform transition-transform duration-300 ${showIcons ? "rotate-90" : "rotate-0"
-                }`}
+              className={`inline-flex transform transition-transform duration-300 ${showIcons ? "rotate-90" : "rotate-0"}`}
             >
-              <Image
-                src={ArrowTop}
-                alt="share"
-                width={12}
-                height={12}
-              />
+              <Image src={ArrowTop} alt="share" width={12} height={12} />
             </span>
           </button>
         </div>
 
         {/* Social icons */}
         {showIcons && (
-          <div className=" flex flex-row sm:flex-col sm:divide-y-2 divide-[#E5E5E5] gap-2">
+          <div
+            className="flex flex-col gap-2 items-center justify-center"
+            style={{ transform: `scale(${zoom})`, transition: "transform 0.2s ease-in-out" }}
+          >
             <div className="flex flex-row sm:flex-col items-center gap-2 sm:gap-3 py-3 sm:py-6">
               {socialLinks.map((item, index) => (
                 <Link key={index} href={item.href}>
@@ -108,44 +110,34 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
                 </Link>
               ))}
             </div>
+
             <div className="py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2">
               <Link href="#">
                 <span className="flex items-center justify-center w-7 sm:w-10 h-7 sm:h-10 rounded-full transition-all duration-300 hover:bg-gray-200">
-                  <Image
-                    width={40}
-                    height={40}
-                    src={Google}
-                    alt="Google"
-                  />
+                  <Image width={40} height={40} src={Google} alt="Google" />
                 </span>
               </Link>
             </div>
+
             {showZoomButtons && (
               <div className="py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2 sm:gap-3">
-                <button type="button" className="cursor-pointer flex items-center justify-center">
-                  <span className="w-full max-w-7 sm:max-w-10 inline-block">
-                    <Image
-                      src={plusBtn}
-                      alt="plusBtn"
-                      width={40}
-                      height={40}
-                    />
-                  </span>
+                <button
+                  type="button"
+                  className="cursor-pointer flex items-center justify-center"
+                  onClick={handleZoomIn}
+                >
+                  <Image src={plusBtn} alt="Zoom In" width={40} height={40} />
                 </button>
-                <button type="button" className="cursor-pointer flex items-center justify-center">
-                  <span className="w-full max-w-7 sm:max-w-10 inline-block">
-                    <Image
-                      src={minusBtn}
-                      alt="plusBtn"
-                      width={40}
-                      height={40}
-                    />
-                  </span>
+                <button
+                  type="button"
+                  className="cursor-pointer flex items-center justify-center"
+                  onClick={handleZoomOut}
+                >
+                  <Image src={minusBtn} alt="Zoom Out" width={40} height={40} />
                 </button>
               </div>
             )}
           </div>
-
         )}
       </div>
     </div>

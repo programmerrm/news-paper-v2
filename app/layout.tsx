@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif_Bengali, Inter } from "next/font/google";
+import { Noto_Serif_Bengali, Roboto } from "next/font/google";
 export const dynamic = 'force-dynamic';
 import "./globals.css";
 import ScrollToTopBottom from "@/components/scrollToTopBottom/scrollToTopBottom";
@@ -10,11 +10,10 @@ const notoSerifBengali = Noto_Serif_Bengali({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const inter = Inter({
-    variable: "--font-inter",
-    subsets: ['latin'],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    display: 'swap',
+const roboto = Roboto({
+    variable: "--font-roboto",
+    subsets: ["latin"],
+    weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${notoSerifBengali.variable} ${inter.variable} antialiased font-bengali`}
+                className={`${notoSerifBengali.variable} ${roboto.variable} antialiased font-bengali`}
             >
                 <ScrollToTopBottom />
                 {children}

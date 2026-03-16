@@ -18,7 +18,6 @@ type FormValues = {
 export default function LoginForm() {
     const [isShow, setIsShow] = useState(false);
     const router = useRouter();
-
     const {
         register,
         handleSubmit,
@@ -42,7 +41,6 @@ export default function LoginForm() {
                 return;
             }
 
-            // save token and user
             Cookies.set("access_token", data.access_token, { expires: 7 });
             Cookies.set("user", JSON.stringify(data.user), { expires: 7 });
 
@@ -50,8 +48,7 @@ export default function LoginForm() {
 
             reset();
 
-            // redirect user page
-            router.push("/user");
+            router.push("/user/profile");
 
         } catch (error) {
             console.error(error);
@@ -96,7 +93,6 @@ export default function LoginForm() {
                             type={isShow ? "text" : "password"}
                             placeholder="Password"
                         />
-
                         <button
                             className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer"
                             type="button"

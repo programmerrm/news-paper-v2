@@ -14,10 +14,12 @@ import SocialDiscourseSection from "@/components/information-section/SocialDisco
 import LifeStyleSection from "@/components/information-section/LifeStyleSection";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import FirstLoad from "@/components/popup/firstLoad";
 
 export default function Home() {
     return (
         <>
+            <FirstLoad />
             <Header />
             <HeroSection />
             <OurStoris />

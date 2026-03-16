@@ -56,7 +56,7 @@ export default function NewsSlider() {
                       {item?.category?.category_name}
                     </p>
 
-                    <h6 className="text-sm leading-5.5 font-semibold text-title line-clamp-2">
+                    <h6 className="text-sm leading-5.5 font-semibold text-title line-clamp-1">
                       {item?.post_title}
                     </h6>
                   </div>

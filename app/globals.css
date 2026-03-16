@@ -1,27 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --font-noto-serif-bengali: 'Noto Serif Bengali', serif;
-  --font-inter: 'Inter', sans-serif;
+    --font-noto-serif-bengali: 'Noto Serif Bengali', serif;
+    --font-roboto: 'Roboto', sans-serif;
 }
 
 .font-bengali {
-  font-family: var(--font-noto-serif-bengali), serif;
+    font-family: var(--font-noto-serif-bengali), serif;
 }
 
 .font-english {
-  font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-roboto), sans-serif;
 }
 
 body {
-  font-family: var(--font-noto-serif-bengali), serif;
+    font-family: var(--font-noto-serif-bengali), serif;
 }
-/* #google_translate_element{
-  cursor: default !important;
-}
-.goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed{
-    cursor: auto !important;
-} */
 
 @theme {
     --breakpoint-1xl: 82rem;
@@ -40,16 +34,17 @@ body {
         max-width: var(--breakpoint-1xl);
     }
 }
- 
+
 @layer utilities {
 
-  .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-  }
-  .scrollbar-hide {
-      -ms-overflow-style: none; 
-      scrollbar-width: none;   
-  }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }
 
 body {
@@ -58,37 +53,49 @@ body {
     @apply text-sm sm:text-base leading-6.5 font-normal
 }
 
-@layer base{
-    h1,h2,h3,h4,h5,h6{
+@layer base {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: var(--font-noto-serif-bengali), serif;
         @apply text-title
     }
 
-    h1{
-        @apply text-3xl lg:text-4xl lg:leading-12 font-bold 
+    h1 {
+        @apply text-3xl lg:text-4xl lg:leading-12 font-bold
     }
-    h2{
-        @apply text-2xl lg:text-[32px] lg:leading-10 font-semibold 
+
+    h2 {
+        @apply text-2xl lg:text-[32px] lg:leading-10 font-semibold
     }
-    h3{
-        @apply text-xl lg:text-2xl lg:leading-8 font-semibold 
+
+    h3 {
+        @apply text-xl lg:text-2xl lg:leading-8 font-semibold
     }
-    h4{
-        @apply text-lg lg:text-xl lg:leading-7 font-semibold 
+
+    h4 {
+        @apply text-lg lg:text-xl lg:leading-7 font-semibold
     }
-    h5{
+
+    h5 {
         @apply text-sm sm:text-base lg:leading-6 font-semibold
     }
 }
 
-.home-slider .swiper-horizontal > .swiper-pagination-bullets,
+.home-slider .swiper-horizontal>.swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-  @apply -bottom-2
+    @apply -bottom-2
 }
-.home-slider .swiper-pagination-bullet-active{
-    @apply bg-red!
+
+.home-slider .swiper-pagination-bullet-active {
+    @apply bg-red
 }
-.home-slider .swiper-pagination-bullet{
+
+.home-slider .swiper-pagination-bullet {
     @apply bg-[#FDCBCC] w-2.5 md:w-3.5 h-2.5 md:h-3.5 opacity-100
 }
 
@@ -103,4 +110,22 @@ body {
 
 body {
     top: 0 !important;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: all 0.5s ease;
+    animation: smoothScroll 1s forwards;
+}
+
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(-142px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
