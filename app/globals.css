@@ -119,6 +119,14 @@ body {
     transition: all 0.5s ease;
     animation: smoothScroll 1s forwards;
 }
+.custom-add > div{
+    padding-block: 0;
+}
+.custom-add > div > div img{
+    height: 90px;
+    width: 100%;
+    object-fit: cover;
+}
 
 @keyframes smoothScroll {
     0% {
