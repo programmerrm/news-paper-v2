@@ -91,6 +91,7 @@ export default async function BangldeshNews() {
                                     imageWidth={503}
                                     imageHeight={377}
                                     title={item?.post_title}
+                                    content={item?.post_descriptions}
                                     time={item?.post_published_at}
                                     href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     contentMt="12"
