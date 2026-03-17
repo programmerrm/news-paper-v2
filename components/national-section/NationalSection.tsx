@@ -81,7 +81,7 @@ export default async function NationalSection() {
                             />
                             <div className="mt-8 flex flex-col md:flex-row">
                                 <div className="w-full md:max-w-[61.282%] md:pr-5 md:border-r border-[#A1A1A1]">
-                                    {!lead_ad && sectionFourLeadNews?.map((item: any) => (
+                                    {sectionFourLeadNews?.map((item: any) => (
                                         <NationalLedNews
                                             key={item?.post_id}
                                             image={item?.post_thumbnail}
@@ -108,7 +108,7 @@ export default async function NationalSection() {
                                         </>
                                     )}
                                     <div className="grid grid-cols-2 mt-5 gap-4">
-                                        {!sub_lead_ad && sectionFourSubleadNews?.map((item: any) => (
+                                        {sectionFourSubleadNews?.map((item: any) => (
                                             <NationalNews
                                                 key={item?.post_id}
                                                 image={item?.post_thumbnail}
@@ -140,7 +140,7 @@ export default async function NationalSection() {
                                 <div className="w-full md:max-w-[38.599%] md:pl-5 my-5 md:my-0">
                                     <div className="divide-y divide-[#D4D4D4] space-y-4">
                                         <div className="pb-4 last:pb-0">
-                                            {!right_side_ad && sectionFourRightSide?.map((item: any) => (
+                                            {sectionFourRightSide?.map((item: any) => (
                                                 <NewsItem
                                                     key={item?.post_id}
                                                     image={item?.post_thumbnail}
