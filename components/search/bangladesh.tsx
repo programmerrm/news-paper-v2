@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
 import { divisions } from "@/data/division";
 import { getDistricts } from "@/data/districts";
 import { getUpazillas } from "@/data/subdistricts";
-
 import CustomSelect from "../selects/CustomSelect";
 
 export default function Bangladesh() {

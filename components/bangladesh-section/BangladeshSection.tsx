@@ -24,7 +24,7 @@ export default async function BangldeshNews() {
     const category = sectionThreeData?.category;
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         
@@ -51,7 +51,7 @@ export default async function BangldeshNews() {
                     <Bangladesh />
                     <div className="flex flex-col lg:flex-row mt-8">
                         <div className="w-full lg:max-w-[32.031%] lg:pr-5 mt-4 lg:mt-0 flex flex-col gap-2.5 lg:gap-5 divide-y divide-[#D4D4D4] order-2 lg:order-1">
-                            {left_side_ad && (
+                            {left_side_ad?.ad_status === 1 && (    
                                 <>
                                     {left_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -97,7 +97,7 @@ export default async function BangldeshNews() {
                                     timeMt="16"
                                 />
                             ))}
-                            {lead_ad && (
+                            {lead_ad?.ad_status === 1 && (   
                                 <>
                                     {lead_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -139,7 +139,7 @@ export default async function BangldeshNews() {
                                     </div>
                                 </div>
                             ))}
-                            {right_side_ad && (
+                            {right_side_ad?.ad_status === 1 && ( 
                                 <>
                                     {right_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -160,7 +160,7 @@ export default async function BangldeshNews() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <div className="pb-2">

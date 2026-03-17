@@ -25,14 +25,14 @@ export default async function HeroSection() {
 
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
-                            <Ads
-                                adsImg={section_top_ad?.ad_thumbnail}
-                                adsWidth={768}
-                                adsHeight={90}
-                            />
+                        <Ads
+                            adsImg={section_top_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
                     ) : (
                         <div className="w-3xl h-22.5">
                             <GoogleAds
@@ -46,7 +46,7 @@ export default async function HeroSection() {
                 <div className="container">
                     <div className="flex flex-col lg:flex-row">
                         <div className="w-full lg:max-w-[25.390%] divide-y divide-[#D4D4D4] mb-3 lg:mb-0 space-y-2.5 lg:space-y-5 lg:pr-5 order-2 lg:order-1">
-                            {left_side_ad && (
+                            {left_side_ad?.ad_status === 1 && (
                                 <>
                                     {left_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -63,7 +63,7 @@ export default async function HeroSection() {
                                     )}
                                 </>
                             )}
-                            {! left_side_ad && side_news1?.map((item: any) => (
+                            {side_news1?.map((item: any) => (
                                 <div className="flex gap-3 pb-2.5 lg:pb-5" key={item.post_id}>
                                     <NewsItem
                                         image={item?.post_thumbnail}
@@ -85,7 +85,7 @@ export default async function HeroSection() {
                             ))}
                         </div>
                         <div className="w-full lg:max-w-[49.062%] divide-y divide-[#A1A1A1] lg:border-l lg:border-r border-[#A1A1A1] lg:px-5 order-1 lg:order-2">
-                            {!lead_ad && leadNews && (
+                            {leadNews && (
                                 <HeroTopNews
                                     title={leadNews?.post_title}
                                     description={leadNews?.post_descriptions}
@@ -95,7 +95,7 @@ export default async function HeroSection() {
                                     href={`/${leadNews?.category?.category_slug}/${leadNews?.subcategory?.subcategory_slug}/${leadNews?.post_slug}`}
                                 />
                             )}
-                            {lead_ad && (
+                            {lead_ad?.ad_status === 1 && (
                                 <>
                                     {lead_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -114,7 +114,6 @@ export default async function HeroSection() {
                             )}
                             {subLeadNews1?.length > 0 && (
                                 <div className="flex flex-col xl:flex-row xl:py-6 divide-y xl:divide-y-0 xl:divide-x divide-[#D4D4D4]">
-
                                     {subLeadNews1.map((item: any, index: number) => (
                                         <div
                                             key={item.post_id}
@@ -165,7 +164,7 @@ export default async function HeroSection() {
                                 <h6 className="text-sm sm:text-base leading-6 text-black font-inter font-semibold">নিউজ ফ্ল্যাশ ৭১ <span
                                     className="text-red font-inter">স্পেশাল</span></h6>
                                 <div className="divide-y divide-[#D4D4D4] mt-3 lg:mt-6">
-                                    {!right_side_ad && specialnews71?.map((item: any) => (
+                                    {specialnews71?.map((item: any) => (
                                         <NewsItem
                                             key={item.post_id}
                                             image={item?.post_thumbnail}
@@ -178,7 +177,7 @@ export default async function HeroSection() {
                                         />
                                     ))}
                                 </div>
-                                {right_side_ad && (
+                                {right_side_ad?.ad_status === 1 && (
                                     <>
                                         {right_side_ad?.ad_type === "premium" ? (
                                             <Ads
@@ -200,14 +199,14 @@ export default async function HeroSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
-                            <Ads
-                                adsImg={section_bottom_ad?.ad_thumbnail}
-                                adsWidth={768}
-                                adsHeight={90}
-                            />
+                        <Ads
+                            adsImg={section_bottom_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
                     ) : (
                         <div className="w-3xl h-22.5">
                             <GoogleAds
