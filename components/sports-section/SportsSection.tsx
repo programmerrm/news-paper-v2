@@ -25,7 +25,7 @@ export default async function SportsSection() {
 
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         <div className="pt-2">
@@ -52,7 +52,7 @@ export default async function SportsSection() {
                     />
                     <div className="flex flex-col lg:flex-row mt-6 lg:mt-8">
                         <div className="w-full lg:max-w-[32.031%] lg:pr-5 space-y-3 lg:space-y-5 divide-y divide-[#D4D4D4] order-2 lg:order-1 mt-5 lg:mt-0">
-                            {!right_side_ad && sectionSevenRightSide?.map((item: any) => (
+                            {sectionSevenRightSide?.map((item: any) => (
                                 <div className="pb-3 lg:pb-5" key={item?.post_id}>
                                     <NewsItem
                                         imageWidth={140}
@@ -66,7 +66,7 @@ export default async function SportsSection() {
                                     />
                                 </div>
                             ))}
-                            {right_side_ad && (
+                            {right_side_ad?.ad_status === 1 && (
                                 <>
                                     {right_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -85,7 +85,7 @@ export default async function SportsSection() {
                             )}
                         </div>
                         <div className="w-full lg:max-w-[42.579%] lg:px-5 lg:border-x border-[#A1A1A1] order-1 lg:order-2">
-                            {lead_ad && (
+                            {lead_ad?.ad_status === 1 && (
                                 <>
                                     {lead_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -119,7 +119,7 @@ export default async function SportsSection() {
                         </div>
                         <div className="w-full lg:max-w-[25.390%] lg:pl-5 order-3 lg:order-3 mt-5 lg:mt-0">
                             <div className="flex flex-col gap-5">
-                                {sub_lead_ad && (
+                                {sub_lead_ad?.ad_status === 1 && (
                                     <>
                                         {sub_lead_ad?.ad_type === "premium" ? (
                                             <Ads
@@ -153,7 +153,7 @@ export default async function SportsSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <div className="pb-2">

@@ -52,7 +52,7 @@ export default async function NationalSection() {
 
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         <div className="pt-2">
@@ -90,7 +90,7 @@ export default async function NationalSection() {
                                             href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                         />
                                     ))}
-                                    {lead_ad && (
+                                    {lead_ad?.ad_status === 1 && (
                                         <>
                                             {lead_ad?.ad_type === "premium" ? (
                                                 <Ads
@@ -119,7 +119,7 @@ export default async function NationalSection() {
                                             />
                                         ))}
                                     </div>
-                                    {sub_lead_ad && (
+                                    {sub_lead_ad?.ad_status === 1 && (
                                         <>
                                             {sub_lead_ad?.ad_type === "premium" ? (
                                                 <Ads
@@ -154,7 +154,7 @@ export default async function NationalSection() {
                                             ))}
                                         </div>
                                     </div>
-                                    {right_side_ad && (
+                                    {right_side_ad?.ad_status === 1 && (
                                         <>
                                             {right_side_ad?.ad_type === "premium" ? (
                                                 <Ads
@@ -216,7 +216,7 @@ export default async function NationalSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                             <Ads
