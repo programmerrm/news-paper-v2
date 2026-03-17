@@ -1,10 +1,10 @@
 
-export default function PrivacyPolicy() {
+export default function TermsAndConditions() {
     return (
         <>
             <section className="py-5 sm:py-10">
                 <div className="container">
-                    <h2 className="text-2xl md:text-[32px] font-semibold md:leading-10 py-2 text-title border-b border-[#A1A1A1]">গোপনীয়তা নীতি</h2>
+                    <h2 className="text-2xl md:text-[32px] font-semibold md:leading-10 py-2 text-title border-b border-[#A1A1A1]">শর্তাবলি ও নীতিমালা</h2>
                     <div className="max-w-211.5 mx-auto">
                         <div className="space-y-4 sm:space-y-8 pt-5">
                             <div>

@@ -68,7 +68,7 @@ export default async function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/terms-of-service" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/terms-and-conditions" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 ট্রামস অফ সার্ভিস
                             </Link>
                         </li>
