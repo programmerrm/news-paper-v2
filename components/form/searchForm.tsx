@@ -1,6 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
+import { useRouter } from "next/navigation"; // 👈 add
 
 type SearchFormProps = {
   placeholder?: string;
@@ -11,12 +12,18 @@ export default function SearchForm({
   placeholder = "সার্চ করুন",
   icon,
 }: SearchFormProps) {
+
+  const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const value = formData.get("search");
 
-    console.log("Search:", value);
+    if (!value) return;
+
+    router.push(`/search?news=${value}`);
   };
 
   return (
