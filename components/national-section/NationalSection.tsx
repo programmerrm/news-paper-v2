@@ -93,11 +93,12 @@ export default async function NationalSection() {
                                     {lead_ad && (
                                         <>
                                             {lead_ad?.ad_type === "premium" ? (
-                                                <Ads
-                                                    adsImg={lead_ad?.ad_thumbnail}
-                                                    adsWidth={496}
-                                                    adsHeight={372}
-                                                />
+                                                
+                                                    <Ads
+                                                        adsImg={lead_ad?.ad_thumbnail}
+                                                        adsWidth={496}
+                                                        adsHeight={372}
+                                                    />
                                             ) : (
                                                 <div className="w-124 h-93">
                                                     <GoogleAds
