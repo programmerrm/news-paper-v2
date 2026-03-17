@@ -24,7 +24,9 @@ export default async function NationalSection() {
         section_bottom_ad,
     } = sectionFourData;
     const voteStatus = sectionFourData?.voteStatus;
+    console.log('voteStatus --', voteStatus);
     const votePoll = sectionFourData?.votePoll;
+    console.log('votePoll -- ', votePoll);
 
     const voteOptions =
         votePoll
@@ -49,6 +51,8 @@ export default async function NationalSection() {
                 })
                 .filter((item): item is { id: string; label: string; value: string } => Boolean(item))
             : [];
+
+    console.log('voteOptions -- ', voteOptions);
 
     return (
         <>
@@ -174,10 +178,7 @@ export default async function NationalSection() {
                                 </div>
                             </div>
                         </div>
-                        {voteStatus === 1 &&
-                            votePoll &&
-                            votePoll?.status !== 1 &&
-                            voteOptions.length > 0 ? (
+                        {voteStatus === 1 ? (
                             <div className="w-full lg:max-w-[32.5%] lg:pl-5 mt-5 lg:mt-0">
                                 <div className="pb-3 lg:pb-6 border-b-2 border-[#A1A1A1] flex gap-3 items-center">
                                     <h4 className="text-xl lg:text-2xl font-semibold font-inter">
@@ -186,9 +187,9 @@ export default async function NationalSection() {
                                 </div>
                                 <div className="mt-5 flex flex-col">
                                     <OnlineVote
-                                        image={votePoll?.thumbnail_image}
+                                        image={votePoll?.vote_thumbnail}
                                         date={votePoll?.created_at}
-                                        question={votePoll?.title_bn}
+                                        question={votePoll?.vote_title}
                                         options={voteOptions}
                                     />
                                 </div>

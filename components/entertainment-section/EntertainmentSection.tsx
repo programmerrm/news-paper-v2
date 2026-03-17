@@ -26,7 +26,7 @@ export default async function EntertainmentSection() {
 
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         <div className="pt-2">
@@ -55,7 +55,7 @@ export default async function EntertainmentSection() {
                         <div className="w-full lg:max-w-[74.062%]">
                             <div className="mt-8 flex flex-col md:flex-row lg:pr-5 lg:border-r border-title">
                                 <div className="w-full md:max-w-[56%] md:pr-5 md:border-r border-[#A1A1A1]">
-                                    {lead_ad && (
+                                    {lead_ad?.ad_status === 1 && (
                                         <>
                                             {lead_ad?.ad_type === "premium" ? (
                                                 <Ads
@@ -72,7 +72,7 @@ export default async function EntertainmentSection() {
                                             )}
                                         </>
                                     )}
-                                    {!lead_ad && sectionNineLeadNews?.map((item: any) => (
+                                    {sectionNineLeadNews?.map((item: any) => (
                                         <NationalLedNews
                                             key={item?.post_id}
                                             image={item?.post_thumbnail}
@@ -82,7 +82,7 @@ export default async function EntertainmentSection() {
                                         />
                                     ))}
                                     <div className="grid grid-cols-2 mt-5 gap-4">
-                                        {!sub_lead_ad && sectionNineSubleadNews?.map((item: any) => (
+                                        {sectionNineSubleadNews?.map((item: any) => (
                                             <NationalNews
                                                 key={item?.post_id}
                                                 image={item?.post_thumbnail}
@@ -92,7 +92,7 @@ export default async function EntertainmentSection() {
                                                 timeMt={"12"}
                                             />
                                         ))}
-                                        {sub_lead_ad && (
+                                        {sub_lead_ad?.ad_status === 1 && (
                                             <>
                                                 {sub_lead_ad?.ad_type === "premium" ? (
                                                     <Ads
@@ -130,7 +130,7 @@ export default async function EntertainmentSection() {
                                 </div>
                             </div>
                         </div>
-                        {right_side_ad && (
+                        {right_side_ad?.ad_status === 1 && (
                             <>
                                 {right_side_ad?.ad_type === "premium" ? (
                                     <Ads
@@ -150,7 +150,7 @@ export default async function EntertainmentSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                             <Ads

@@ -76,7 +76,7 @@ export default async function SocialDiscourseSection() {
                                     />
                                 </div>
                             ))}
-                            {left_side_ad && (
+                            {left_side_ad?.ad_status === 1 && (
                                 <>
                                     {left_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -99,7 +99,7 @@ export default async function SocialDiscourseSection() {
                                 className="lg:hidden"
                                 title={section13PartTwo[0]?.category?.category_name}
                             />
-                            {middle_ad && (
+                            {middle_ad?.ad_status === 1 && (
                                 <>
                                     {middle_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -150,7 +150,7 @@ export default async function SocialDiscourseSection() {
                                     />
                                 </div>
                             ))}
-                            {right_side_ad && (
+                            {right_side_ad?.ad_status === 1 && (
                                 <>
                                     {right_side_ad?.ad_type === "premium" ? (
                                         <Ads
