@@ -111,7 +111,7 @@ export default function Menu({ categories, webinfo }: any) {
 
 
                     <Link
-                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2"
+                        className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2 relative z-50"
                         href={"/search"}
                     >
                         <div className="max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
