@@ -21,7 +21,7 @@ export default async function SocialDiscourseSection() {
     } = sectionEight;
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         <div className="pt-2">
@@ -171,7 +171,7 @@ export default async function SocialDiscourseSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <div className="pb-2">

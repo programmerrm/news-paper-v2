@@ -32,7 +32,7 @@ export default function Page() {
         tagsData();
     }, []);
 
-    // 1️⃣ GET URL PARAMS
+    // GET URL PARAMS
     useEffect(() => {
         const title = searchParams.get("news");
         const division = searchParams.get("division_id");
@@ -51,7 +51,7 @@ export default function Page() {
         });
     }, [searchParams]);
 
-    // 2️⃣ SEARCH NEWS BY TITLE
+    // SEARCH NEWS BY TITLE
     useEffect(() => {
         const delay = setTimeout(async () => {
             if (!search.trim()) {
@@ -81,7 +81,7 @@ export default function Page() {
         return () => clearTimeout(delay);
     }, [search, router]);
 
-    // 3️⃣ FETCH NEWS BY LOCATION
+    // FETCH NEWS BY LOCATION
     useEffect(() => {
         const { division_id, district_id, upazilla_id } = locationParams;
 
@@ -112,7 +112,7 @@ export default function Page() {
         fetchLocationNews();
     }, [locationParams]);
 
-    // 4️⃣ MERGE TITLE + LOCATION RESULTS
+    // MERGE TITLE + LOCATION RESULTS
     useEffect(() => {
         const merged = [...titleResults, ...locationResults];
 
@@ -127,7 +127,6 @@ export default function Page() {
 
     return (
         <>
-
             <section className="py-5 sm:py-10">
                 <div className="container">
                     <h2 className="text-2xl font-bold">খুঁজুন</h2>

@@ -28,7 +28,7 @@ export default function FirstLoad() {
 
     useEffect(() => {
         setIsOpen(true);
-        setTimeout(() => setIsVisible(true), 10);
+        requestAnimationFrame(() => setIsVisible(true));
     }, []);
 
     const closePopup = () => {
@@ -40,7 +40,7 @@ export default function FirstLoad() {
         async function fetchData() {
             try {
                 const res = await getFetchData("/welcomead");
-                setData(res?.welcomeAd || null);
+                setData(res?.welcomeAd ?? null);
             } catch (error) {
                 console.error("Error fetching welcome ad:", error);
             }
@@ -50,26 +50,24 @@ export default function FirstLoad() {
 
     if (!isOpen) return null;
 
-    return (
+    return data?.ad_thumbnail ? (
         <div
-            className={`fixed inset-0 flex items-center justify-center z-99999
-        transition-opacity duration-800 
-        ${isVisible ? "opacity-100 bg-black/70" : "opacity-0 bg-black/0"}`}
+            style={{ zIndex: 99999 }}
+            className={`fixed inset-0 flex items-center justify-center
+            transition-opacity duration-800
+            ${isVisible ? "opacity-100 bg-black/70" : "opacity-0 bg-black/0"}`}
         >
             <div
                 className={`bg-[#FBF7EF] p-8 rounded-lg relative flex flex-col items-center justify-center
-          transition-all duration-500
-          ${isVisible ? "scale-100 opacity-100" : "scale-80 opacity-0"}`}
+                transition-all duration-500
+                ${isVisible ? "scale-100 opacity-100" : "scale-80 opacity-0"}`}
             >
-                {/* Close button */}
                 <button
                     onClick={closePopup}
                     className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold cursor-pointer"
                 >
                     &times;
                 </button>
-
-                {/* Ad content */}
                 {data ? (
                     <div className="flex flex-col items-center">
                         <Image
@@ -85,5 +83,5 @@ export default function FirstLoad() {
                 )}
             </div>
         </div>
-    );
+    ) : null;
 }

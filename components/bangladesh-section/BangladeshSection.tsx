@@ -24,7 +24,7 @@ export default async function BangldeshNews() {
     const category = sectionThreeData?.category;
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                         
@@ -51,7 +51,7 @@ export default async function BangldeshNews() {
                     <Bangladesh />
                     <div className="flex flex-col lg:flex-row mt-8">
                         <div className="w-full lg:max-w-[32.031%] lg:pr-5 mt-4 lg:mt-0 flex flex-col gap-2.5 lg:gap-5 divide-y divide-[#D4D4D4] order-2 lg:order-1">
-                            {left_side_ad && (
+                            {left_side_ad?.ad_status === 1 && (    
                                 <>
                                     {left_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -68,7 +68,7 @@ export default async function BangldeshNews() {
                                     )}
                                 </>
                             )}
-                            {!left_side_ad && sectionThreeLeftSide?.map((item: any) => (
+                            {sectionThreeLeftSide?.map((item: any) => (
                                 <div className="pb-3 lg:pb-5" key={item.post_id}>
                                     <NewsItem
                                         imageWidth={140}
@@ -84,20 +84,21 @@ export default async function BangldeshNews() {
                             ))}
                         </div>
                         <div className="w-full lg:max-w-[42.421%] lg:px-4.75 lg:border-r lg:border-l border-[#A1A1A1] order-1 lg:order-2">
-                            {!lead_ad && sectionThreeLeadNews?.map((item: any) => (
+                            {sectionThreeLeadNews?.map((item: any) => (
                                 <LedNews
                                     key={item.post_id}
                                     image={item?.post_thumbnail}
                                     imageWidth={503}
                                     imageHeight={377}
                                     title={item?.post_title}
+                                    content={item?.post_descriptions}
                                     time={item?.post_published_at}
                                     href={`/${item?.category?.category_slug}/${item?.subcategory?.subcategory_slug}/${item?.post_slug}`}
                                     contentMt="12"
                                     timeMt="16"
                                 />
                             ))}
-                            {lead_ad && (
+                            {lead_ad?.ad_status === 1 && (   
                                 <>
                                     {lead_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -116,7 +117,7 @@ export default async function BangldeshNews() {
                             )}
                         </div>
                         <div className="w-full lg:max-w-[25.391%] lg:pl-5 mt-4 lg:mt-0 flex flex-col gap-3 lg:gap-5 divide-y divide-[#D4D4D4] order-3 lg:order-3">
-                            {!right_side_ad && sectionThreeRightSide?.map((item: any) => (
+                            {sectionThreeRightSide?.map((item: any) => (
                                 <div className="item" key={item.post_id}>
                                     <div className="pb-2.5">
                                         <NewsItem
@@ -139,7 +140,7 @@ export default async function BangldeshNews() {
                                     </div>
                                 </div>
                             ))}
-                            {right_side_ad && (
+                            {right_side_ad?.ad_status === 1 && ( 
                                 <>
                                     {right_side_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -160,7 +161,7 @@ export default async function BangldeshNews() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <div className="pb-2">

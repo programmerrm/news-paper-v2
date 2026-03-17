@@ -23,7 +23,7 @@ export default async function PoliticsSection() {
     const category = sectionSix?.category;
     return (
         <>
-            {section_top_ad && (
+            {section_top_ad?.ad_status === 1 && (
                 <>
                     {section_top_ad?.ad_type === "premium" ? (
                             <Ads
@@ -50,7 +50,7 @@ export default async function PoliticsSection() {
                         className="sm:grid grid-cols-[59.14%_40.86%] lg:grid-cols-[40.86%_27.11%_32.03%] gap-y-5 mt-8"
                     >
                         <div className="pr-5">
-                            {!lead_ad && sectionSixLeadNews?.map((item: any) => (
+                            {sectionSixLeadNews?.map((item: any) => (
                                 <LedNews
                                     key={item?.post_id}
                                     image={item?.post_thumbnail}
@@ -64,7 +64,7 @@ export default async function PoliticsSection() {
                                     timeMt={"16"}
                                 />
                             ))}
-                            {lead_ad && (
+                            {lead_ad?.ad_status === 1 && (
                                 <>
                                     {lead_ad?.ad_type === "premium" ? (
                                         <Ads
@@ -84,7 +84,7 @@ export default async function PoliticsSection() {
                         </div>
                         <div className="sm:px-5 sm:border-x border-[#A1A1A1] mt-2 sm:mt-0">
                             <div className="space-y-3 md:space-y-5 divide-y divide-[#D4D4D4]">
-                                {sub_lead_ad && (
+                                {sub_lead_ad?.ad_status === 1 && (
                                     <>
                                         {sub_lead_ad?.ad_type === "premium" ? (
                                             <Ads
@@ -136,7 +136,7 @@ export default async function PoliticsSection() {
                     </div>
                 </div>
             </section>
-            {section_bottom_ad && (
+            {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
                         <div className="pb-2">
