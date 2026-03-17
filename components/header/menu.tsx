@@ -106,10 +106,6 @@ export default function Menu({ categories, webinfo }: any) {
                         </div>
                     </div>
 
-
-
-
-
                     <Link
                         className="text-sm leading-4.5 flex items-center border-l border-gray-dark py-2 sm:py-3 lg:py-4 px-2 sm:px-3 gap-2 relative z-50"
                         href={"/search"}

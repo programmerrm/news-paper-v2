@@ -52,28 +52,28 @@ export default async function Footer() {
                     </div>
                     <ul className="pb-4 md:pb-8 flex items-center justify-center gap-y-3 gap-5 md:gap-x-7 lg:gap-x-14 flex-wrap">
                         <li>
-                            <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/about-us" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 আমাদের সম্পর্কে
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/contact-us" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 যোগাযোগ
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/advertisement" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 বিজ্ঞাপন
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/terms-and-conditions" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 ট্রামস অফ সার্ভিস
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                            <Link href="/privacy-policy" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
                                 প্রাইভেসি পলিসি
                             </Link>
                         </li>

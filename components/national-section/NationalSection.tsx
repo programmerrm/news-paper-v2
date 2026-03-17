@@ -97,11 +97,12 @@ export default async function NationalSection() {
                                     {lead_ad?.ad_status === 1 && (
                                         <>
                                             {lead_ad?.ad_type === "premium" ? (
-                                                <Ads
-                                                    adsImg={lead_ad?.ad_thumbnail}
-                                                    adsWidth={496}
-                                                    adsHeight={372}
-                                                />
+                                                
+                                                    <Ads
+                                                        adsImg={lead_ad?.ad_thumbnail}
+                                                        adsWidth={496}
+                                                        adsHeight={372}
+                                                    />
                                             ) : (
                                                 <div className="w-124 h-93">
                                                     <GoogleAds
@@ -142,8 +143,8 @@ export default async function NationalSection() {
                                     )}
                                 </div>
                                 <div className="w-full md:max-w-[38.599%] md:pl-5 my-5 md:my-0">
-                                    <div className="divide-y divide-[#D4D4D4] space-y-4">
-                                        <div className="pb-4 last:pb-0">
+                                    <>
+                                        <div className="pb-4 last:pb-0 divide-y divide-[#D4D4D4]">
                                             {sectionFourRightSide?.map((item: any) => (
                                                 <NewsItem
                                                     key={item?.post_id}
@@ -157,15 +158,17 @@ export default async function NationalSection() {
                                                 />
                                             ))}
                                         </div>
-                                    </div>
+                                    </>
                                     {right_side_ad?.ad_status === 1 && (
                                         <>
                                             {right_side_ad?.ad_type === "premium" ? (
-                                                <Ads
-                                                    adsImg={right_side_ad?.ad_thumbnail}
-                                                    adsWidth={496}
-                                                    adsHeight={372}
-                                                />
+                                                <div className="h-22.5 py-2 overflow-hidden custom-add">
+                                                    <Ads
+                                                        adsImg={right_side_ad?.ad_thumbnail}
+                                                        adsWidth={496}
+                                                        adsHeight={372}
+                                                    />
+                                                </div>
                                             ) : (
                                                 <div className="w-124 h-93">
                                                     <GoogleAds
@@ -196,8 +199,8 @@ export default async function NationalSection() {
                             </div>
                         ) : (
                             <div className="w-full lg:max-w-[32.5%] lg:pl-5 mt-5 lg:mt-0">
-                                <div className="divide-y divide-[#D4D4D4] space-y-4">
-                                    <div className="pb-4 last:pb-0">
+                                <>
+                                    <div className="pb-4 last:pb-0 divide-y divide-[#D4D4D4]">
                                         {sectionFourWithoutVote?.map((item: any) => (
                                             <NewsItem
                                                 key={item?.post_id}
@@ -211,7 +214,7 @@ export default async function NationalSection() {
                                             />
                                         ))}
                                     </div>
-                                </div>
+                                </>
                             </div>
                         )}
                     </div>
