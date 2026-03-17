@@ -60,31 +60,6 @@ export default function Menu({ categories, webinfo }: any) {
         (item: any) => item.top_menu_status === 1
     );
 
-    useEffect(() => {
-        const addScript = () => {
-            if (document.getElementById("google-translate-script")) return;
-
-            const script = document.createElement("script");
-            script.id = "google-translate-script";
-            script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-            script.async = true;
-            document.body.appendChild(script);
-
-            (window as any).googleTranslateElementInit = () => {
-                new (window as any).google.translate.TranslateElement(
-                    {
-                        pageLanguage: "en,bn",
-                        includedLanguages: "en,bn",
-                        layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
-                        autoDisplay: false,
-                    },
-                    "google_translate_element"
-                );
-            };
-        };
-        addScript();
-    }, []);
-
     const currentYear = new Date().getFullYear();
 
     return (
@@ -122,12 +97,13 @@ export default function Menu({ categories, webinfo }: any) {
                     </nav>
 
 
-
-                    <div className="w-9 flex flex-row flex-wrap items-center relative" >
-                        <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
-                            <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
+                    {/* 1st Google Tranlate */}
+                    <div className="w-9 flex items-center relative">
+                        <div
+                            className="cursor-pointer absolute top-1/2 -translate-y-1/2 right-2"
+                        >
+                            <Image src={globeIcon} alt="globe icon" width={24} height={24} />
                         </div>
-                        <div id="google_translate_element" className="opacity-0"></div>
                     </div>
 
 
@@ -201,34 +177,23 @@ export default function Menu({ categories, webinfo }: any) {
                                             <SearchForm icon={searchBlack} />
 
                                             <div className="flex items-center justify-between gap-2 border-b border-[#B6C3C8] mb-6 pb-6">
-
-                                                <Link href="#" className="w-1/2 border border-[#B6C3C8] px-4 py-2.75 flex items-center gap-2 cursor-pointer bg-white" >
-
+                                                {/* 2nd Google Tranlate */}
+                                                <div
+                                                    className="w-1/5 border border-[#B6C3C8] px-4 py-2.75 flex items-center gap-2 cursor-pointer bg-white"
+                                                >
                                                     <span className="max-w-5 sm:max-w-6">
                                                         <Image
                                                             src={globeIconBlack}
-                                                            alt={"globe icon"}
+                                                            alt="globe icon"
                                                             width={24}
                                                             height={24}
                                                         />
                                                     </span>
-
-                                                    <span className="text-sm sm:text-base text-[#171717] leading-4">
-                                                        English
-                                                    </span>
-                                                    <div id="google_translate_element"></div>
-                                                </Link>
-                                                {/* <div className="flex flex-row flex-wrap items-center relative" >
-                                                    <div className="absolute top-1/2 -translate-y-1/2 right-2 opacity-100 cursor-pointer max-w-5 sm:max-w-6 max-h-5 sm:max-h-6">
-                                                        <Image src={globeIcon} alt={"globe icon"} width={24} height={24} />
-                                                        <p>lorme</p> 
-                                                    </div>
-                                                   
-                                                </div> */}
+                                                </div>
 
 
                                                 <Link
-                                                    className="w-1/2 border border-[#B6C3C8] px-4 py-2.75 flex items-center gap-2 cursor-pointer bg-white"
+                                                    className="w-2/3 border border-[#B6C3C8] px-4 py-2.75 flex items-center gap-2 cursor-pointer bg-white"
                                                     href={user ? "/user/profile" : "/user/login"}
                                                 >
                                                     <span className="max-w-5 sm:max-w-6">
