@@ -5,6 +5,7 @@ import { getFetchData } from "@/utils/getFetchData";
 
 export default async function Header() {
     const categories = await getFetchData('/categories');
+    const webinfo = await getFetchData('/webinfo');
     return (
         <header className="relative">
             <div className=" border-b border-[#D4D4D4] py-5">
@@ -13,7 +14,7 @@ export default async function Header() {
                 </div>
             </div>
             <TopNews />
-            <Menu categories={categories} />
+            <Menu categories={categories} webinfo={webinfo} />
         </header>
     );
 }

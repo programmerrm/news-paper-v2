@@ -18,8 +18,6 @@ export default function VideoSectionWraper({ data }: any) {
     );
     const displayedItems = activeTab === "video" ? videos : reels;
 
-    console.log('leadVideo -- ', leadVideo);
-
     return (
         <section className="bg-[#171717] py-8 lg:py-16">
             <div className="container">
