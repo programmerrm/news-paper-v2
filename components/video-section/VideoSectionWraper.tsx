@@ -9,6 +9,8 @@ import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 export default function VideoSectionWraper({ data }: any) {
     const [activeTab, setActiveTab] = useState<"video" | "reel">("video");
     const leadVideo = data?.leadVideo;
+    const leadVideoReels = data?.leadVideoReels;
+
     const sectionVideo = data?.sectionVideo || [];
     const videos = sectionVideo.filter(
         (item: any) => item.reel_status === 0
@@ -48,9 +50,10 @@ export default function VideoSectionWraper({ data }: any) {
                     <div className="w-full md:max-w-[55.938%] bg-body">
                         <div className="overflow-hidden">
                             <VideoPlayer
-                                src={leadVideo?.video_url}
+                                src={activeTab === "video" ? leadVideo?.video_url : leadVideoReels?.video_url}
                             />
                         </div>
+
                         <div className="px-4 py-6">
                             <h4 className="text-white mb-3 transition-all hover:text-blue">
                                 <Link href={`/videos/${leadVideo?.category?.category_slug}/${leadVideo?.video_slug}`}>
@@ -61,6 +64,9 @@ export default function VideoSectionWraper({ data }: any) {
                                 {formatBanglaTimeAgo(leadVideo?.video_published_at)}
                             </span>
                         </div>
+
+                        
+
                     </div>
                     <div className="w-full md:max-w-[42.188%] flex flex-col gap-4">
                         {displayedItems.map((item: any) => (
@@ -74,6 +80,13 @@ export default function VideoSectionWraper({ data }: any) {
                         ))}
                     </div>
                 </div>
+                <Link
+                            href={activeTab === "video" ? "/videos" : "reels"}
+                            className="bg-red text-white flex items-center justify-center p-3 text-sm font-medium border border-[#B6C3C8] cursor-pointer w-fit mx-auto px-5 md:px-8 mt-2.5"
+                            type="submit"
+                        >
+                            সব দেখুন
+                        </Link>
             </div>
         </section>
     );

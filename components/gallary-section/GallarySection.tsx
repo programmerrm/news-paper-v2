@@ -11,10 +11,12 @@ export default async function GallarySection() {
         sectionTwelveLeadNews,
         sectionTwelveSubleadNews,
     } = sectionTwelve;
+
     const isAllEmpty =
         !sectionTwelveLeadNews &&
         (!sectionTwelveSubleadNews?.length);
     if (isAllEmpty) return null;
+    
     return (
         <section className="py-8 lg:py-16 ">
             <div className="container">

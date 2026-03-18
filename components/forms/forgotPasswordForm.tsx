@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { SERVER_API_URL } from "@/utils/api";
+import Cookies from "js-cookie";
 
 type FormValues = {
     email: string;
@@ -37,6 +38,8 @@ export default function ForgotPasswordForm() {
             }
 
             toast.success(data.message || "Verification code sent to your email");
+
+            Cookies.set("forgot_password_email", formData.email, { expires: 1 }); 
 
             reset();
 

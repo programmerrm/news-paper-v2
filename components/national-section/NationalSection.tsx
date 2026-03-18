@@ -24,9 +24,7 @@ export default async function NationalSection() {
         section_bottom_ad,
     } = sectionFourData;
     const voteStatus = sectionFourData?.voteStatus;
-    console.log('voteStatus --', voteStatus);
     const votePoll = sectionFourData?.votePoll;
-    console.log('votePoll -- ', votePoll);
 
     const voteOptions =
         votePoll
@@ -48,8 +46,6 @@ export default async function NationalSection() {
                 })
                 .filter((item) => item.label)
             : [];
-
-    console.log('voteOptions -- ', voteOptions);
 
     return (
         <>

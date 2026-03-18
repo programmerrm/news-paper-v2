@@ -31,7 +31,6 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
   const [fullUrl, setFullUrl] = useState("");
   const [title, setTitle] = useState("");
 
-  // ✅ SAFE URL GENERATION
   useEffect(() => {
     if (typeof window !== "undefined") {
       const url = window.location.origin + window.location.pathname;
@@ -40,7 +39,6 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
     }
   }, [pathname]);
 
-  // ✅ Social Links
   const socialLinks = [
     {
       name: "Facebook",
@@ -86,11 +84,9 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
     },
   ];
 
-  // ✅ Zoom handlers
   const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3));
   const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5));
 
-  // Apply zoom to main content
   useEffect(() => {
     const mainEl = document.getElementById("news-section");
     if (mainEl) {

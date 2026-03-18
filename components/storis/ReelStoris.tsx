@@ -4,12 +4,14 @@ import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import ReelsIcon from "../../assets/icon/reels-icon.svg";
 import VideoPlayer from "../video/VideoPage";
+import { formatBanglaTimeAgo } from "@/utils/formatBanglaTimeAgo";
 
 type WebStorisCardProps = {
     thumbnail: StaticImageData | string;
     title: string;
     time: string;
     href?: string;
+    src?: string;
 };
 
 export default function ReelStorisCard({
@@ -62,7 +64,7 @@ export default function ReelStorisCard({
             </div>
 
             {/* Time */}
-            <p className="text-xs mt-4 text-gray leading-3.75">{time}</p>
+            <p className="text-xs mt-4 text-gray leading-3.75">{formatBanglaTimeAgo(time)}</p>
 
             {/* Popup Modal */}
             {open && (

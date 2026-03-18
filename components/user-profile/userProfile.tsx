@@ -1,31 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useEffect, useState } from "react";
 import Button from "./button";
-import { comments } from "@/data/commentsData";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-
+import ChangePasswordForm from "../forms/changePasswordForm";
+import { SERVER_API_URL } from "@/utils/api";
+import { toast } from "react-toastify";
+import UserProfileUpdateForm from "../forms/userProfileUpdateForm";
 
 export default function UserProfile() {
-    const [showCurrent, setShowCurrent] = useState(false);
-    const [showNew, setShowNew] = useState(false);
-    const [showConfirm, setShowConfirm] = useState(false);
     const [activeTab, setActiveTab] = useState("profile");
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
+    const [commentsData, setCommentsData] = useState<any>(null);
+
     const router = useRouter();
 
-    const handleViewComment = (id: number) => {
-        setActiveCommentId((prev) => (prev === id ? null : id));
-    };
-    const [startDate, setStartDate] = useState<Date | null>(null);
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                const token = Cookies.get("access_token");
+                if (!token) return;
 
-    const handleChange = (date: Date | null) => {
-        setStartDate(date);
-    };
+                const response = await fetch(`${SERVER_API_URL}/my-comments`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setCommentsData(data);
+                } else {
+                    console.error("Error fetching comments", data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchComments();
+    }, []);
+
+    const comments = commentsData?.comments || [];
 
     const handleLogout = () => {
         Cookies.remove("access_token");
@@ -33,6 +49,35 @@ export default function UserProfile() {
 
 
         router.push("/user/login");
+    };
+
+    const handleDeleteComment = async (commentId: number) => {
+        const token = Cookies.get("access_token");
+        if (!token) return;
+
+        try {
+            const response = await fetch(`${SERVER_API_URL}/remove/my-comment?comment_id=${commentId}`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                setCommentsData((prevData: any) => ({
+                    ...prevData,
+                    comments: prevData.comments.filter((c: any) => c.id !== commentId),
+                }));
+                toast.success("Comment deleted successfully!");
+            } else {
+                const data = await response.json();
+                console.error("Failed to delete comment", data);
+                toast.error("Failed to delete comment.");
+            }
+        } catch (error) {
+            console.error("Error deleting comment", error);
+            toast.error("Something went wrong.");
+        }
     };
 
     return (
@@ -76,213 +121,14 @@ export default function UserProfile() {
                 {/* Profile Tab */}
                 {activeTab === "profile" && (
                     <>
-                        <h2 className="text-xl sm:text-2xl sm:leading-6 font-medium mb-5 sm:mb-10 border-b border-[#E5E5E5] pb-2.5 sm:pb-5">
-                            My Profile
-                        </h2>
-                        <div className="flex flex-col gap-6 items-start">
-                            <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-xl font-semibold">
-                                T
-                            </div>
-                            <div className="w-full flex-1 space-y-4">
-                                <input
-                                    id="FirstName"
-                                    name="FirstName"
-                                    type="text"
-                                    placeholder="Theresa Webb"
-                                    className="w-full border border-[#B6C3C8] p-2 sm:p-4 outline-none text-sm leading-6 font-medium "
-                                />
-                                <input
-                                    id="LaststName"
-                                    name="LaststName"
-                                    type="tel"
-                                    placeholder="Contact number"
-                                    maxLength={11}
-                                    inputMode="numeric"
-                                    onInput={(e) => {
-                                        e.currentTarget.value = e.currentTarget.value
-                                            .replace(/[^0-9]/g, "")
-                                            .slice(0, 11);
-                                    }}
-                                    className="w-full border border-[#B6C3C8] p-2 sm:p-4 outline-none text-sm leading-6 font-medium"
-                                />
-                                <div className="relative w-full">
-                                    
-                                    <DatePicker
-                                        selected={startDate}
-                                        onChange={handleChange}
-                                        placeholderText="Select date"
-                                        dateFormat="dd/MM/yyyy"
-                                        showPopperArrow={false}
-                                        wrapperClassName="w-full"
-                                        className="w-full border border-[#B6C3C8] p-2 sm:p-4 pr-10 outline-none text-sm leading-6 font-medium"
-                                        renderCustomHeader={({
-                                            date,
-                                            changeYear,
-                                            changeMonth,
-                                        }) => (
-                                            <div className="flex justify-between px-2 py-2">
-                                                {/* Month */}
-                                                <select
-                                                    value={date.getMonth()}
-                                                    onChange={({ target: { value } }) =>
-                                                        changeMonth(Number(value))
-                                                    }
-                                                >
-                                                    {[
-                                                        "Jan","Feb","Mar","Apr","May","Jun",
-                                                        "Jul","Aug","Sep","Oct","Nov","Dec"
-                                                    ].map((month, i) => (
-                                                        <option key={month} value={i}>
-                                                            {month}
-                                                        </option>
-                                                    ))}
-                                                </select>
-
-                                                {/* Year */}
-                                                <select
-                                                    value={date.getFullYear()}
-                                                    onChange={({ target: { value } }) =>
-                                                        changeYear(Number(value))
-                                                    }
-                                                >
-                                                    {Array.from({ length: 100 }, (_, i) => {
-                                                        const year = new Date().getFullYear() - i;
-                                                        return (
-                                                            <option key={year} value={year}>
-                                                                {year}
-                                                            </option>
-                                                        );
-                                                    })}
-                                                </select>
-                                            </div>
-                                        )}
-                                    />
-
-                                    <svg
-                                        className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </div>
-                                <div className="relative w-full">
-                                    <select className="w-full appearance-none border border-[#B6C3C8] p-2 sm:p-4 outline-none text-sm leading-6 font-medium">
-                                        <option>Country</option>
-                                        <option>Bangladesh</option>
-                                        <option>USA</option>
-                                    </select>
-                                    <svg
-                                        className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M19 9l-7 7-7-7"
-                                        />
-                                    </svg>
-                                </div>
-                                <button className="w-full bg-red text-white text-sm font-medium leading-6 py-2 sm:py-3 transition-all duration-500 hover:bg-red-900 cursor-pointer">
-                                    Edit Profile
-                                </button>
-                            </div>
-                        </div>
+                        <UserProfileUpdateForm />
                     </>
                 )}
 
                 {/* Password Tab */}
                 {activeTab === "password" && (
-
                     <>
-                        <h2 className="text-xl sm:text-2xl sm:leading-6 font-medium mb-5 sm:mb-10 border-b border-[#E5E5E5] pb-2.5 sm:pb-5">
-                            Change Password
-                        </h2>
-
-                        <div className="relative mb-4">
-                            <input
-                                id="CurrentPassword"
-                                name="CurrentPassword"
-                                type={showCurrent ? "text" : "password"}
-                                placeholder="Current Password"
-                                className="w-full border border-[#B6C3C8] p-2 sm:p-4 pr-12 rounded outline-none"
-                            />
-
-                            <button
-                                type="button"
-                                onClick={() => setShowCurrent(!showCurrent)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                            >
-                                {showCurrent ? (
-                                    /* eye icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.778 13.889a2 2 0 1 0-1.926-3.507" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.862 14.87C16.5 17 13.655 18.012 12 18q-5.4 0-9-6c1.272-2.12 3.5-4.5 7.18-5.82m0 0A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87" /></svg>
-                                ) : (
-                                    /* eye slash icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.681 16.673A8.7 8.7 0 0 1 12 18q-5.4 0-9-6 1.908-3.18 4.32-4.674m2.86-1.146A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87M3 3l18 18" /></svg>
-                                )}
-                            </button>
-                        </div>
-
-                        {/* New Password */}
-                        <div className="relative mb-4">
-                            <input
-                                id="NewPassword"
-                                name="NewPassword"
-                                type={showNew ? "text" : "password"}
-                                placeholder="New Password"
-                                className="w-full border border-[#B6C3C8] p-2 sm:p-4 pr-10 outline-none"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowNew(!showNew)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                            >
-                                {showNew ? (
-                                    /* eye icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.778 13.889a2 2 0 1 0-1.926-3.507" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.862 14.87C16.5 17 13.655 18.012 12 18q-5.4 0-9-6c1.272-2.12 3.5-4.5 7.18-5.82m0 0A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87" /></svg>
-                                ) : (
-                                    /* eye slash icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.681 16.673A8.7 8.7 0 0 1 12 18q-5.4 0-9-6 1.908-3.18 4.32-4.674m2.86-1.146A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87M3 3l18 18" /></svg>
-                                )}
-                            </button>
-                        </div>
-
-                        {/* Confirm Password */}
-                        <div className="relative mb-4">
-                            <input
-                                id="ConfirmPassword"
-                                name="ConfirmPassword"
-                                type={showConfirm ? "text" : "password"}
-                                placeholder="Confirm Password"
-                                className="w-full border border-[#B6C3C8] p-2 sm:p-4 pr-10 outline-none"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowConfirm(!showConfirm)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                            >
-                                {showConfirm ? (
-                                    /* eye icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.778 13.889a2 2 0 1 0-1.926-3.507" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.862 14.87C16.5 17 13.655 18.012 12 18q-5.4 0-9-6c1.272-2.12 3.5-4.5 7.18-5.82m0 0A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87" /></svg>
-                                ) : (
-                                    /* eye slash icon */
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 sm:w-6 h-4 sm:h-6" fill="none" viewBox="0 0 24 24"><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.586 10.587a2 2 0 1 0 2.829 2.828" /><path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.681 16.673A8.7 8.7 0 0 1 12 18q-5.4 0-9-6 1.908-3.18 4.32-4.674m2.86-1.146A9 9 0 0 1 12 6q5.4 0 9 6-1 1.665-2.138 2.87M3 3l18 18" /></svg>
-                                )}
-                            </button>
-                        </div>
-
-                        <button className="w-full bg-red text-white text-sm font-medium leading-6 py-2 sm:py-3 transition-all duration-500 hover:bg-red-900 cursor-pointer">
-                            Save Password
-                        </button>
+                        <ChangePasswordForm />
                     </>
                 )}
                 {/* Password Tab */}
@@ -294,7 +140,7 @@ export default function UserProfile() {
                             My Comments
                         </h2>
 
-                        {comments.map((comment) => (
+                        {comments?.map((comment: any) => (
                             <div
                                 key={comment.id}
                                 className="flex flex-col gap-2 pb-6"
@@ -303,15 +149,15 @@ export default function UserProfile() {
                                     <div className="flex gap-3">
                                         <div className="w-16 h-16 relative flex items-center justify-center">
                                             <Image
-                                                src={comment.image}
-                                                alt={comment.author}
+                                                src={comment.post_thumbnail}
+                                                alt={comment.post_title}
                                                 width={88}
                                                 height={66}
                                                 className=" object-cover"
                                             />
                                         </div>
                                         <div className="flex flex-col max-w-51.25 justify-center">
-                                            <p className="font-medium text-base leading-6 text-title line-clamp-2">{comment.author}</p>
+                                            <p className="font-medium text-base leading-6 text-title line-clamp-2">{comment.post_title}</p>
                                         </div>
                                     </div>
 
@@ -322,16 +168,12 @@ export default function UserProfile() {
                                             : "max-h-0 opacity-0 mt-0"
                                             }`}
                                         >
-                                            <p className="text-sm leading-5.5">{comment.author}</p>
+                                            <p className="text-sm leading-5.5">{comment.post_title}</p>
                                         </div>
 
-                                        <p className="text-xs leading-3.75">{comment.date}</p>
+                                        <p className="text-xs leading-3.75">{comment.created_at}</p>
                                         <div className="flex gap-2">
-                                            {/* <ViewCommentButton
-                                                onClick={() => handleViewComment(comment.id)}
-                                                active={activeCommentId === comment.id}
-                                            /> */}
-                                            <button className="border cursor-pointer text-xs leading-4 border-red text-body px-3 py-1.5 hover:bg-red-50">
+                                            <button className="border cursor-pointer text-xs leading-4 border-red text-body px-3 py-1.5 hover:bg-red-50" onClick={() => handleDeleteComment(comment.id)} type="button">
                                                 Delete
                                             </button>
                                         </div>

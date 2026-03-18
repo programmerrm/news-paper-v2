@@ -7,7 +7,7 @@ export default async function Header() {
     const categories = await getFetchData('/categories');
     const webinfo = await getFetchData('/webinfo');
     return (
-        <header className="relative">
+        <header className="relative z-9999">
             <div className=" border-b border-[#D4D4D4] py-5">
                 <div className="container">
                     <TopHeader isTimeData={true} />

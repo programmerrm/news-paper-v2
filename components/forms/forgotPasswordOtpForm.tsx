@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { Field } from "../field/field";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { SERVER_API_URL } from "@/utils/api";
 import Cookies from "js-cookie";
 
 type FormValues = {
@@ -24,7 +23,7 @@ export default function ForgotPasswordOtpForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmitForm = async (formData: FormValues) => {
+  const onSubmitForm = (formData: FormValues) => {
     const otp =
       formData.otp1 +
       formData.otp2 +
@@ -32,33 +31,13 @@ export default function ForgotPasswordOtpForm() {
       formData.otp4 +
       formData.otp5;
 
-    try {
-      const user = Cookies.get("user");
-      const userData = user ? JSON.parse(user) : null;
+    Cookies.set("code", otp, { expires: 1 });
 
-      const response = await fetch(
-        `${SERVER_API_URL}/email/verify-code?user_id=${userData?.id}&code=${otp}`,
-        {
-          method: "POST",
-        }
-      );
+    toast.success("OTP saved successfully");
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        toast.error(data.message || "OTP verification failed");
-        return;
-      }
-
-      toast.success(data.message || "Email verified successfully");
-
-      // redirect
-      router.push("/user/profile");
-    } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong");
-    }
+    router.push("/user/reset-password");
   };
+
 
   const moveNext = (e: any) => {
     // remove non number
