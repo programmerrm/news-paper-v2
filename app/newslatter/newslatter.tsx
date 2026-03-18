@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
 export default function SubscriptionForm() {
     const [email, setEmail] = useState("");
     const [categories, setCategories] = useState<string[]>([]);
-
     const categoryOptions = [
         "রাজনীতি",
         "অর্থনীতি",
@@ -15,7 +13,6 @@ export default function SubscriptionForm() {
         "অপরাধ",
         "দূর্ঘটনা"
     ];
-
     const handleCheckboxChange = (category: string) => {
         if (categories.includes(category)) {
             setCategories(categories.filter((c) => c !== category));
@@ -23,16 +20,12 @@ export default function SubscriptionForm() {
             setCategories([...categories, category]);
         }
     };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // এখানে API call বা subscription logic যাবে
+        
         alert("সাবস্ক্রিপশন সফলভাবে জমা হয়েছে!");
-        // সাবমিশনের পরে ফর্ম রিসেট করতে চাইলে uncomment করুন:
-        // setEmail("");
-        // setCategories([]);
+        
     };
-
     return (
         <div className="flex justify-center py-6 md:py-12">
             <div className="">
