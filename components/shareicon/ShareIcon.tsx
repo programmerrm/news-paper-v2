@@ -31,16 +31,22 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
   const [fullUrl, setFullUrl] = useState("");
   const [title, setTitle] = useState("");
 
+  // ✅ SAFE URL GENERATION (no env issue, no space issue)
   useEffect(() => {
-    const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}${pathname}`;
-    setFullUrl(url);
-    setTitle(document.title);
+    if (typeof window !== "undefined") {
+      const url = window.location.origin + window.location.pathname;
+      setFullUrl(url);
+      setTitle(document.title);
+    }
   }, [pathname]);
 
+  // ✅ Social Links
   const socialLinks = [
     {
       name: "Facebook",
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`,
+      href: fullUrl
+        ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`
+        : "#",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35">
           <path fill="#1877f2" d="M35 17.5C35 7.836 27.164 0 17.5 0S0 7.836 0 17.5c0 8.734 6.398 15.974 14.766 17.288V22.56H10.32V17.5h4.445v-3.855c0-4.386 2.613-6.81 6.61-6.81 1.915 0 3.918.342 3.918.342v4.307h-2.208c-2.173 0-2.852 1.349-2.852 2.735V17.5h4.853l-.775 5.06h-4.078v12.23C28.602 33.477 35 26.237 35 17.5" />
@@ -49,7 +55,9 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
     },
     {
       name: "Twitter",
-      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`,
+      href: fullUrl
+        ? `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`
+        : "#",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
           <rect width="40" height="40" fill="#000" rx="20" />
@@ -59,12 +67,16 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
     },
     {
       name: "WhatsApp",
-      href: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + fullUrl)}`,
+      href: fullUrl
+        ? `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + fullUrl)}`
+        : "#",
       icon: WhatsAppIcon,
     },
     {
       name: "LinkedIn",
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`,
+      href: fullUrl
+        ? `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`
+        : "#",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
           <rect width="40" height="40" fill="#0A66C2" rx="20" />
@@ -102,7 +114,14 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
           >
             <div className="flex flex-row sm:flex-col gap-3 py-4">
               {socialLinks.map((item, index) => (
-                <Link key={index} href={item.href} target="_blank">
+                <Link
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  onClick={(e) => {
+                    if (!fullUrl) e.preventDefault();
+                  }}
+                >
                   <span className="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-full">
                     {item.icon}
                   </span>
