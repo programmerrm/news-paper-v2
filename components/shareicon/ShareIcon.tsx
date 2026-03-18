@@ -1,70 +1,23 @@
-// components/ShareIcons.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import ArrowTop from "../../assets/icon/arrow-top.svg";
 import Google from "../../assets/icon/google-image.svg";
 import plusBtn from "../../assets/icon/plus.svg";
 import minusBtn from "../../assets/icon/minus.svg";
 
 // WhatsApp SVG
-export const WhatsAppIcon = (
+const WhatsAppIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 176 176">
     <circle cx="88" cy="88" r="88" fill="#29a71a" />
-    <path
-      fill="#fff"
-      d="M126.8 49.2a54.57 54.57 0 0 0-87.42 63.13l-5.79 28.11a2.08 2.08 0 0 0 .33 1.63 2.11 2.11 0 0 0 2.24.87l27.55-6.53A54.56 54.56 0 0 0 126.8 49.2zm-8.59 68.56a42.74 42.74 0 0 1-49.22 8l-3.84-1.9-16.89 4 .05-.21 3.5-17-1.88-3.71a42.72 42.72 0 0 1 7.86-49.59 42.73 42.73 0 0 1 60.42 0 2.28 2.28 0 0 0 .22.22 42.72 42.72 0 0 1-.22 60.19z"
-    />
-    <path
-      fill="#fff"
-      d="M116.71 105.29c-2.07 3.26-5.34 7.25-9.45 8.24-7.2 1.74-18.25.06-32-12.76l-.17-.15C63 89.41 59.86 80.08 60.62 72.68c.42-4.2 3.92-8 6.87-10.48a3.93 3.93 0 0 1 6.15 1.41l4.45 10a3.91 3.91 0 0 1-.49 4l-2.25 2.92a3.87 3.87 0 0 0-.35 4.32c1.26 2.21 4.28 5.46 7.63 8.47 3.76 3.4 7.93 6.51 10.57 7.57a3.82 3.82 0 0 0 4.19-.88l2.61-2.63a4 4 0 0 1 3.9-1l10.57 3a4 4 0 0 1 2.24 5.91z"
-    />
+    <path fill="#fff" d="M126.8 49.2a54.57 54.57 0 0 0-87.42 63.13l-5.79 28.11a2.08 2.08 0 0 0 .33 1.63 2.11 2.11 0 0 0 2.24.87l27.55-6.53A54.56 54.56 0 0 0 126.8 49.2z" />
+    <path fill="#fff" d="M116.71 105.29c-2.07 3.26-5.34 7.25-9.45 8.24-7.2 1.74-18.25.06-32-12.76l-.17-.15C63 89.41 59.86 80.08 60.62 72.68c.42-4.2 3.92-8 6.87-10.48z" />
   </svg>
 );
-
-// Social icons
-const socialLinks = [
-  {
-    href: "#",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 35 35">
-        <path
-          fill="#1877f2"
-          fillRule="evenodd"
-          d="M35 17.5C35 7.836 27.164 0 17.5 0S0 7.836 0 17.5c0 8.734 6.398 15.974 14.766 17.288V22.56H10.32V17.5h4.445v-3.855c0-4.386 2.613-6.81 6.61-6.81 1.915 0 3.918.342 3.918.342v4.307h-2.208c-2.173 0-2.852 1.349-2.852 2.735V17.5h4.853l-.775 5.06h-4.078v12.23C28.602 33.477 35 26.237 35 17.5"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-  },
-  {
-    href: "#",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
-        <rect width="40" height="40" fill="#000" rx="20" />
-        <path
-          fill="#fff"
-          d="m21.618 18.66 6.328-7.41h-1.5l-5.494 6.434-4.39-6.434H11.5l6.637 9.73-6.637 7.77H13l5.802-6.795 4.637 6.795H28.5z"
-        />
-      </svg>
-    ),
-  },
-  {
-    href: "#",
-    icon: WhatsAppIcon,
-  },
-  {
-    href: "#",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
-        <rect width="40" height="40" fill="#fde3e4" rx="20" />
-        <path fill="#a71e22" d="M29.5 19.467 22.111 12v4.267C14.722 17.333 11.556 22.667 10.5 28c2.639-3.733 6.333-5.44 11.611-5.44v4.373z" />
-      </svg>
-    ),
-  },
-];
 
 type ShareIconsProps = {
   showZoomButtons?: boolean;
@@ -72,67 +25,105 @@ type ShareIconsProps = {
 
 export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) {
   const [showIcons, setShowIcons] = useState(false);
-  const [zoom, setZoom] = useState(1); // initial zoom level
+  const [zoom, setZoom] = useState(1);
 
-  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3)); // max 3x
-  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5)); // min 0.5x
+  const pathname = usePathname();
+  const [fullUrl, setFullUrl] = useState("");
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}${pathname}`;
+    setFullUrl(url);
+    setTitle(document.title);
+  }, [pathname]);
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35">
+          <path fill="#1877f2" d="M35 17.5C35 7.836 27.164 0 17.5 0S0 7.836 0 17.5c0 8.734 6.398 15.974 14.766 17.288V22.56H10.32V17.5h4.445v-3.855c0-4.386 2.613-6.81 6.61-6.81 1.915 0 3.918.342 3.918.342v4.307h-2.208c-2.173 0-2.852 1.349-2.852 2.735V17.5h4.853l-.775 5.06h-4.078v12.23C28.602 33.477 35 26.237 35 17.5" />
+        </svg>
+      ),
+    },
+    {
+      name: "Twitter",
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+          <rect width="40" height="40" fill="#000" rx="20" />
+          <path fill="#fff" d="m21.6 18.6 6.3-7.4h-1.5l-5.5 6.4-4.4-6.4H11.5l6.6 9.7-6.6 7.8H13l5.8-6.8 4.6 6.8H28.5z" />
+        </svg>
+      ),
+    },
+    {
+      name: "WhatsApp",
+      href: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + fullUrl)}`,
+      icon: WhatsAppIcon,
+    },
+    {
+      name: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+          <rect width="40" height="40" fill="#0A66C2" rx="20" />
+          <path fill="#fff" d="M12 16h4v12h-4zm2-6a2 2 0 110 4 2 2 0 010-4zm6 6h3.6v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6v6.4h-4v-5.7c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V28h-4z" />
+        </svg>
+      ),
+    },
+  ];
+
+  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3));
+  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5));
 
   return (
     <div className="bg-[#F5F5F5] w-full px-3 mb-3">
       <div className="divide-y-2 divide-[#E5E5E5]">
-        {/* Share button */}
+
+        {/* Share Button */}
         <div className="flex justify-center py-3 sm:py-6">
           <button
             onClick={() => setShowIcons(!showIcons)}
             className="flex items-center gap-2 cursor-pointer"
           >
             <span className="text-sm font-medium">Share</span>
-            <span
-              className={`inline-flex transform transition-transform duration-300 ${showIcons ? "rotate-90" : "rotate-0"}`}
-            >
+            <span className={`transform ${showIcons ? "rotate-90" : ""}`}>
               <Image src={ArrowTop} alt="share" width={12} height={12} />
             </span>
           </button>
         </div>
 
-        {/* Social icons */}
+        {/* Social Icons */}
         {showIcons && (
           <div
-            className="flex flex-col gap-2 items-center justify-center divide-y-2 w-full divide-[#E5E5E5]"
-            style={{ transform: `scale(${zoom})`, transition: "transform 0.2s ease-in-out" }}
+            className="flex flex-col items-center"
+            style={{ transform: `scale(${zoom})` }}
           >
-            <div className="w-full flex flex-row sm:flex-col items-center justify-center gap-2 sm:gap-3 py-3 sm:py-6">
+            <div className="flex flex-row sm:flex-col gap-3 py-4">
               {socialLinks.map((item, index) => (
-                <Link key={index} href={item.href}>
-                  <span className="flex items-center justify-center w-7 sm:w-10 h-7 sm:h-10 rounded-full hover:bg-gray-200 transition">
+                <Link key={index} href={item.href} target="_blank">
+                  <span className="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-full">
                     {item.icon}
                   </span>
                 </Link>
               ))}
             </div>
 
-            <div className="w-full py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2">
+            {/* Google Icon */}
+            <div className="py-3">
               <Link href="#">
-                <span className="flex items-center justify-center w-7 sm:w-10 h-7 sm:h-10 rounded-full transition-all duration-300 hover:bg-gray-200">
-                  <Image width={40} height={40} src={Google} alt="Google" />
-                </span>
+                <Image src={Google} alt="Google" width={40} height={40} />
               </Link>
             </div>
 
+            {/* Zoom Buttons */}
             {showZoomButtons && (
-              <div className="py-3 sm:py-6 flex flex-row sm:flex-col items-center justify-center gap-2 sm:gap-3">
-                <button
-                  type="button"
-                  className="cursor-pointer flex items-center justify-center"
-                  onClick={handleZoomIn}
-                >
+              <div className="flex gap-2 py-3">
+                <button onClick={handleZoomIn}>
                   <Image src={plusBtn} alt="Zoom In" width={40} height={40} />
                 </button>
-                <button
-                  type="button"
-                  className="cursor-pointer flex items-center justify-center"
-                  onClick={handleZoomOut}
-                >
+                <button onClick={handleZoomOut}>
                   <Image src={minusBtn} alt="Zoom Out" width={40} height={40} />
                 </button>
               </div>

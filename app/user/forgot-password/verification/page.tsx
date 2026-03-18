@@ -1,8 +1,8 @@
-import VerifyOtpForm from "@/components/forms/verifyOtpForm";
 import { getFetchData } from "@/utils/getFetchData";
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
+import ForgotPasswordOtpForm from "@/components/forms/forgotPasswordOtpForm";
 
 export default async function Page() {
 
@@ -46,8 +46,7 @@ export default async function Page() {
                             The verification code has been sent to your email {email}
                         </p>
                     </div>
-
-                    <VerifyOtpForm />
+                    <ForgotPasswordOtpForm />
                 </div>
             </div>
         </section>

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 type VoteOption = {
     id: string;
     label: string;
-    value: string;
+    value: string; // "one" | "two" | "three" | "four"
 };
 
 type OnlineVhoteProps = {
@@ -30,10 +30,9 @@ export default function OnlineVhote({
     const [vote, setVote] = useState("");
     const [loading, setLoading] = useState(false);
 
-
     const handleVoteSubmit = async () => {
         if (!vote) {
-            toast("একটি অপশন নির্বাচন করুন");
+            toast.error("একটি অপশন নির্বাচন করুন");
             return;
         }
 
@@ -42,11 +41,13 @@ export default function OnlineVhote({
 
             const body = {
                 id: vote_id,
-                option_one_count: vote === "one" ? 1 : 0,
-                option_two_count: vote === "two" ? 1 : 0,
-                option_three_count: vote === "three" ? 1 : 0,
-                option_four_count: vote === "four" ? 1 : 0,
+                option_one_count: vote === "vote_option_one" ? 1 : 0,
+                option_two_count: vote === "vote_option_two" ? 1 : 0,
+                option_three_count: vote === "vote_option_three" ? 1 : 0,
+                option_four_count: vote === "vote_option_four" ? 1 : 0,
             };
+
+            console.log("Sending vote body:", body);
 
             const res = await fetch(`${SERVER_API_URL}/section/four/given/vote`, {
                 method: "POST",
@@ -58,11 +59,11 @@ export default function OnlineVhote({
 
             if (!res.ok) throw new Error("Vote failed");
 
-            toast.success("ভোট সফলভাবে দেওয়া হয়েছে");
+            toast.success("ভোট সফলভাবে দেওয়া হয়েছে ");
             setVote("");
         } catch (error) {
             console.error(error);
-            toast.error("ভোট দিতে সমস্যা হয়েছে");
+            toast.error("ভোট দিতে সমস্যা হয়েছে ");
         } finally {
             setLoading(false);
         }
@@ -81,6 +82,7 @@ export default function OnlineVhote({
             <div>
                 <span className="text-[13px] text-[#525252]">{date}</span>
                 <p className="text-sm sm:text-base font-medium mt-1">{question}</p>
+
                 <form className="flex flex-col gap-2 mt-4">
                     {options.map((option) => (
                         <VoteItem
@@ -93,6 +95,7 @@ export default function OnlineVhote({
                             onChange={setVote}
                         />
                     ))}
+
                     <button
                         type="button"
                         onClick={handleVoteSubmit}
