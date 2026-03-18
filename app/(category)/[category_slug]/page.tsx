@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { getFetchData } from "@/utils/getFetchData";
 import LedNews from "@/components/led-news/LedNews";
 import NewsItem from "@/components/news-items/newsItem";
@@ -18,6 +19,9 @@ type CategoryProps = {
 export default async function Page({ params }: CategoryProps) {
     const { category_slug } = await params;
     const category = await getFetchData(`/newsflash/${category_slug}`);
+    if (!category) {
+        notFound();
+    }
     const categoryLeadNews = category?.categoryLeadNews;
     const categoryLeftNews = category?.categoryLeftNews;
     const categoryRightNews = category?.categoryRightNews;

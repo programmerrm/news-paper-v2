@@ -159,6 +159,7 @@ export default function Menu({ categories, webinfo }: any) {
                                         <CategoryItem
                                             key={item.category_id}
                                             title={item.category_name}
+                                            href={item?.category_slug}
                                             icon={arrowIcon}
                                             items={item.subcategory?.map((sub: any) => ({
                                                 label: sub.subcategory_name,

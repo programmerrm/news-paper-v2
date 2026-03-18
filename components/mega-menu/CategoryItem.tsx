@@ -12,12 +12,14 @@ type Item = {
 
 type Props = {
   title: string;
+  href?: string;
   icon: StaticImageData;
   items?: Item[];
 };
 
 export default function CategoryItem({
   title,
+  href = "",
   items = []
 }: Props) {
   const [open, setOpen] = useState(false);
@@ -27,7 +29,7 @@ export default function CategoryItem({
       
       {/* Header */}
       <div className="flex items-center justify-between lg:block w-full lg:max-w-37.5">
-        <h4 className="text-base md:text-xl font-semibold md:leading-7">{title}</h4>
+        <Link className="text-base md:text-xl font-semibold md:leading-7" href={`/${href}`}>{title}</Link>
 
         <button
           onClick={() => setOpen(!open)}

@@ -1,4 +1,5 @@
 import { getFetchData } from "@/utils/getFetchData";
+import { notFound } from 'next/navigation';
 import NewsItem from "@/components/news-items/newsItem";
 import LedNews from "@/components/led-news/LedNews";
 import SingleNewsItem from "@/components/news-items/SingleNewsItem";
@@ -17,6 +18,9 @@ type SubCategoryProps = {
 export default async function Page({ params }: SubCategoryProps) {
     const { category_slug, sub_category_slug } = await params;
     const sub_category = await getFetchData(`/newsflash/${category_slug}/${sub_category_slug}`);
+    if (!sub_category) {
+        notFound();
+    }
     const subcategory = sub_category?.subcategory;
     const subCategoryLeadNews = sub_category?.subCategoryLeadNews;
     const subCategoryLeftNews = sub_category?.subCategoryLeftNews;

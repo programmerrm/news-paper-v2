@@ -1,5 +1,6 @@
 import { getFetchData } from "@/utils/getFetchData";
 import Image from "next/image";
+import { notFound } from 'next/navigation';
 import NewsItem from "@/components/news-items/newsItem";
 import CategoryNewsHeadding from "@/components/category/CategoryNewsHeadding";
 import ShareIcons from "@/components/shareicon/ShareIcon";
@@ -26,7 +27,9 @@ type NewsProps = {
 export default async function Page({ params }: NewsProps) {
     const { category_slug, sub_category_slug, news_slug } = await params;
     const news = await getFetchData(`/posts/${category_slug}/${sub_category_slug}/${news_slug}`);
-    if (!news) return null;
+    if (!news) {
+        notFound();
+    }
     const detailsNews = news?.detailsNews;
     const postDetails = news?.postDetails;
     return (

@@ -68,7 +68,7 @@ export default function Bangladesh() {
                 <div className="w-full sm:max-w-40 lg:max-w-60">
                     <Link
                         className="w-full flex items-center justify-center border border-[#B6C3C8] gap-2 p-2 sm:p-3.5 text-sm font-medium bg-red text-white cursor-pointer transition-all hover:bg-red-900"
-                        href={`/search/news?${query.toString()}`}
+                        href={`/search?${query.toString()}`}
                     >
                         সার্চ করুন
                     </Link>
