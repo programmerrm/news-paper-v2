@@ -31,7 +31,7 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
   const [fullUrl, setFullUrl] = useState("");
   const [title, setTitle] = useState("");
 
-  // ✅ SAFE URL GENERATION (no env issue, no space issue)
+  // ✅ SAFE URL GENERATION
   useEffect(() => {
     if (typeof window !== "undefined") {
       const url = window.location.origin + window.location.pathname;
@@ -86,8 +86,19 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
     },
   ];
 
+  // ✅ Zoom handlers
   const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3));
   const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5));
+
+  // Apply zoom to main content
+  useEffect(() => {
+    const mainEl = document.getElementById("news-section");
+    if (mainEl) {
+      mainEl.style.transition = "transform 0.2s ease";
+      mainEl.style.transform = `scale(${zoom})`;
+      mainEl.style.transformOrigin = "top center";
+    }
+  }, [zoom]);
 
   return (
     <div className="bg-[#F5F5F5] w-full px-3 mb-3">
@@ -108,19 +119,14 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
 
         {/* Social Icons */}
         {showIcons && (
-          <div
-            className="flex flex-col items-center"
-            style={{ transform: `scale(${zoom})` }}
-          >
+          <div className="flex flex-col items-center">
             <div className="flex flex-row sm:flex-col gap-3 py-4">
               {socialLinks.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
                   target="_blank"
-                  onClick={(e) => {
-                    if (!fullUrl) e.preventDefault();
-                  }}
+                  onClick={(e) => { if (!fullUrl) e.preventDefault(); }}
                 >
                   <span className="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-full">
                     {item.icon}
@@ -138,7 +144,7 @@ export default function ShareIcons({ showZoomButtons = true }: ShareIconsProps) 
 
             {/* Zoom Buttons */}
             {showZoomButtons && (
-              <div className="flex gap-2 py-3">
+              <div className="flex gap-2 py-3 justify-center">
                 <button onClick={handleZoomIn}>
                   <Image src={plusBtn} alt="Zoom In" width={40} height={40} />
                 </button>
