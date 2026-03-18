@@ -15,10 +15,12 @@ import LifeStyleSection from "@/components/information-section/LifeStyleSection"
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import FirstLoad from "@/components/popup/firstLoad";
+import Notification from "@/components/notification/notification";
 
 export default function Home() {
     return (
         <>
+            <Notification />
             <FirstLoad />
             <Header />
             <HeroSection />

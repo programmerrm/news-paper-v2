@@ -1,8 +1,10 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState } from "react";
 import VoteItem from "./VoteItem";
+import { SERVER_API_URL } from "@/utils/api";
+import { toast } from "react-toastify";
 
 type VoteOption = {
     id: string;
@@ -11,19 +13,61 @@ type VoteOption = {
 };
 
 type OnlineVhoteProps = {
-    image: StaticImageData;
+    vote_id: number;
+    image: string;
     date: string;
     question: string;
     options: VoteOption[];
 };
 
 export default function OnlineVhote({
+    vote_id,
     image,
     date,
     question,
     options,
 }: OnlineVhoteProps) {
     const [vote, setVote] = useState("");
+    const [loading, setLoading] = useState(false);
+
+
+    const handleVoteSubmit = async () => {
+        if (!vote) {
+            toast("একটি অপশন নির্বাচন করুন");
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            const body = {
+                id: vote_id,
+                option_one_count: vote === "one" ? 1 : 0,
+                option_two_count: vote === "two" ? 1 : 0,
+                option_three_count: vote === "three" ? 1 : 0,
+                option_four_count: vote === "four" ? 1 : 0,
+            };
+
+            const res = await fetch(`${SERVER_API_URL}/section/four/given/vote`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            });
+
+            if (!res.ok) throw new Error("Vote failed");
+
+            toast.success("ভোট সফলভাবে দেওয়া হয়েছে");
+            setVote("");
+        } catch (error) {
+            console.error(error);
+            toast.error("ভোট দিতে সমস্যা হয়েছে");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex flex-col gap-4 overflow-hidden border border-[#A1A1A1] p-4">
             <Image
@@ -51,10 +95,11 @@ export default function OnlineVhote({
                     ))}
                     <button
                         type="button"
-                        disabled
-                        className="bg-red p-3 text-white font-medium mt-4 cursor-pointer transition-all hover:bg-red/80"
+                        onClick={handleVoteSubmit}
+                        disabled={!vote || loading}
+                        className="bg-red p-3 text-white font-medium mt-4 cursor-pointer transition-all hover:bg-red/80 disabled:opacity-50"
                     >
-                        ভোট দিন
+                        {loading ? "দেওয়া হচ্ছে..." : "ভোট দিন"}
                     </button>
                 </form>
             </div>

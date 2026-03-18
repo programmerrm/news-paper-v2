@@ -6,7 +6,6 @@ import { getFetchData } from "@/utils/getFetchData";
 
 export default async function HeroSection() {
     const heroSectionData = await getFetchData('/lead/section');
-    console.log('heroSectionData -- ', heroSectionData);
     if (!heroSectionData) return null;
     const {
         lead_ad,

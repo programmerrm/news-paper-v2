@@ -6,6 +6,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "./button";
 import { comments } from "@/data/commentsData";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+
 
 export default function UserProfile() {
     const [showCurrent, setShowCurrent] = useState(false);
@@ -13,6 +16,7 @@ export default function UserProfile() {
     const [showConfirm, setShowConfirm] = useState(false);
     const [activeTab, setActiveTab] = useState("profile");
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
+    const router = useRouter();
 
     const handleViewComment = (id: number) => {
         setActiveCommentId((prev) => (prev === id ? null : id));
@@ -21,6 +25,14 @@ export default function UserProfile() {
 
     const handleChange = (date: Date | null) => {
         setStartDate(date);
+    };
+
+    const handleLogout = () => {
+        Cookies.remove("access_token");
+        Cookies.remove("user");
+
+
+        router.push("/user/login");
     };
 
     return (
@@ -50,7 +62,11 @@ export default function UserProfile() {
                     </Button>
                 </div>
 
-                <button className="border border-red text-red p-2 mt-10 hover:bg-red-50 cursor-pointer flex items-center gap-2">
+                <button
+                    onClick={handleLogout}
+                    className="border border-red text-red p-2 mt-10 hover:bg-red-50 cursor-pointer flex items-center gap-2"
+                    type="button"
+                >
                     <span>Logout</span>
                 </button>
             </div>
@@ -143,7 +159,7 @@ export default function UserProfile() {
 
                 {/* Password Tab */}
                 {activeTab === "password" && (
-                    
+
                     <>
                         <h2 className="text-xl sm:text-2xl sm:leading-6 font-medium mb-5 sm:mb-10 border-b border-[#E5E5E5] pb-2.5 sm:pb-5">
                             Change Password

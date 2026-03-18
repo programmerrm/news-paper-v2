@@ -33,23 +33,20 @@ export default async function NationalSection() {
             ? Object.keys(votePoll)
                 .filter(
                     (key) =>
-                        key.startsWith("option_") &&
+                        key.startsWith("vote_option_") &&
                         key.endsWith("_status") &&
                         votePoll[key] === 1
                 )
                 .map((statusKey) => {
-                    const match = statusKey.match(/\d+/);
-                    if (!match) return null;
-
-                    const optionNumber = match[0];
+                    const optionKey = statusKey.replace("_status", "");
 
                     return {
-                        id: optionNumber,
-                        label: votePoll[`option_${optionNumber}_bn`] ?? "",
-                        value: optionNumber,
+                        id: optionKey,
+                        label: votePoll[optionKey] ?? "",
+                        value: optionKey,
                     };
                 })
-                .filter((item): item is { id: string; label: string; value: string } => Boolean(item))
+                .filter((item) => item.label)
             : [];
 
     console.log('voteOptions -- ', voteOptions);
@@ -97,12 +94,12 @@ export default async function NationalSection() {
                                     {lead_ad?.ad_status === 1 && (
                                         <>
                                             {lead_ad?.ad_type === "premium" ? (
-                                                
-                                                    <Ads
-                                                        adsImg={lead_ad?.ad_thumbnail}
-                                                        adsWidth={496}
-                                                        adsHeight={372}
-                                                    />
+
+                                                <Ads
+                                                    adsImg={lead_ad?.ad_thumbnail}
+                                                    adsWidth={496}
+                                                    adsHeight={372}
+                                                />
                                             ) : (
                                                 <div className="w-124 h-93">
                                                     <GoogleAds
@@ -190,6 +187,7 @@ export default async function NationalSection() {
                                 </div>
                                 <div className="mt-5 flex flex-col">
                                     <OnlineVote
+                                        vote_id={votePoll?.vote_id}
                                         image={votePoll?.vote_thumbnail}
                                         date={votePoll?.created_at}
                                         question={votePoll?.vote_title}
@@ -223,11 +221,11 @@ export default async function NationalSection() {
             {section_bottom_ad?.ad_status === 1 && (
                 <>
                     {section_bottom_ad?.ad_type === "premium" ? (
-                            <Ads
-                                adsImg={section_bottom_ad?.ad_thumbnail}
-                                adsWidth={768}
-                                adsHeight={90}
-                            />
+                        <Ads
+                            adsImg={section_bottom_ad?.ad_thumbnail}
+                            adsWidth={768}
+                            adsHeight={90}
+                        />
                     ) : (
                         <div className="w-3xl h-22.5">
                             <GoogleAds
