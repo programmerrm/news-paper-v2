@@ -34,8 +34,6 @@ export default async function Page() {
                     <div className="w-full">
                         <span className="text-center block py-3 sm:py-4 text-sm leading-6 font-medium text-black">or</span>
 
-
-
                         <div className="space-y-3 w-full">
                             <button className="bg-white text-title w-full flex items-center justify-center gap-2 p-2 sm:p-3 text-sm font-medium leading-6 transition-all border border-[#B6C3C8] cursor-pointer" type="button">
                                 <Image 

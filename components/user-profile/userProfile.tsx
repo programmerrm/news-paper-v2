@@ -106,13 +106,56 @@ export default function UserProfile() {
                                     className="w-full border border-[#B6C3C8] p-2 sm:p-4 outline-none text-sm leading-6 font-medium"
                                 />
                                 <div className="relative w-full">
+                                    
                                     <DatePicker
                                         selected={startDate}
                                         onChange={handleChange}
                                         placeholderText="Select date"
                                         dateFormat="dd/MM/yyyy"
+                                        showPopperArrow={false}
                                         wrapperClassName="w-full"
                                         className="w-full border border-[#B6C3C8] p-2 sm:p-4 pr-10 outline-none text-sm leading-6 font-medium"
+                                        renderCustomHeader={({
+                                            date,
+                                            changeYear,
+                                            changeMonth,
+                                        }) => (
+                                            <div className="flex justify-between px-2 py-2">
+                                                {/* Month */}
+                                                <select
+                                                    value={date.getMonth()}
+                                                    onChange={({ target: { value } }) =>
+                                                        changeMonth(Number(value))
+                                                    }
+                                                >
+                                                    {[
+                                                        "Jan","Feb","Mar","Apr","May","Jun",
+                                                        "Jul","Aug","Sep","Oct","Nov","Dec"
+                                                    ].map((month, i) => (
+                                                        <option key={month} value={i}>
+                                                            {month}
+                                                        </option>
+                                                    ))}
+                                                </select>
+
+                                                {/* Year */}
+                                                <select
+                                                    value={date.getFullYear()}
+                                                    onChange={({ target: { value } }) =>
+                                                        changeYear(Number(value))
+                                                    }
+                                                >
+                                                    {Array.from({ length: 100 }, (_, i) => {
+                                                        const year = new Date().getFullYear() - i;
+                                                        return (
+                                                            <option key={year} value={year}>
+                                                                {year}
+                                                            </option>
+                                                        );
+                                                    })}
+                                                </select>
+                                            </div>
+                                        )}
                                     />
 
                                     <svg

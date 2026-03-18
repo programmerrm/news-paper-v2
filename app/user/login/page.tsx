@@ -29,8 +29,6 @@ export default async function Page() {
 
                     <LoginForm />
 
-                    
-
                 </div>
             </div>
         </section>
