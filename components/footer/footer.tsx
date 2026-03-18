@@ -77,6 +77,11 @@ export default async function Footer() {
                                 প্রাইভেসি পলিসি
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/newslatter" className="text-[15px] leading-3.75 tracking-[0.15px] text-black transition-all hover:text-blue">
+                                নিউজলেটার
+                            </Link>
+                        </li>
                     </ul>
                     <div className="pb-4 md:pb-8 flex items-center justify-center sm:justify-between gap-5 flex-wrap">
                         <p className="text-[15px] leading-3.75 tracking-[0.15px] text-black">প্রকাশকঃ মোহাম্মদ শামীম রেজা</p>
