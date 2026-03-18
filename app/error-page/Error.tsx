@@ -47,12 +47,11 @@ export default function NotFoundPage() {
                         </button>
                     </div>
                     <div className="flex items-center justify-center">
-                        <button
-                            onClick={() => router.push("/")}
+                        <a href="/"
                             className="w-full max-w-60 bg-red text-white px-6 py-3 text-sm leading-6 font-medium hover:bg-red-900 transition cursor-pointer"
                         >
                             হোমপেজে ফিরে যান
-                        </button>
+                        </a>
                     </div>
                 </form>
             </div>
